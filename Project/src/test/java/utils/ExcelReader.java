@@ -36,7 +36,6 @@ public class ExcelReader {
         } catch (Exception e) {
             value = "";
         }
-
         fis_Workbook.close();
         readfile.close();
 
