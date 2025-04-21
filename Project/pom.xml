@@ -19,7 +19,6 @@
   </properties>
 
   <dependencies>
-
 <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
@@ -32,6 +31,8 @@
       <version>2.0.7</version>
       <scope>test</scope>
     </dependency>
+
+    
     <!-- https://mvnrepository.com/artifact/org.testng/testng -->
     <dependency>
       <groupId>org.testng</groupId>
@@ -110,7 +111,6 @@
           <version>3.0.0</version>
         </plugin>
       </plugins>
-
     </pluginManagement>
   </build>
 </project>
