@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import pages.Homepage;
 import utils.Base;
 
 public class TestRunner extends Base{
@@ -18,8 +19,13 @@ public class TestRunner extends Base{
     @BeforeMethod
     public void launch() throws IOException{
         openBrowser();
+        driver.navigate().refresh();
     }
     @Test
+    public void test(){
+        Homepage la=new Homepage();
+        la.clickbirthday();
+    }
     @AfterMethod
     public void tear(){
         driver.quit();
