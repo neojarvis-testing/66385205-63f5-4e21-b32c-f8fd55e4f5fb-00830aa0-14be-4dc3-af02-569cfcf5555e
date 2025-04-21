@@ -1,29 +1,55 @@
 package utils;
-
+ 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-
+ 
 public class Assertion {
-    public static void assertEquals(String expected, String actual, ExtentTest test){
-        try{
-            Assert.assertEquals(expected, actual);
-            LoggerHandler.info("Verified: "+actual);
-            test.log(Status.INFO,"Verified: "+expected);
-        }catch(Exception e){
-            LoggerHandler.error("Assertion failed: "+e.getMessage());
-            test.log(Status.WARNING,"Assertion failed: "+e.getMessage());
+    WebDriver driver;
+ 
+    public Assertion(WebDriver driver) {
+        this.driver = driver;
+    }
+ 
+    public void verifyTitle(String value) {
+        try {
+            String element = driver.getTitle();
+            Boolean check = element.contains(value);
+            Assert.assertTrue(check);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    public static void assertTrue(boolean condition, String msg, ExtentTest test){
-        try{
-            Assert.assertTrue(condition, msg);
-            LoggerHandler.info("Verified: "+msg);
-            test.log(Status.INFO,"Verified: "+msg);
-        }catch(Exception e){
-            LoggerHandler.error("Assertion failed: "+e.getMessage());
-            test.log(Status.WARNING,"Assertion failed: "+e.getMessage());
+ 
+    public void verifyUrl(String value) {
+        try {
+            String element = driver.getCurrentUrl();
+            Boolean check = element.contains(value);
+            Assert.assertTrue(check);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ 
+    public void verifyText(By locator, String value) {
+        try {
+            WebElement element = driver.findElement(locator);
+            String text = element.getText();
+            Boolean check = text.contains(value);
+            Assert.assertTrue(check);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ 
+    public void verifyLogo(By locator) {
+        try {
+            String element = driver.findElement(locator).getDomAttribute("src");
+            Boolean check = element.isEmpty();
+            Assert.assertTrue(check);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
