@@ -40,7 +40,6 @@ public class Base {
         try {
             loadProperties();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         String executionType = prop.getProperty("executiontype");
