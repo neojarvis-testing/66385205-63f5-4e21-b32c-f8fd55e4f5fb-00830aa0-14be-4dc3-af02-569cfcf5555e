@@ -32,3 +32,4 @@ public class LoggerHandler {
         log.fatal(msg);
     }
 }
+ 

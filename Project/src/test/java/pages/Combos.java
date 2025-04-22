@@ -44,12 +44,11 @@ public class Combos {
     }
     public void enteringLocation() {
         try{
-            helper.waitForElementToBeVisible(CombosLocators.location,10);
+            Thread.sleep(2000);
             helper.clickElement(CombosLocators.location);
             helper.waitForElementToBeVisible(CombosLocators.location,10);
             //helper.enterText(TestSevenLocators.location,ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx","Sheet1",2,0));
             helper.enterText(CombosLocators.location,"Bangalore");
-            //Thread.sleep(3000);
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
@@ -59,6 +58,7 @@ public class Combos {
             //helper.enterAction(TestSevenLocators.location);
             Thread.sleep(2000);
             helper.enterAction(CombosLocators.location);
+            Thread.sleep(2000);
         }
         catch(Exception e){
             LoggerHandler.info("couldn't hovered over combos");
