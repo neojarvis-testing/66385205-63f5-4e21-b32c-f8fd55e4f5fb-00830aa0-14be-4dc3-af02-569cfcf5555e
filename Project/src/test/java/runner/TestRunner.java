@@ -12,7 +12,6 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
-import pages.Homepage;
 import pages.LifestylePageActions;
 import pages.PersonalisedPageActions;
 import utils.Base;
@@ -32,13 +31,7 @@ public class TestRunner extends Base{
         driver.navigate().refresh();
     }
 
-    @Test(enabled = false)
-    public void test() throws IOException{
-        extentTest = extentReport.createTest("testcase1");
-        Homepage homePageObject=new Homepage(extentTest);
-        homePageObject.testCase1();
-        
-    }
+
 
     @Test(enabled = true)
     public void personalisedGifts(){
