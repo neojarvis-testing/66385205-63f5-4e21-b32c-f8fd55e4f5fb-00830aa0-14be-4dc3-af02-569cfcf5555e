@@ -1,56 +1,51 @@
 package utils;
  
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
  
 public class Assertion {
-    WebDriver driver;
  
-    public Assertion(WebDriver driver) {
-        this.driver = driver;
-    }
- 
-    public void verifyTitle(String value) {
-        try {
-            String element = driver.getTitle();
-            Boolean check = element.contains(value);
-            Assert.assertTrue(check);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static void verifyText(By locator, String expected) {
+        try{
+        WebElement text = Base.driver.findElement(locator);
+        String actual = text.getText();
+        Assert.assertEquals(actual, expected);
+        }
+        catch(Exception e){
+            e.getMessage();   //use logs
         }
     }
  
-    public void verifyUrl(String value) {
-        try {
-            String element = driver.getCurrentUrl();
-            Boolean check = element.contains(value);
-            Assert.assertTrue(check);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static void verifyPartialText(By locator, String expected) {
+        try{
+        WebElement  partialText= Base.driver.findElement(locator);
+        String actual = partialText.getText();
+        Assert.assertTrue(actual.contains(expected));
+        }
+        catch(Exception e){
+            e.getMessage();
         }
     }
  
-    public void verifyText(By locator, String value) {
-        try {
-            WebElement element = driver.findElement(locator);
-            String text = element.getText();
-            Boolean check = text.contains(value);
-            Assert.assertTrue(check);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static void verifyUrl(String expected) {
+        try{
+        String actual = Base.driver.getCurrentUrl();
+        Assert.assertEquals(actual, expected);
         }
+        catch(Exception e){
+            e.getMessage();
+        }
+    }
+    public static void verifyTitle(String expected) {
+        try {
+            String actual = Base.driver.getTitle();
+            Assert.assertEquals(actual, expected);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+       
     }
  
-    public void verifyLogo(By locator) {
-        try {
-            String element = driver.findElement(locator).getDomAttribute("src");
-            Boolean check = element.isEmpty();
-            Assert.assertTrue(check);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
 }
+ 

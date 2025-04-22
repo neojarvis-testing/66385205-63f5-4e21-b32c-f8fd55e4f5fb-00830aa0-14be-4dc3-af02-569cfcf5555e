@@ -1,9 +1,16 @@
 package utils;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.Set;
+
+
  
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
  
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -11,12 +18,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
  
  
  
  
+
 public class WebDriverHelper {
     private WebDriver driver;
     public WebDriverHelper(WebDriver driver){
@@ -30,6 +41,7 @@ public class WebDriverHelper {
         catch(Exception e){
             e.printStackTrace();
         }
+
     }
     public void hoverElement(By Locator){
         try{
@@ -72,7 +84,7 @@ public class WebDriverHelper {
     public void waitForElementToBeVisible(By locator,int timeoutInSeconds){
         try{
             new WebDriverWait(driver,Duration.ofSeconds(timeoutInSeconds)).until(ExpectedConditions.visibilityOfElementLocated(locator));
- 
+
         }
         catch(Exception e){
             e.printStackTrace();
@@ -85,13 +97,13 @@ public class WebDriverHelper {
             if(!i.equalsIgnoreCase(currWin)){
                 driver.switchTo().window(i);
             }
-        }
+        } 
     }
     public void scroll(By locator){
         try{
             WebElement webElement= driver.findElement(locator);
             JavascriptExecutor js = (JavascriptExecutor)driver;
-            js.executeScript("arguments[0].scrollIntoView(True);",webElement);
+            js.executeScript("arguments[0].scrollIntoView(True);",webElement); 
         }
         catch(Exception e){
             e.printStackTrace();
@@ -100,7 +112,7 @@ public class WebDriverHelper {
     public List<WebElement> getElementsByXPath(String xpath){
         return driver.findElements(By.xpath(xpath));
     }
-    public void scrollIt(){
+    public void scrollBy(){
         try{
             JavascriptExecutor js = (JavascriptExecutor)driver;
             js.executeScript("window.scroll(0,3000)");
@@ -108,20 +120,13 @@ public class WebDriverHelper {
         catch(Exception e){
             e.printStackTrace();
         }
- 
+
     }
-    public void selectDropdown(By locator,String str){
-        try{
-            WebElement elem = driver.findElement(locator);
-            Select select = new Select(elem);
-            select.selectByVisibleText(str);
- 
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+
     public void navigateBack(){
         driver.navigate().back();
     }
 }
+
+   
+

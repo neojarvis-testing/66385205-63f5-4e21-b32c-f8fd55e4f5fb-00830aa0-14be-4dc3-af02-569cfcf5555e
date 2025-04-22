@@ -8,7 +8,6 @@ import com.aventstack.extentreports.Status;
 import uistore.AnniversaryPageLocators;
 import utils.Assertion;
 import utils.Base;
-import utils.ExcelReader;
 import utils.LoggerHandler;
 import utils.Reporter;
 import utils.Screenshot;
@@ -22,8 +21,13 @@ public class AnniversaryPageActions {
 
     public AnniversaryPageActions(ExtentTest extentTest) {
         helper = new WebDriverHelper(Base.driver);
-        assertion = new Assertion(Base.driver);
+        //assertion = new Assertion(Base.driver);
         this.extentTest = extentTest;
+    }
+
+    public void clickOnNoThanks(){
+        helper.waitForElementToBeVisible(AnniversaryPageLocators.noThanks,10);
+        helper.clickElement(AnniversaryPageLocators.noThanks);
     }
 
     public void clickOnWhereToDeliver() {
@@ -39,8 +43,7 @@ public class AnniversaryPageActions {
 
     public void inputCity() {
         try {
-            helper.enterText(AnniversaryPageLocators.inputLocation,
-                    ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx/", "Sheet1", 0, 0));
+            helper.enterText(AnniversaryPageLocators.inputLocation, "Chennai");
             Thread.sleep(2000);
             helper.enterAction(AnniversaryPageLocators.inputLocation);
             LoggerHandler.info("Entered city");
@@ -128,10 +131,11 @@ public class AnniversaryPageActions {
     public void verifyHome() {
         assertion.verifyText(AnniversaryPageLocators.home, "Home");
         Screenshot.captureScreenShot("first product");
-        Reporter.attachScreenshotToReport("first_product", extentTest, "This is the first product");
+        Reporter.attachScreenshot("first_product", extentTest, "This is the first product");
     }
 
     public void testAnniversary() {
+        clickOnNoThanks();
         clickOnWhereToDeliver();
         inputCity();
         clickOnContinueShopping();
