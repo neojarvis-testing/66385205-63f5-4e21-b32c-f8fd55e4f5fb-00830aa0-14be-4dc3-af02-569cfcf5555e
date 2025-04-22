@@ -1,93 +1,48 @@
 package utils;
  
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Properties;
- 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
- 
-import com.google.common.io.Files;
- 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
-import com.aventstack.extentreports.Status;
+import org.openqa.selenium.WebDriver;
+import com.aventstack.extentreports.*;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
  
-public class Reporter extends Base{
-    public static TakesScreenshot ts;
-    private static Properties prop;
-    private static ExtentReports reports;
+public class Reporter {
+    private static ExtentReports extent;
  
-    public static void loadProperty() {
-            String filepath = System.getProperty("user.dir") + "/config/config.properties";
-            try (FileInputStream file = new FileInputStream(filepath)) {
-                prop = new Properties();
-                prop.load(file);
-            } catch (IOException e) {
-                System.out.println("Error loading the file: " + e.getLocalizedMessage());
-            }
+    public static ExtentReports generateReport(String reportName) {
+        if (extent == null) {
+            String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+            String reportsDir = System.getProperty("user.dir") + "/reports";
+            String reportPath = reportsDir + "/" + (reportName.isEmpty() ? "Test_Report" : reportName) + "_" + timestamp
+                    + ".html";
+            new File(reportsDir).mkdirs();
+ 
+            ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
+            spark.config().setReportName(reportName);
+            spark.config().setDocumentTitle("Automation Report");
+ 
+            extent = new ExtentReports();
+            extent.attachReporter(spark);
+            extent.setSystemInfo("OS", System.getProperty("os.name"));
+            extent.setSystemInfo("User", System.getProperty("user.name"));
         }
-   
-        public static ExtentReports generateExtentReports(String report) {
-            if (reports == null) {
-                reports = new ExtentReports();
-                loadProperty();
- 
-            String reportPath = System.getProperty("user.dir") + "/reports/";
-            reportPath += report + ".html";
- 
-            File extentReportFile = new File(reportPath);
-            ExtentSparkReporter sparkReporter = new ExtentSparkReporter(extentReportFile);
- 
-            sparkReporter.config().setTheme(Theme.DARK);
-            sparkReporter.config().setReportName("Test Summary");
-            sparkReporter.config().setDocumentTitle("Testing Results");
-            sparkReporter.config().setTimeStampFormat("yyyy.MM.dd.HH.mm.ss");
- 
-            reports.attachReporter(sparkReporter);
- 
-            reports.setSystemInfo("URL", prop.getProperty("url"));
-            reports.setSystemInfo("Browser Name", prop.getProperty("browser"));
-        }
-        return reports;
+        return extent;
     }
  
-    public static String captureScreenshot(String fileName) {
-        String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-        String name = fileName + timestamp + ".png";
- 
-        String destinationPath = "./" + name;
- 
-        ts = (TakesScreenshot) driver;
-        File file = ts.getScreenshotAs(OutputType.FILE);
- 
-        File screenshotsDirectory = new File(System.getProperty("user.dir") + "/reports");
- 
-        if (!screenshotsDirectory.exists()) {
-            screenshotsDirectory.mkdirs();
-        }
- 
-        File target = new File(screenshotsDirectory, name);
+    public static void addScreenshot(String filename, ExtentTest test, String description, WebDriver driver) {
         try {
-            Files.copy(file, target);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return destinationPath;
-    }
+            String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+            String screenshotPath = System.getProperty("user.dir") + "/reports/" + filename + "_" + timestamp + ".png";
+            File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            org.apache.commons.io.FileUtils.copyFile(src, new File(screenshotPath));
  
-    public static void attachScreenshotToReport(String fileName, ExtentTest test, String description) {
-        try {
-            test.log(Status.INFO, description,
-                    MediaEntityBuilder.createScreenCaptureFromPath(captureScreenshot(fileName)).build());
+            test.info(description, MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
         } catch (Exception e) {
-            e.printStackTrace();
+            e.getMessage();
         }
     }
+ 
 }

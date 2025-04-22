@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
-import pages.Homepage;
+import pages.Combos;
 import utils.Base;
 
 public class TestRunner extends Base{
@@ -20,19 +20,24 @@ public class TestRunner extends Base{
     ExtentTest test;
     @BeforeClass
     public void start(){
-        report = utils.Reporter.generateExtentReports("prakash");
+        report = utils.Reporter.generateReport("rohan");
     }
     @BeforeMethod
     public void launch() throws IOException{
         openBrowser();
         driver.navigate().refresh();
     }
+    
     @Test
-    public void test() throws IOException{
-        test = report.createTest("testcase1");
-        Homepage la=new Homepage(test);
-        la.testCase1();
-        
+    public void testZeven(){
+        try{
+            test = report.createTest("testcase7");
+            Combos cmbs=new Combos(test);
+            cmbs.clickBangalore();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
     @AfterMethod
     public void tear(){
