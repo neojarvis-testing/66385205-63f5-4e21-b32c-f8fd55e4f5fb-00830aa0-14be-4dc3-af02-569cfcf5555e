@@ -11,7 +11,9 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
+import pages.AnniversaryPageActions;
 import pages.Cake;
+import pages.FooterPageActions;
 import pages.Pen;
 import pages.Plants;
 import utils.Base;
@@ -43,6 +45,17 @@ public class TestRunner extends Base{
     public void cake_testcase() throws IOException{
         Cake cakeActions=new Cake(extenttest);
         cakeActions.cake();
+    }
+
+    @Test
+    public void anniversary_testcase(){
+        AnniversaryPageActions anniversaryPageActionsObject = new AnniversaryPageActions(extenttest);
+        anniversaryPageActionsObject.testAnniversary();
+    }
+    @Test
+    public void footer_testcase(){
+        FooterPageActions footerPageActionsObject = new FooterPageActions(extenttest);
+        footerPageActionsObject.testFooter();
     }
     @AfterMethod
     public void tear(){
