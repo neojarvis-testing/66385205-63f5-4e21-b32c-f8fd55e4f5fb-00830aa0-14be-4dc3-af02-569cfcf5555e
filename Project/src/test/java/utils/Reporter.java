@@ -9,11 +9,11 @@ import org.openqa.selenium.WebDriver;
 import com.aventstack.extentreports.*;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
  
-public class Reporter {
-    private static ExtentReports extentReport;
+public class Reporter extends Base{
+    private static ExtentReports extent;
  
     public static ExtentReports generateReport(String reportName) {
-        if (extentReport == null) {
+        if (extent == null) {
             String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
             String reportsDir = System.getProperty("user.dir") + "/reports";
             String reportPath = reportsDir + "/" + (reportName.isEmpty() ? "Test_Report" : reportName) + "_" + timestamp
@@ -24,15 +24,15 @@ public class Reporter {
             spark.config().setReportName(reportName);
             spark.config().setDocumentTitle("Automation Report");
  
-            extentReport = new ExtentReports();
-            extentReport.attachReporter(spark);
-            extentReport.setSystemInfo("OS", System.getProperty("os.name"));
-            extentReport.setSystemInfo("User", System.getProperty("user.name"));
+            extent = new ExtentReports();
+            extent.attachReporter(spark);
+            extent.setSystemInfo("OS", System.getProperty("os.name"));
+            extent.setSystemInfo("User", System.getProperty("user.name"));
         }
-        return extentReport;
+        return extent;
     }
  
-    public static void addScreenshot(String filename, ExtentTest test, String description, WebDriver driver) {
+    public static void attachScreenshot(String filename, ExtentTest test, String description) {
         try {
             String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
             String screenshotPath = System.getProperty("user.dir") + "/reports/" + filename + "_" + timestamp + ".png";
@@ -46,3 +46,4 @@ public class Reporter {
     }
  
 }
+ 
