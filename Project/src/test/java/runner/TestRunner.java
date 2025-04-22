@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
+import pages.Cake;
 import pages.Pen;
 import pages.Plants;
 import utils.Base;
@@ -20,7 +21,7 @@ public class TestRunner extends Base{
     ExtentTest extenttest;
     @BeforeClass
     public void start(){
-        report = utils.Reporter.generateExtentReport("fnp");
+        report = utils.Reporter.generateReport("fnp");
         extenttest=report.createTest("fnp_test");
         
     }
@@ -28,15 +29,20 @@ public class TestRunner extends Base{
     public void launch() throws IOException{
         openBrowser();
     }
-    @Test
-    public void test() throws IOException, InterruptedException{
-        Pen la=new Pen(extenttest);
-        la.pen_testcase();    
+    @Test(priority = 1)
+    public void pen_testcase() throws IOException, InterruptedException{
+        Pen penActions=new Pen(extenttest);
+        penActions.pen();    
     }
-    @Test
-    public void test2() throws IOException{
-        Plants la=new Plants(extenttest);
-        la.plant_testcase();    
+    @Test(priority = 2)
+    public void plant_testcase() throws IOException{
+        Plants plantActions=new Plants(extenttest);
+        plantActions.plant();    
+    }
+    @Test(priority = 3)
+    public void cake_testcase() throws IOException{
+        Cake cakeActions=new Cake(extenttest);
+        cakeActions.cake();
     }
     @AfterMethod
     public void tear(){
