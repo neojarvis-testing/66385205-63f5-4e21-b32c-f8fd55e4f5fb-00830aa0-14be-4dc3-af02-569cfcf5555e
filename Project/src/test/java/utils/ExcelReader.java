@@ -1,5 +1,4 @@
 package utils;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -20,7 +19,6 @@ public class ExcelReader {
             if (row == null) return "";
             Cell cell = row.getCell(colNumber);
             if (cell == null) return "";
-
             return new DataFormatter().formatCellValue(cell);
         } catch (IOException e) {
             e.printStackTrace();

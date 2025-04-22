@@ -14,9 +14,11 @@ import com.aventstack.extentreports.ExtentTest;
 import pages.AnniversaryPageActions;
 import pages.Cake;
 import pages.FooterPageActions;
+import pages.LifestylePageActions;
 import pages.Pen;
 import pages.Plants;
 import utils.Base;
+import utils.LoggerHandler;
 
 public class TestRunner extends Base{
     ExtentReports report;
@@ -28,7 +30,7 @@ public class TestRunner extends Base{
         
     }
     @BeforeMethod
-    public void launch() throws IOException{
+    public void launch() {
         openBrowser();
     }
     @Test(priority = 1)
@@ -57,12 +59,24 @@ public class TestRunner extends Base{
         FooterPageActions footerPageActionsObject = new FooterPageActions(extenttest);
         footerPageActionsObject.testFooter();
     }
+
+    @Test(enabled = true)
+    public void lifestyleRings(){
+        try {
+            LifestylePageActions lifestylepageactionsObject = new LifestylePageActions(extenttest);
+            lifestylepageactionsObject.lifestyleRingsMethod();
+        } catch (Exception e) {
+            LoggerHandler.info("Verification failed in runner");
+        }
+    }
+    
     @AfterMethod
     public void tear(){
         driver.quit();
     }
+
     @AfterClass
     public void end(){
         report.flush();
-    }
+    } 
 }
