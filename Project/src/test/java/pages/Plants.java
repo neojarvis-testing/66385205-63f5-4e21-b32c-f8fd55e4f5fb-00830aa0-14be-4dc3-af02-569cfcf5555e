@@ -22,7 +22,7 @@ public class Plants {
     public Plants(ExtentTest extenttest){
         helper=new WebDriverHelper(Base.driver);
         this.extenttest=extenttest;
-        obj = new Assertion(Base.driver);
+        //obj = new Assertion(Base.driver);
     }
 
     public void clickNoThanks(){
@@ -34,7 +34,7 @@ public class Plants {
             helper.waitForElementToBeVisible(PlantLocators.deliver,10);
             helper.clickElement(PlantLocators.deliver);
             LoggerHandler.info("click Deliver");
-            extenttest.pass("click Deliver");
+            extenttest.log(Status.PASS,"click Deliver");
         }catch(Exception e){
             LoggerHandler.error("Not click Deliver");
             extenttest.log(Status.FAIL,"Not click Deliver");
@@ -45,7 +45,7 @@ public class Plants {
             helper.waitForElementToBeVisible(PlantLocators.area,10);
             helper.clickElement(PlantLocators.area);
             LoggerHandler.info("click Location");
-            extenttest.pass("click location");
+            extenttest.log(Status.PASS,"click location");
         }catch(Exception e){
             LoggerHandler.error("Not click Location");
             extenttest.log(Status.FAIL,"Not click Location");
@@ -54,10 +54,10 @@ public class Plants {
     public void enterArea() throws IOException{
         try{
             helper.waitForElementToBeVisible(PlantLocators.area,10);
-        String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 0);
-        helper.enterText(PlantLocators.area,area_name);
+        //String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 0);
+        helper.enterText(PlantLocators.area,"Bangalore");
         LoggerHandler.info("Entered Bangalore");
-        extenttest.pass("Entered Bangalore");
+        extenttest.log(Status.PASS,"Entered Bangalore");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -78,7 +78,7 @@ public class Plants {
             helper.waitForElementToBeVisible(PlantLocators.continueshopping,10);
             helper.clickElement(PlantLocators.continueshopping);
             LoggerHandler.info("Click continue shopping");
-            extenttest.pass("Click continue shopping");
+            extenttest.log(Status.PASS,"Click continue shopping");
             Thread.sleep(3000);
         }catch(Exception e){
             LoggerHandler.error("Not click continue shopping");
@@ -98,7 +98,7 @@ public class Plants {
             helper.waitForElementToBeVisible(PlantLocators.plant,10);
             helper.clickElement(PlantLocators.plant);
             LoggerHandler.info("Click plants");
-            extenttest.pass("Click plants");
+            extenttest.log(Status.PASS,"Click plants");
         }catch(Exception e){
             LoggerHandler.error("Not click Plants");
             extenttest.log(Status.FAIL,"Not click Plants");
@@ -109,7 +109,7 @@ public class Plants {
             helper.waitForElementToBeVisible(PlantLocators.luckybamboo,10);
             helper.clickElement(PlantLocators.luckybamboo);
             LoggerHandler.info("Click LuckyBamboo");
-            extenttest.pass("Click LuckyBamboo");
+            extenttest.log(Status.PASS,"Click LuckyBamboo");
         }catch(Exception e){
             LoggerHandler.error("Not click LuckyBamboo");
             extenttest.log(Status.FAIL,"Not click LuckyBamboo");
@@ -121,7 +121,7 @@ public class Plants {
             helper.waitForElementToBeVisible(PlantLocators.jade_plants,10);
             helper.clickElement(PlantLocators.jade_plants);
             LoggerHandler.info("Click Jade plants");
-            extenttest.pass("Click Jade plants");
+            extenttest.log(Status.PASS,"Click Jade plants");
         }catch(Exception e){
             LoggerHandler.error("Not click Jade plants");
             extenttest.log(Status.FAIL,"Not click Jade plants");
@@ -133,7 +133,7 @@ public class Plants {
             helper.waitForElementToBeVisible(PlantLocators.money_plants,10);
             helper.clickElement(PlantLocators.money_plants);
             LoggerHandler.info("Click Money plants");
-            extenttest.pass("Click Money plants");
+            extenttest.log(Status.PASS,"Click Money plants");
         }catch(Exception e){
             LoggerHandler.error("Not click Money plants");
             extenttest.log(Status.FAIL,"Not click Money plants");
@@ -145,7 +145,7 @@ public class Plants {
             helper.waitForElementToBeVisible(PlantLocators.cart,10);
             helper.clickElement(PlantLocators.cart);
             LoggerHandler.info("Click Cart");
-            extenttest.pass("Click Cart");
+            extenttest.log(Status.PASS,"Click Cart");
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -160,7 +160,7 @@ public class Plants {
 
 
     
-    public void plant_testcase() throws IOException
+    public void plant() throws IOException
     {
         clickNoThanks();
         clickDeliver();
