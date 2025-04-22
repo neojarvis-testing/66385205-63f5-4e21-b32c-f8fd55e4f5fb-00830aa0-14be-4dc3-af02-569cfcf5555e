@@ -147,7 +147,7 @@ public class PersonalisedPageActions {
             helper.waitForElementToBeVisible(PersonalisedPageLocators.addToCart, 10);
             helper.clickElement(PersonalisedPageLocators.addToCart);
             Screenshot.captureScreenShot("Available");
-            Reporter.addScreenshot("available", extentTest, "available",null);
+            Reporter.attachScreenshot("available", extentTest, "available");
             LoggerHandler.info("Clicked on Add To Cart");
             extentTest.log(Status.PASS, "Clicked on Add To Cart");
         } catch (Exception e) {

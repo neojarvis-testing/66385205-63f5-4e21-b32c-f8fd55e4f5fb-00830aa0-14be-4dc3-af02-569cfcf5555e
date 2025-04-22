@@ -2,7 +2,6 @@ package runner;
 
 import java.io.IOException;
 
-import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -12,45 +11,59 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
+import pages.AnniversaryPageActions;
+import pages.Cake;
+import pages.FooterPageActions;
 import pages.LifestylePageActions;
-import pages.PersonalisedPageActions;
+import pages.Pen;
+import pages.Plants;
 import utils.Base;
 import utils.LoggerHandler;
 
 public class TestRunner extends Base{
-    ExtentReports extentReport;
-    ExtentTest extentTest;
+    ExtentReports report;
+    ExtentTest extenttest;
     @BeforeClass
     public void start(){
-        extentReport = utils.Reporter.generateReport("prakash");
-            
+        report = utils.Reporter.generateReport("fnp");
+        extenttest=report.createTest("fnp_test");
+        
     }
     @BeforeMethod
     public void launch() {
         openBrowser();
-        driver.navigate().refresh();
+    }
+    @Test(priority = 1)
+    public void pen_testcase() throws IOException, InterruptedException{
+        Pen penActions=new Pen(extenttest);
+        penActions.pen();    
+    }
+    @Test(priority = 2)
+    public void plant_testcase() throws IOException{
+        Plants plantActions=new Plants(extenttest);
+        plantActions.plant();    
+    }
+    @Test(priority = 3)
+    public void cake_testcase() throws IOException{
+        Cake cakeActions=new Cake(extenttest);
+        cakeActions.cake();
     }
 
-
-
-    @Test(enabled = true)
-    public void personalisedGifts(){
-        try {
-            extentTest = extentReport.createTest("testcase_5");
-            PersonalisedPageActions personalisedpageactionsObject = new PersonalisedPageActions(extentTest);
-
-            personalisedpageactionsObject.personalisedGiftsMethod();
-            
-        } catch (Exception e) {
-            LoggerHandler.info("Verification failed in runner");
-        }
+    @Test
+    public void anniversary_testcase(){
+        AnniversaryPageActions anniversaryPageActionsObject = new AnniversaryPageActions(extenttest);
+        anniversaryPageActionsObject.testAnniversary();
+    }
+    @Test
+    public void footer_testcase(){
+        FooterPageActions footerPageActionsObject = new FooterPageActions(extenttest);
+        footerPageActionsObject.testFooter();
     }
 
     @Test(enabled = true)
     public void lifestyleRings(){
         try {
-            extentTest = extentReport.createTest("testcase_10");
-            LifestylePageActions lifestylepageactionsObject = new LifestylePageActions(extentTest);
+            LifestylePageActions lifestylepageactionsObject = new LifestylePageActions(extenttest);
             lifestylepageactionsObject.lifestyleRingsMethod();
         } catch (Exception e) {
             LoggerHandler.info("Verification failed in runner");
@@ -64,6 +77,6 @@ public class TestRunner extends Base{
 
     @AfterClass
     public void end(){
-        extentReport.flush();
+        report.flush();
     } 
 }

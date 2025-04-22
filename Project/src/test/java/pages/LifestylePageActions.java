@@ -135,7 +135,7 @@ public class LifestylePageActions {
             helper.waitForElementToBeVisible(LifestylePageLocators.addToCart, 10);
             helper.clickElement(LifestylePageLocators.addToCart);
             Screenshot.captureScreenShot("Reviews");
-            Reporter.addScreenshot("Reviews", extentTest, "Reviews", null);
+            Reporter.attachScreenshot("Reviews", extentTest, "Reviews");
             LoggerHandler.info("Clicked on Add To Cart Button");
             extentTest.log(Status.PASS, "Clicked on Add To Cart Button");
             
