@@ -32,7 +32,7 @@ public class Pen {
         try{
             helper.clickElement(PenLocators.deliver);
             LoggerHandler.info("click Deliver");
-            extenttest.pass("click Deliver");
+            extenttest.log(Status.PASS,"click Deliver");
         }catch(Exception e){
             LoggerHandler.error("Not click Deliver");
             extenttest.log(Status.FAIL,"Not click Deliver");
@@ -42,7 +42,7 @@ public class Pen {
         try{
             helper.clickElement(PenLocators.area);
             LoggerHandler.info("click Location");
-            extenttest.pass("click location");
+            extenttest.log(Status.PASS,"click location");
         }catch(Exception e){
             LoggerHandler.error("Not click Location");
             extenttest.log(Status.FAIL,"Not click Location");
@@ -50,10 +50,10 @@ public class Pen {
     }
     public void enterArea() throws IOException{
         try{
-        String area_name="Delhi";
-        helper.enterText(PenLocators.area,area_name);
+        //String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
+        helper.enterText(PenLocators.area,"Delhi");
         LoggerHandler.info("Entered Delhi");
-        extenttest.pass("Entered Delhi");
+        extenttest.log(Status.PASS,"Entered Delhi");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -72,7 +72,7 @@ public class Pen {
             helper.waitForElementToBeVisible(PenLocators.continueshopping,10);
             helper.clickElement(PenLocators.continueshopping);
             LoggerHandler.info("Click continue shopping");
-            extenttest.pass("Click continue shopping");
+            extenttest.log(Status.PASS,"Click continue shopping");
         }catch(Exception e){
             LoggerHandler.error("Not click continue shopping");
             extenttest.log(Status.FAIL,"Not click continue shopping");
@@ -84,7 +84,7 @@ public class Pen {
             helper.waitForElementToBeVisible(PenLocators.search,10);
             helper.clickElement(PenLocators.search);
             LoggerHandler.info("Click search");
-            extenttest.pass("Click csearch");
+            extenttest.log(Status.PASS,"Click csearch");
         }catch(Exception e){
             LoggerHandler.error("Not click search");
             extenttest.log(Status.FAIL,"Not click search");
@@ -92,11 +92,11 @@ public class Pen {
     }
     public void typeSearch() throws IOException{
         try{
-            String name="pen";
-            helper.enterText(PenLocators.search,name);
+            //String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 1, 0);
+            helper.enterText(PenLocators.search,"pen");
             helper.enterAction(PenLocators.search);
-            LoggerHandler.info("Entered Delhi");
-            extenttest.pass("Entered Delhi");
+            LoggerHandler.info("Entered pen");
+            extenttest.log(Status.PASS,"Entered pen");
         }catch(Exception e){
             LoggerHandler.error("Not Entered Delhi");
             extenttest.log(Status.FAIL,"Not Entered Delhi");
@@ -108,7 +108,7 @@ public class Pen {
             helper.waitForElementToBeVisible(PenLocators.first_product,10);
             helper.clickElement(PenLocators.first_product);
             LoggerHandler.info("click on first product");
-            extenttest.pass("click on first product");
+            extenttest.log(Status.PASS,"click on first product");
         }catch(Exception e){
             LoggerHandler.error("Not click on first product");
             extenttest.log(Status.FAIL,"Not click on first product");
@@ -120,9 +120,12 @@ public class Pen {
             helper.switchWindow();
             helper.waitForElementToBeVisible(PenLocators.first_product,10);
             helper.clickElement(PenLocators.addtocart);
+            LoggerHandler.info("click on add to cart");
+            extenttest.log(Status.PASS,"click on add to cart");
             Screenshot.captureScreenShot("pen");
         }catch(Exception e){
-            e.printStackTrace();
+            LoggerHandler.error("Not click on add to cart");
+            extenttest.log(Status.FAIL,"Not click on add to cart");
         }
     }
     public void verifyPinCode(){
@@ -139,18 +142,17 @@ public class Pen {
         e.printStackTrace();
     }
     }
-    public void pen_testcase() throws IOException, InterruptedException{
+    public void pen() throws IOException, InterruptedException{
         clickNoThanks();
         clickDeliver();
         clickArea();
         enterArea();
         clickContinueShopping();
-        //verifyPinCode();
         clickSearch();
         typeSearch();
         clickFirstProduct();
         clickCart();
-        //verifyBuyNow();
+
  
     }
 }

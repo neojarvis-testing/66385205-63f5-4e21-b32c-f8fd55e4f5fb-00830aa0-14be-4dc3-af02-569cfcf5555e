@@ -47,4 +47,3 @@ public class Reporter extends Base{
  
 }
  
- 
