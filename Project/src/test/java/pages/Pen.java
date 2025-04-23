@@ -7,6 +7,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
 import utils.Screenshot;
+import uistore.BirthdayCakesLocator;
 import uistore.PenLocators;
 import utils.Assertion;
 import utils.Base;
@@ -21,13 +22,35 @@ public class Pen {
     public static Assertion obj;
     public Pen(ExtentTest extentTest){
         helper=new WebDriverHelper(Base.driver);
-        this.extentTest=extentTest;
+        this.extenttest=extenttest;
     }
 
+    /*
+    * Method Name: clickNoThanks
+    * Author Name: prakash
+    * Description: This method click on the no thanks
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickNoThanks(){
-        helper.waitForElementToBeVisible(PenLocators.noThanks,10);
-        helper.clickElement(PenLocators.noThanks);
+        try {
+            helper.waitForElementToBeVisible(PenLocators.noThanks,10);                
+            helper.clickElement(PenLocators.noThanks);            
+            LoggerHandler.info("clicked on pop up");
+            extenttest.log(Status.PASS, "Clicked on pop-up");
+        } catch (Exception e) {
+            LoggerHandler.error("Failed to click on pop-up");
+            extenttest.log(Status.FAIL, "failed to click on pop-up");
+        }
+
     }
+    /*
+    * Method Name: clickDeliver
+    * Author Name: prakash
+    * Description: This method click on the where to deliver
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickDeliver(){
         try{
             helper.clickElement(PenLocators.deliver);
@@ -38,6 +61,14 @@ public class Pen {
             extentTest.log(Status.FAIL,"Not click Deliver");
         }
     }
+
+        /*
+    * Method Name: clickArea
+    * Author Name: prakash
+    * Description: This method click on the click area
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickArea(){
         try{
             helper.clickElement(PenLocators.area);
@@ -48,8 +79,18 @@ public class Pen {
             extentTest.log(Status.FAIL,"Not click Location");
         }
     }
+    /*
+    * Method Name: enterArea
+    * Author Name: prakash
+    * Description: This method click on the enter location
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void enterArea() throws IOException{
         try{
+            String delhi=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 1);
+        LoggerHandler.info("Entered Delhi");
+        extenttest.log(Status.PASS,"Entered Delhi");
             String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 1); 
             helper.enterText(PenLocators.area,area_name);
             LoggerHandler.info("Entered Delhi");
@@ -58,7 +99,8 @@ public class Pen {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LoggerHandler.error("failed");
+            extenttest.log(Status.FAIL,"failed");
         }
         helper.enterAction(PenLocators.area);
         Thread.sleep(2000);
@@ -68,6 +110,13 @@ public class Pen {
         }
     }
 
+        /*
+    * Method Name: clickContinueShopping
+    * Author Name: prakash
+    * Description: This method click on the continue shopping
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickContinueShopping(){
         try{
             helper.waitForElementToBeVisible(PenLocators.continueshopping,10);
@@ -80,6 +129,13 @@ public class Pen {
         }
     }
 
+    /*
+    * Method Name: clickSearch
+    * Author Name: prakash
+    * Description: This method click on the search
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickSearch(){
         try{
             helper.waitForElementToBeVisible(PenLocators.search,10);
@@ -91,12 +147,17 @@ public class Pen {
             extentTest.log(Status.FAIL,"Not click search");
         }
     }
+        /*
+    * Method Name: TypeSearch
+    * Author Name: prakash
+    * Description: This method click on the type search
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void typeSearch() throws IOException{
         try{
-
-            String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 1, 1);
-            helper.enterText(PenLocators.search,name);
-
+            String pen=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 1, 1);
+            helper.enterText(PenLocators.search,pen);
             helper.enterAction(PenLocators.search);
             LoggerHandler.info("Entered pen");
             extentTest.log(Status.PASS,"Entered pen");
@@ -106,6 +167,13 @@ public class Pen {
         }
     }
 
+        /*
+    * Method Name: clickfirstProduct
+    * Author Name: prakash
+    * Description: This method click on the first product
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickFirstProduct(){
         try{
             helper.waitForElementToBeVisible(PenLocators.first_product,10);
@@ -118,6 +186,13 @@ public class Pen {
         }
     }
 
+        /*
+    * Method Name: clickCart
+    * Author Name: prakash
+    * Description: This method click on the no thanks
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickCart(){
         try{
             helper.switchWindow();
@@ -131,21 +206,43 @@ public class Pen {
             extentTest.log(Status.FAIL,"Not click on add to cart");
         }
     }
+        /*
+    * Method Name: verifyPincode
+    * Author Name: prakash
+    * Description: This method is verify the pincode
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void verifyPinCode(){
         try{
             String pinCode = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 4, 1);
             obj.verifyText(PenLocators.pincode, pinCode);
         }catch(Exception e){
-            e.printStackTrace();
+            LoggerHandler.error("Not verified");
+            extenttest.log(Status.FAIL,"Not verified");
         }
     }
+        /*
+    * Method Name: verifyBuyNow
+    * Author Name: prakash
+    * Description: This method is for verifying buynow
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void verifyBuyNow(){
     try{
         obj.verifyText(PenLocators.buy,"Buy");
     }catch(Exception e){
-        e.printStackTrace();
+        LoggerHandler.error("Not verified");
+        extenttest.log(Status.FAIL,"Not verified");    }
     }
-    }
+        /*
+    * Method Name: pen
+    * Author Name: prakash
+    * Description: This method is for cluster the methods
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void pen() throws IOException, InterruptedException{
         clickNoThanks();
         clickDeliver();

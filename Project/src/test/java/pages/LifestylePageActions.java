@@ -92,10 +92,15 @@ public class LifestylePageActions {
 
     public void enterLocation(){
         try {
+            String kolkata=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 6, 1);
+            helper.enterText(LifestylePageLocators.searchBar, kolkata);
             String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx","Sheet1",6,1);
             helper.enterText(LifestylePageLocators.searchBar, area_name);
             Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
             Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            Thread.sleep(2000);
+            helper.enterAction(LifestylePageLocators.searchBar);
+            Thread.sleep(2000);
             helper.enterAction(LifestylePageLocators.searchBar);
             Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
             Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));            

@@ -5,7 +5,8 @@ import org.openqa.selenium.By;
 public class PenLocators {
     public static By noThanks=By.xpath("//button[text()='No, Thanks']");
     public static By deliver=By.xpath("//span[text()='Where to deliver?']");
-    public static By area=By.xpath("//input[@id='pincode-location-input']");
+    public static By area=By.id("pincode-location-input");
+    //public static By area=By.xpath("//input[@id='pincode-location-input']");
     public static By continueshopping=By.xpath("//div[text()='Continue Shopping']");
     public static By search=By.xpath("(//input[@id='search_bar'])[1]");
     public static By first_product=By.xpath("//div[text()='Sheaffer Ballpoint Pen']");

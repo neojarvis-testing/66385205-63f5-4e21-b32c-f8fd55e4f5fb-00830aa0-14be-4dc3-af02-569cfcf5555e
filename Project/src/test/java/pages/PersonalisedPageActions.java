@@ -97,6 +97,7 @@ public class PersonalisedPageActions {
             helper.enterText(PersonalisedPageLocators.enterBar, area_name);
             Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
             Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            Thread.sleep(2000);
             helper.enterAction(PersonalisedPageLocators.enterBar);
             Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
             Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));            

@@ -54,7 +54,9 @@ public class BirthdayCakesActions {
             Thread.sleep(1000);
             helper.enterText(BirthdayCakesLocator.searchLocation, "Chennai");
             Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));            
+            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            String chennai=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);        
+            helper.enterText(BirthdayCakesLocator.searchLocation,chennai);
             Thread.sleep(2000);
             helper.enterAction(BirthdayCakesLocator.searchLocation);
             Thread.sleep(3000);
