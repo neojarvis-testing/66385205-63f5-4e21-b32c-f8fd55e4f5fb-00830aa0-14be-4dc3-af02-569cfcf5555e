@@ -1,10 +1,15 @@
 package utils;
-
+ 
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
 
+ 
+import java.time.Duration;
+import java.util.List;
+import java.util.Set;
+ 
  
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,13 +19,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+ 
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
  
-
+ 
 public class WebDriverHelper {
     private WebDriver driver;
     public WebDriverHelper(WebDriver driver){
@@ -34,6 +38,7 @@ public class WebDriverHelper {
         catch(Exception e){
             e.printStackTrace();
         }
+ 
     }
     public void hoverElement(By Locator){
         try{
@@ -119,8 +124,4 @@ public class WebDriverHelper {
         driver.navigate().back();
     }
 }
-
-
-
-   
 
