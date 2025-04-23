@@ -77,7 +77,7 @@ public class TestRunner extends Base {
     @Test
     public void footerAndVerification_testcase09() {
         FooterAndVerificationActions footerAndVerificationActionsObject = new FooterAndVerificationActions(extentTest);
-        footerAndVerificationActionsObject.FooterAndVerificationMethods();
+        footerAndVerificationActionsObject.footerAndVerificationMethods();
     }
 
     @Test
