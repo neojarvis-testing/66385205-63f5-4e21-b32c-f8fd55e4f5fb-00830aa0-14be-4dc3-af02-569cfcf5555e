@@ -86,7 +86,7 @@ public class AnniversaryPageActions {
 
     public void clickOnFlowers() {
         try {
-            helper.clickElement(AnniversaryPageLocators.flowers);
+            helper.clickElement(AnniversaryPageLocators.flowers);           
             LoggerHandler.info("Clicked on flowers");
             extentTest.log(Status.PASS, "Clicked on flowers");
         } catch (Exception e) {
