@@ -150,7 +150,7 @@ public class FooterAndVerificationActions {
             helper.waitForElementToBeVisible(FooterAndVerificationLocators.blog, 10);
             helper.clickElement(FooterAndVerificationLocators.blog);
 
-            Assertion.verifyUrl("https://www.fnp.com/blog/");
+            Assertion.verifyUrl(ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx","Sheet1", 6,2));
             LoggerHandler.info("Blog Page is verified");
             extentTest.log(Status.PASS, "Retail Stores Page is verified");
             helper.navigateBack();

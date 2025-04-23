@@ -7,6 +7,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import uistore.CakeLocators;
 import uistore.CombosLocators;
 
 import utils.Assertion;
@@ -21,7 +22,7 @@ public class Combos {
     public static ExtentReports extentReport;
     public static ExtentTest extentTest;
     public static Assertion obj;
-    public Combos(ExtentTest test){
+    public Combos(ExtentTest extentTest){
         helper=new WebDriverHelper(Base.driver);
         this.extentTest=extentTest;
     }
@@ -32,15 +33,13 @@ public class Combos {
     }
 
     public void clickWhere(){
-        try{
-            helper.waitForElementToBeVisible(CombosLocators.where,10);
+        try {
             helper.clickElement(CombosLocators.where);
-            LoggerHandler.info("hovered over combos");
-            extentTest.log(Status.PASS,"hovered over combos");
-        }
-        catch(Exception e){
-            LoggerHandler.info("couldn't hovered over combos");
-            extentTest.log(Status.FAIL,"couldn't hovered over combos");
+            LoggerHandler.info("click Deliver");
+            extentTest.log(Status.PASS, "click Deliver");
+        } catch (Exception e) {
+            LoggerHandler.error("Not click Deliver");
+            extentTest.log(Status.FAIL, "Not click Deliver");
         }
         
     }

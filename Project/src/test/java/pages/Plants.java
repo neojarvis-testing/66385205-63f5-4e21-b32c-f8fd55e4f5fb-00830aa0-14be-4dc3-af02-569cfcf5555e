@@ -96,7 +96,7 @@ public class Plants {
             String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 1);
             helper.enterText(PlantLocators.area,area_name);
             LoggerHandler.info("Entered Bangalore");
-            extenttest.log(Status.PASS,"Entered Bangalore");
+            extentTest.log(Status.PASS,"Entered Bangalore");
             Thread.sleep(2000);
             helper.enterAction(PlantLocators.area);
         helper.enterText(PlantLocators.area,"Bangalore");
@@ -233,7 +233,7 @@ public class Plants {
                 extenttest.log(Status.FAIL,"failed");            }
                 e.printStackTrace();
             }
-            extenttest.log(Status.PASS,"Click Cart");
+            extentTest.log(Status.PASS,"Click Cart");
             Thread.sleep(3000);
         }catch(Exception e){
             LoggerHandler.error("Not click Cart");
