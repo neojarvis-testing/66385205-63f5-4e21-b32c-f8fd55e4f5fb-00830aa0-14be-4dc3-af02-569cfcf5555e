@@ -6,7 +6,6 @@ public class PersonalisedPageLocators {
     public static By popUp = By.cssSelector("#wzrk-cancel");
     public static By whereToDeliver = By.xpath("//span[text()='Where to deliver?']");
     public static By enterBar = By.xpath("//input[@placeholder='Enter Receiver’s pincode, location, area']");
-    public static By pincode = By.xpath("//input[@id='pincode-location-input']");
     public static By continueShopping = By.xpath("//div[text()='Continue Shopping']");
     public static By personalised = By.xpath("//span[text()='Personalised']");
     public static By mugs = By.xpath("(//div[text()='Mugs'])[2]");

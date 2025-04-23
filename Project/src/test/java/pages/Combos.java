@@ -21,7 +21,7 @@ public class Combos {
     public static ExtentReports extentReport;
     public static ExtentTest extentTest;
     public static Assertion obj;
-    public Combos(ExtentTest test){
+    public Combos(ExtentTest extentTest){
         helper=new WebDriverHelper(Base.driver);
         this.extentTest=extentTest;
     }

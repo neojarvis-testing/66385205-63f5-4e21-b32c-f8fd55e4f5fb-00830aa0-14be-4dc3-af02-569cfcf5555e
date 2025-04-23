@@ -149,7 +149,7 @@ public class FooterAndVerificationActions {
             Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
             helper.waitForElementToBeVisible(FooterAndVerificationLocators.blog, 10);
             helper.clickElement(FooterAndVerificationLocators.blog);
-
+            Assertion.verifyUrl(ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx","Sheet1", 6,2));
             Assertion.verifyUrl("https://www.fnp.com/blog/");
             LoggerHandler.info("Blog Page is verified");
             extentTest.log(Status.PASS, "Retail Stores Page is verified");
