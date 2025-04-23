@@ -50,7 +50,6 @@ public class Pen {
     }
     public void enterArea() throws IOException{
         try{
-        //String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
         helper.enterText(PenLocators.area,"Delhi");
         LoggerHandler.info("Entered Delhi");
         extenttest.log(Status.PASS,"Entered Delhi");
@@ -92,7 +91,6 @@ public class Pen {
     }
     public void typeSearch() throws IOException{
         try{
-            //String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 1, 0);
             helper.enterText(PenLocators.search,"pen");
             helper.enterAction(PenLocators.search);
             LoggerHandler.info("Entered pen");

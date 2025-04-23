@@ -1,6 +1,7 @@
 package pages;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -49,17 +50,18 @@ public class Cake {
     }
     public void enterArea() throws IOException{
         try{
-        String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
-        helper.enterText(CakeLocators.area,area_name);
-        LoggerHandler.info("Entered Delhi");
-        extentTest.log(Status.PASS,"Entered Delhi");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        helper.enterAction(CakeLocators.area);
-        Thread.sleep(2000);
+            String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
+            helper.enterText(CakeLocators.area,area_name);
+            LoggerHandler.info("Entered Delhi");
+            extentTest.log(Status.PASS,"Entered Delhi");
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            helper.enterAction(CakeLocators.area);
+            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));        
         }catch(Exception e){
             LoggerHandler.error("Not entered location");
             extentTest.log(Status.FAIL,"Not entered location");
@@ -92,7 +94,6 @@ public class Cake {
     }
     public void typeSearch() throws IOException{
         try{
-            //String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 3, 0);
             helper.enterText(CakeLocators.search,"cake");
             helper.enterAction(CakeLocators.search);
             LoggerHandler.info("Entered Cake");

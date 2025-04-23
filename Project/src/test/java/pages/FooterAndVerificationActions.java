@@ -3,7 +3,6 @@ package pages;
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
