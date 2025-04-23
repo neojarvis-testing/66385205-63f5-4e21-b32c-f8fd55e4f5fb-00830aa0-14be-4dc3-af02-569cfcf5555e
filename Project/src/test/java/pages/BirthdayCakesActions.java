@@ -38,6 +38,7 @@ public class BirthdayCakesActions {
      */
     public void pop_up() {
         try {
+            helper.waitForElementToBeVisible(BirthdayCakesLocator.nothanks, 10);
             helper.clickElement(BirthdayCakesLocator.nothanks);
             LoggerHandler.info("clicked on pop up");
             extentTest.log(Status.PASS, "Clicked on pop-up");
@@ -88,17 +89,12 @@ public class BirthdayCakesActions {
             Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
             Thread.sleep(2000);
             helper.enterAction(BirthdayCakesLocator.searchLocation);
-            Screenshot.captureScreenShot("Search");
-            Reporter.attachScreenshot("Search", extentTest, "Search");
             Thread.sleep(3000);
             LoggerHandler.info("clicked on Enter");
             extentTest.log(Status.PASS, "clicked on Enter");
-            LoggerHandler.info("verify the pincode");
-            extentTest.log(Status.PASS, "verify the pincode");
         } catch (Exception e) {
             LoggerHandler.error("Failed to click Enter");
             extentTest.log(Status.FAIL, "failed to click Enter");
-            Screenshot.captureScreenShot("Failed Search");
             Reporter.attachScreenshot("failed to click Search", extentTest, "Search");
         }
     }
@@ -114,14 +110,12 @@ public class BirthdayCakesActions {
         try {
             helper.waitForElementToBeVisible(BirthdayCakesLocator.continueshopping, 10);
             helper.clickElement(BirthdayCakesLocator.continueshopping);
+            Thread.sleep(2000);
             LoggerHandler.info("clicked on Continue Shopping");
             extentTest.log(Status.PASS, "clicked on Continue Shopping");
-            Screenshot.captureScreenShot("Continue Shopping");
-            Reporter.attachScreenshot("Continue button", extentTest, "Continue button");
         } catch (Exception e) {
             LoggerHandler.error("Failed to click on Continue Shopping");
             extentTest.log(Status.FAIL, "failed to click on Continue Shopping");
-            Screenshot.captureScreenShot("failed Continue Shopping");
             Reporter.attachScreenshot("failed Continue button", extentTest, "failed Continue button");
         }
     }
@@ -139,12 +133,9 @@ public class BirthdayCakesActions {
             helper.hoverElement(BirthdayCakesLocator.hovercakes);
             LoggerHandler.info("clicked on cakes");
             extentTest.log(Status.PASS, "clicked on cakes");
-            Screenshot.captureScreenShot("cakes");
-            Reporter.attachScreenshot("cakes", extentTest, "Cakes");
         } catch (Exception e) {
             LoggerHandler.error("Failed to click on Cakes");
             extentTest.log(Status.FAIL, "failed to click on Cakes");
-            Screenshot.captureScreenShot("cakes failed");
             Reporter.attachScreenshot("cakes failed", extentTest, "cakes failed");
         }
 
@@ -164,13 +155,9 @@ public class BirthdayCakesActions {
             helper.clickElement(BirthdayCakesLocator.birthdayCakes);
             LoggerHandler.info("clicked on Birthday Cakes");
             extentTest.log(Status.PASS, "clicked on Birthday Cakes");
-            Screenshot.captureScreenShot("Birthday Cakes");
-            Reporter.attachScreenshot("Birthday Cakes", extentTest, "Birthday Cakes");
-
         } catch (Exception e) {
             LoggerHandler.error("Failed to click on Birthday Cakes");
             extentTest.log(Status.FAIL, "failed to click on Birthday Cakes");
-            Screenshot.captureScreenShot("Failed Birthday cakes");
             Reporter.attachScreenshot("failed Birthday cakes", extentTest, "failed Birthday cakes");
         }
     }
@@ -188,12 +175,9 @@ public class BirthdayCakesActions {
             helper.clickElement(BirthdayCakesLocator.sameday);
             LoggerHandler.info("clicked on Same Day Delivery");
             extentTest.log(Status.PASS, "clicked on Same Day Delivery");
-            Screenshot.captureScreenShot("same day deliveryt");
-            Reporter.attachScreenshot("same day delivery", extentTest, "same day delivary");
         } catch (Exception e) {
             LoggerHandler.error("Failed to click on Same Day Delivery");
             extentTest.log(Status.FAIL, "failed to click on Same Day Delivery");
-            Screenshot.captureScreenShot("failed same say delivery");
             Reporter.attachScreenshot("failed same say delivery", extentTest, "failed same day delivary");
         }
     }
@@ -211,12 +195,9 @@ public class BirthdayCakesActions {
             helper.clickElement(BirthdayCakesLocator.product);
             LoggerHandler.info("click on the first product");
             extentTest.log(Status.PASS, "click on the first product");
-            Screenshot.captureScreenShot("first product");
-            Reporter.attachScreenshot("first product", extentTest, "first product");
         } catch (Exception e) {
             LoggerHandler.error("Failed to click on first product");
             extentTest.log(Status.FAIL, "failed to click on first product");
-            Screenshot.captureScreenShot("failed first product");
             Reporter.attachScreenshot("failed first product", extentTest, "failed first product");
         }
     }
@@ -232,12 +213,9 @@ public class BirthdayCakesActions {
         try {
         LoggerHandler.info("verified relevant text");
         extentTest.log(Status.PASS, "verified relevant text");
-        Screenshot.captureScreenShot("relevant text");
-        Reporter.attachScreenshot("relevant text", extentTest, "relevant text");
     } catch (Exception e) {
         LoggerHandler.error("Failed to verify");
         extentTest.log(Status.FAIL, "Failed to verify");
-        Screenshot.captureScreenShot("Failed relevant text");
         Reporter.attachScreenshot("Failed relevant text", extentTest, "Failed relevant text");
     }
 
@@ -255,14 +233,11 @@ public class BirthdayCakesActions {
             helper.switchWindow();
             helper.waitForElementToBeVisible(BirthdayCakesLocator.addcart, 10);
             helper.clickElement(BirthdayCakesLocator.addcart);
-            Screenshot.captureScreenShot("Offers_screenshot");
-            Reporter.attachScreenshot("Offers_screenshot", extentTest, "Offers_screenshot");
             LoggerHandler.info("clicked on Add to Cart");
             extentTest.log(Status.PASS, "clicked on Add to Cart");
         } catch (Exception e) {
             LoggerHandler.error("Failed to click on Add to Cart");
             extentTest.log(Status.FAIL, "failed to click on Add to Cart");
-            Screenshot.captureScreenShot("Failed Offers_screenshot");
             Reporter.attachScreenshot("Failed Offers_screenshot", extentTest, "Offers_screenshot");
         }
     }

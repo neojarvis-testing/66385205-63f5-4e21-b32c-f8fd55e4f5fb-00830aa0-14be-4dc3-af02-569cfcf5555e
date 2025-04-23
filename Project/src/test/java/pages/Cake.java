@@ -25,7 +25,7 @@ public class Cake {
     
     public Cake(ExtentTest extentTest){
         helper=new WebDriverHelper(Base.driver);
-        this.extentTest=extenttest;
+        this.extentTest=extentTest;
     }
         /*
     * Method Name: clickNoThanks
@@ -47,8 +47,16 @@ public class Cake {
         }
 
     }
+    /*
+    * Method Name: clickDeliver
+    * Author Name: prakash
+    * Description: This method click on the where to deliver
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickDeliver() {
         try {
+            helper.waitForElementToBeVisible(CakeLocators.deliver, 10);
             helper.clickElement(CakeLocators.deliver);
             LoggerHandler.info("click Deliver");
             extentTest.log(Status.PASS, "click Deliver");
@@ -59,8 +67,16 @@ public class Cake {
 
         }
     }
+            /*
+    * Method Name: clickArea
+    * Author Name: prakash
+    * Description: This method click on the location area
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickArea() {
         try {
+            helper.waitForElementToBeVisible(CakeLocators.area,10);
             helper.clickElement(CakeLocators.area);
             LoggerHandler.info("click Location");
             extentTest.log(Status.PASS, "click location");
@@ -80,8 +96,8 @@ public class Cake {
     */
     public void enterArea() throws IOException{
         try{
-            String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
-            helper.enterText(CakeLocators.area,area_name);
+            //String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
+            helper.enterText(CakeLocators.area,"Delhi");
             LoggerHandler.info("Entered Delhi");
             extentTest.log(Status.PASS,"Entered Delhi");
                 try {
@@ -91,8 +107,9 @@ public class Cake {
                     extentTest.log(Status.FAIL,"failed");
                 }
             helper.enterAction(CakeLocators.area);
-            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));        
+            Thread.sleep(2000);
+            // Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+            // Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));        
         }catch(Exception e){
             LoggerHandler.error("Not entered location");
             extentTest.log(Status.FAIL,"Not entered location");
@@ -100,7 +117,13 @@ public class Cake {
 
         }
     }
-
+        /*
+    * Method Name: clickContinueShopping
+    * Author Name: prakash
+    * Description: This method click on the continue shopping
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickContinueShopping() {
         try {
             helper.waitForElementToBeVisible(CakeLocators.continueshopping, 10);
@@ -115,7 +138,13 @@ public class Cake {
 
         }
     }
-
+        /*
+    * Method Name: clickSearch
+    * Author Name: prakash
+    * Description: This method click on the search
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickSearch() {
         try {
             helper.waitForElementToBeVisible(CakeLocators.search, 10);
@@ -128,6 +157,13 @@ public class Cake {
             Reporter.attachScreenshot("failedsearch", extentTest, "search");
         }
     }
+            /*
+    * Method Name: typeSearch
+    * Author Name: prakash
+    * Description: This method enter the search
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void typeSearch() throws IOException{
         try{
             String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 3, 1);
@@ -143,6 +179,13 @@ public class Cake {
 
         }
     }
+        /*
+    * Method Name: clickFlavour
+    * Author Name: prakash
+    * Description: This method click on the flavour
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickFlavour() {
         try {
             helper.waitForElementToBeVisible(CakeLocators.flavour, 10);
@@ -156,10 +199,17 @@ public class Cake {
 
         }
     }
+            /*
+    * Method Name: clickChocolates
+    * Author Name: prakash
+    * Description: This method click on the chocolates
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickChocolates() {
         try {
-            helper.waitForElementToBeVisible(CakeLocators.chocoloate, 10);
-            helper.clickElement(CakeLocators.chocoloate);
+            helper.waitForElementToBeVisible(CakeLocators.chocolate, 10);
+            helper.clickElement(CakeLocators.chocolate);
             LoggerHandler.info("click chocolate");
             extentTest.log(Status.PASS, "click chocolate");
         } catch (Exception e) {
@@ -168,7 +218,13 @@ public class Cake {
             Reporter.attachScreenshot("failedchocolates", extentTest, "nothanks");
         }
     }
-
+        /*
+    * Method Name: clickFirstProduct
+    * Author Name: prakash
+    * Description: This method click on the first product
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickFirstProduct() {
         try {
             helper.waitForElementToBeVisible(CakeLocators.first_product, 10);
@@ -181,6 +237,13 @@ public class Cake {
             Reporter.attachScreenshot("failedcake", extentTest, "cake");
         }
     }
+            /*
+    * Method Name: clickBuyNow
+    * Author Name: prakash
+    * Description: This method click on the buy now
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void clickBuyNow() {
         try {
             helper.switchWindow();

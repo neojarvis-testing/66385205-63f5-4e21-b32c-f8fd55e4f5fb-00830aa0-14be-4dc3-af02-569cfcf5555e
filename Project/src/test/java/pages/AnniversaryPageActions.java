@@ -33,14 +33,6 @@ public class AnniversaryPageActions {
         this.extentTest = extentTest;
     }
 
-    public void clickOnNoThanks(){
-        try{
-        helper.waitForElementToBeVisible(AnniversaryPageLocators.noThanks,10);
-        helper.clickElement(AnniversaryPageLocators.noThanks);
-        Reporter.attachScreenshot("FNP", extentTest, "FNP Screenshot");
-        }catch (Exception e) {
-            LoggerHandler.error("Failed to click on pop-up");
-            extentTest.log(Status.FAIL, "failed to click on pop-up");
     /*
      * Method name: clickOnNoThanks
      * Author Name: Lagisetty Srihith
@@ -73,6 +65,7 @@ public class AnniversaryPageActions {
      */
     public void clickOnWhereToDeliver() {
         try {
+            helper.waitForElementToBeVisible(AnniversaryPageLocators.whereToDeliver,10);
             helper.clickElement(AnniversaryPageLocators.whereToDeliver);
             LoggerHandler.info("Clicked where to deliver");
             extentTest.log(Status.PASS, "Clicked on where to deliver");
@@ -93,22 +86,16 @@ public class AnniversaryPageActions {
      */
     public void inputCity() {
         try {
-            String area_name = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0,
-                    0);
-
-            helper.enterText(AnniversaryPageLocators.inputLocation, area_name);
-            String chennai=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
-            helper.enterText(AnniversaryPageLocators.inputLocation, chennai);
+            //String chennai=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
+            helper.enterText(AnniversaryPageLocators.inputLocation, "Chennai");
             Thread.sleep(2000);
             helper.enterAction(AnniversaryPageLocators.inputLocation);
-            Screenshot.captureScreenShot("FNP");
             Thread.sleep(2000);
             LoggerHandler.info("Entered city");
             extentTest.log(Status.PASS, "Entered city");
         } catch (Exception e) {
             LoggerHandler.info("Couldn't entered city");
             extentTest.log(Status.FAIL, "Couldn't entered city");
-            Screenshot.captureScreenShot("Input City");
             Reporter.attachScreenshot("input_City", extentTest, "Couldn't give input");
         }
     }
@@ -124,14 +111,12 @@ public class AnniversaryPageActions {
         try {
             helper.waitForElementToBeVisible(AnniversaryPageLocators.continueShopping, 10);
             helper.clickElement(AnniversaryPageLocators.continueShopping);
-            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            Thread.sleep(2000);
             LoggerHandler.info("Clicked on Continue Shopping");
             extentTest.log(Status.PASS, "Clicked on Continue Shopping");
         } catch (Exception e) {
             LoggerHandler.info("Couldn't click on Continue Shopping");
             extentTest.log(Status.FAIL, "Couldn't click on Continue Shopping");
-            Screenshot.captureScreenShot("click_On_Continue_Shopping");
             Reporter.attachScreenshot("click_On_Continue_Shopping", extentTest, "Couldn't click On Continue Shopping");
         }
     }
@@ -152,7 +137,6 @@ public class AnniversaryPageActions {
         } catch (Exception e) {
             LoggerHandler.info("Couldn't hovered on anniversary");
             extentTest.log(Status.FAIL, "Couldn't hovered on anniversary");
-            Screenshot.captureScreenShot("hover_On_Anniversary");
             Reporter.attachScreenshot("hover_On_Anniversary", extentTest, "Couldn't hover on Anniversary");
         }
     }
@@ -177,7 +161,6 @@ public class AnniversaryPageActions {
             extentTest.log(Status.FAIL, "Couldn't click on flowers");
             LoggerHandler.info("Couldn't click on roses");
             extentTest.log(Status.FAIL, "Couldn't click on roses");
-            Screenshot.captureScreenShot("clickOnFlowersAndRoses");
             Reporter.attachScreenshot("click_On_Flowers_And_Roses", extentTest, "Couldn't click on Flowers and Roses");
         }
     }
@@ -192,6 +175,7 @@ public class AnniversaryPageActions {
      */
     public void clickOnFirstProduct() {
         try {
+            helper.waitForElementToBeVisible(AnniversaryPageLocators.firstProd,10);
             helper.clickElement(AnniversaryPageLocators.firstProd);
             LoggerHandler.info("click on the first product");
             extentTest.log(Status.PASS, "click on the first product");
@@ -203,7 +187,6 @@ public class AnniversaryPageActions {
             extentTest.log(Status.FAIL, "Couldn't click on the first product");
             LoggerHandler.info("Couldn't switch window");
             extentTest.log(Status.FAIL, "Couldn't switch window");
-            Screenshot.captureScreenShot("click_On_Where_To_Deliver");
             Reporter.attachScreenshot("click_On_Where_To_Deliver", extentTest, "click On Where To Deliver");
         }
     }
@@ -217,13 +200,13 @@ public class AnniversaryPageActions {
      */
     public void clickOnBuyNow() {
         try {
+            helper.waitForElementToBeVisible(AnniversaryPageLocators.buyNow,10);
             helper.clickElement(AnniversaryPageLocators.buyNow);
             LoggerHandler.info("Clicked on Buy Now");
             extentTest.log(Status.PASS, "Clicked on Buy Now");
         } catch (Exception e) {
             LoggerHandler.info("Couldn't click on Buy Now");
             extentTest.log(Status.FAIL, "Couldn't click on Buy Now");
-            Screenshot.captureScreenShot("click_On_Buy_Now");
             Reporter.attachScreenshot("click_On_Buy_Now", extentTest, "Couldn't click On Buy Now");
         }
     }
@@ -247,7 +230,6 @@ public class AnniversaryPageActions {
         } catch (Exception e) {
             LoggerHandler.info("Assertion failed");
             extentTest.log(Status.FAIL, "Assertion failed");
-            Screenshot.captureScreenShot("verify_Home");
             Reporter.attachScreenshot("verify_Home", extentTest, "Couldn't verify Home");
         }
     }

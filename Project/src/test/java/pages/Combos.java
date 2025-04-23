@@ -44,11 +44,12 @@ public class Combos {
         try{
             helper.waitForElementToBeVisible(CombosLocators.noThanks,10);
             helper.clickElement(CombosLocators.noThanks);
+            LoggerHandler.info("clicked on pop up");
+            extentTest.log(Status.PASS, "Clicked on pop-up");
         }
         catch(Exception e){
-            LoggerHandler.info("couldn't hovered over combos");
-            extentTest.log(Status.FAIL,"couldn't hovered over combos");
-            Screenshot.captureScreenShot("clicked_on_nothanks");
+            LoggerHandler.info("couldn't no thanks");
+            extentTest.log(Status.FAIL,"couldn't no thanks");
             Reporter.attachScreenshot("clicked_on_nothanks", extentTest,"clicked_on_nothanks");
         }
     }
@@ -60,44 +61,37 @@ public class Combos {
     */
     public void clickWhere(){
         try {
+            helper.waitForElementToBeVisible(CombosLocators.where,10);
             helper.clickElement(CombosLocators.where);
-            LoggerHandler.info("hovered over combos");
-            extentTest.log(Status.PASS,"hovered over combos");
+            LoggerHandler.info("click Deliver");
+            extentTest.log(Status.PASS, "click Deliver");
         }
         catch(Exception e){
-            LoggerHandler.info("couldn't hovered over combos");
-            extentTest.log(Status.FAIL,"couldn't hovered over combos");
-            Screenshot.captureScreenShot("clicked_on_where_to_deliver");
+            LoggerHandler.error("Not click Deliver");
+            extentTest.log(Status.FAIL, "Not click Deliver");
             Reporter.attachScreenshot("clicked_on_where_to_deliver", extentTest,"clicked_on_where_to_deliver");
         }
         
     }
-    /*Author: D.B.S.Rohan
+
+        /*Author: D.B.S.Rohan
      * Method Name: enteringLocation
      * Description: This method is used to select the where to deliver
      * Parameters: NA
      * Return Type: void
     */
-            LoggerHandler.info("click Deliver");
-            extentTest.log(Status.PASS, "click Deliver");
-        } catch (Exception e) {
-            LoggerHandler.error("Not click Deliver");
-            extentTest.log(Status.FAIL, "Not click Deliver");
-        }
-        
-    }
     public void enteringLocation() {
         try{
             Thread.sleep(2000);
             helper.clickElement(CombosLocators.location);
             helper.waitForElementToBeVisible(CombosLocators.location,10);
-            String bangalore=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 1);
-            helper.enterText(CombosLocators.location,bangalore);
+            //String bangalore=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 1);
+            helper.enterText(CombosLocators.location,"Bangalore");
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                LoggerHandler.error("failed");
+                extentTest.log(Status.FAIL,"failed");
             }
             String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx","Sheet1",2,1);
             helper.enterText(CombosLocators.location, area_name);
@@ -110,7 +104,6 @@ public class Combos {
         catch(Exception e){
             LoggerHandler.info("couldn't hovered over combos");
             extentTest.log(Status.FAIL,"couldn't hovered over combos");
-            Screenshot.captureScreenShot("hovered_on_combos");
             Reporter.attachScreenshot("hovered_on_combos", extentTest,"hovered_on_combos");
         }
  
@@ -126,15 +119,13 @@ public class Combos {
             helper.waitForElementToBeVisible(CombosLocators.continueShop,10);
             helper.hoverElement(CombosLocators.continueShop);
             helper.clickElement(CombosLocators.continueShop);
-            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            Thread.sleep(2000);
             LoggerHandler.info("clicked on continue shopping");
             extentTest.log(Status.PASS,"clicked on continue shopping");
         }
         catch(Exception e){
             LoggerHandler.info("couldn't clicked on continue shopping");
             extentTest.log(Status.FAIL,"couldn't clicked on continue shopping");
-            Screenshot.captureScreenShot("clicked_on_continue_shopping");
             Reporter.attachScreenshot("clicked_on_continue_shopping", extentTest,"clicked_on_continue_shopping");
         }
     }
@@ -154,7 +145,6 @@ public class Combos {
         catch(Exception e){
             LoggerHandler.info("couldn't hovered over combos");
             extentTest.log(Status.FAIL,"couldn't hovered over combos");
-            Screenshot.captureScreenShot("hovered_on_combos");
             Reporter.attachScreenshot("hovered_on_combos", extentTest,"hovered_on_combos");
         }
     }
@@ -174,7 +164,6 @@ public class Combos {
         catch(Exception e){
             LoggerHandler.info("couldn't clicked helathy hampers");
             extentTest.log(Status.FAIL,"couldn't clicked helathy hampers");
-            Screenshot.captureScreenShot("clicked_on_hampers");
             Reporter.attachScreenshot("clicked_on_hampers", extentTest,"clicked_on_hampers");
         }
     }
@@ -195,7 +184,6 @@ public class Combos {
         catch(Exception e){
             LoggerHandler.info("couldn't clicked helathy hampers");
             extentTest.log(Status.FAIL,"couldn't clicked helathy hampers");
-            Screenshot.captureScreenShot("clicked_on_availability");
             Reporter.attachScreenshot("clicked_on_availability", extentTest,"clicked_on_availability");
         }
     }
@@ -215,7 +203,6 @@ public class Combos {
         catch(Exception e){
             LoggerHandler.info("couldn't clicked true");
             extentTest.log(Status.FAIL,"couldn't clicked true");
-            Screenshot.captureScreenShot("clicked_on_true");
             Reporter.attachScreenshot("clicked_on_true", extentTest,"clicked_on_true");
         }
     }
@@ -232,12 +219,10 @@ public class Combos {
             helper.clickElement(CombosLocators.firstProduct);
             LoggerHandler.info("clicked firstProduct");
             extentTest.log(Status.PASS,"clicked firstProduct");
-            Screenshot.captureScreenShot("fnp");
         }
         catch(Exception e){
             LoggerHandler.info("couldn't clicked firstProduct");
             extentTest.log(Status.FAIL,"couldn't clicked firstProduct");
-            Screenshot.captureScreenShot("clicked_on_first_product");
             Reporter.attachScreenshot("clicked_on_first_product", extentTest,"clicked_on_first_product");
         }
     }
@@ -259,7 +244,6 @@ public class Combos {
     catch(Exception e){
         LoggerHandler.info("couldn't added product");
         extentTest.log(Status.FAIL,"couldn't added product");
-        Screenshot.captureScreenShot("clicked_on_add_product");
         Reporter.attachScreenshot("clicked_on_add_product", extentTest,"clicked_on_add_product");
     }
     }

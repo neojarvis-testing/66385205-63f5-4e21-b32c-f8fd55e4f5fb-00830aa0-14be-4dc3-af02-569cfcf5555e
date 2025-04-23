@@ -48,7 +48,6 @@ public class FooterPageActions {
         catch(Exception e){
             LoggerHandler.info("Couldn't clickon NoThanks");
             extentTest.log(Status.PASS, "Couldn't clickon NoThanks");
-            Screenshot.captureScreenShot("Failed_click_No_Thanks");
             Reporter.attachScreenshot("Failed_click_No_Thanks", extentTest, "Couldn't click No Thanks");
         }
     }
@@ -78,7 +77,6 @@ public class FooterPageActions {
         } catch (Exception e) {
             LoggerHandler.info("Terms and Conditions url is incorrect");
             extentTest.log(Status.FAIL, "Terms and Conditions url is incorrect");
-            Screenshot.captureScreenShot("verify_Terms_And_Conditions");
             Reporter.attachScreenshot("verify_Terms_And_Conditions", extentTest, "Couldn't verify URL");
 
         }
@@ -109,7 +107,6 @@ public class FooterPageActions {
         } catch (Exception e) {
             LoggerHandler.info("Privacy Policy url is incorrect");
             extentTest.log(Status.FAIL, "Privacy Policy url is incorrect");
-            Screenshot.captureScreenShot("verify_Privacy_Policy");
             Reporter.attachScreenshot("verify_Privacy_Policy", extentTest, "Couldn't verify URL");
         }
     }
@@ -139,7 +136,6 @@ public class FooterPageActions {
         } catch (Exception e) {
             LoggerHandler.info("Terms of Use url is incorrect");
             extentTest.log(Status.FAIL, "Terms of Use url is incorrect");
-            Screenshot.captureScreenShot("verify_Terms_Of_Use");
             Reporter.attachScreenshot("verify_Terms_Of_Use", extentTest, "Couldn't verify URL");
         }
     }
@@ -169,7 +165,6 @@ public class FooterPageActions {
         } catch (Exception e) {
             LoggerHandler.info("Disclaimer url is incorrect");
             extentTest.log(Status.FAIL, "Disclaimer url is incorrect");
-            Screenshot.captureScreenShot("verify_Disclaimer");
             Reporter.attachScreenshot("verify_Disclaimer", extentTest, "Couldn't verify URL");
         }
     }
@@ -199,7 +194,6 @@ public class FooterPageActions {
         } catch (Exception e) {
             LoggerHandler.info("About Us url is incorrect");
             extentTest.log(Status.FAIL, "About Us url is incorrect");
-            Screenshot.captureScreenShot("verify_About_Us");
             Reporter.attachScreenshot("verify_About_Us", extentTest, "Couldn't verify URL");
         }
     }
@@ -229,7 +223,6 @@ public class FooterPageActions {
         } catch (Exception e) {
             LoggerHandler.info("Disclaimer url is incorrect");
             extentTest.log(Status.FAIL, "Disclaimer url is incorrect");
-            Screenshot.captureScreenShot("verify_FNP_Team");
             Reporter.attachScreenshot("verify_FNP_Team", extentTest, "Couldn't verify URL");
         }
     }
@@ -259,7 +252,6 @@ public class FooterPageActions {
         } catch (Exception e) {
             LoggerHandler.info("Careers url is incorrect");
             extentTest.log(Status.FAIL, "Disclaimer url is incorrect");
-            Screenshot.captureScreenShot("verify_Careers");
             Reporter.attachScreenshot("verify_Careers", extentTest, "Couldn't verify URL");
         }
     }
@@ -296,7 +288,6 @@ public class FooterPageActions {
             extentTest.log(Status.FAIL, "Testimonials url is incorrect");
             LoggerHandler.info("Policy info couldn't verified");
             extentTest.log(Status.FAIL, "Policy info couldn't verified");
-            Screenshot.captureScreenShot("verify_Testimonials");
             Reporter.attachScreenshot("verify_Testimonials", extentTest, "Couldn't verify URL");
         }
     }

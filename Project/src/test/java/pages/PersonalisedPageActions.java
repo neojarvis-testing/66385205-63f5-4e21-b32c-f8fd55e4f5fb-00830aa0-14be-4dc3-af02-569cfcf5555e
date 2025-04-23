@@ -48,10 +48,7 @@ public class PersonalisedPageActions {
             helper.clickElement(PenLocators.noThanks);
             LoggerHandler.info("Clicked on No Thanks button");
             extentTest.log(Status.PASS, "Clicked on No Thanks button");
-            Screenshot.captureScreenShot("No Thanks pop up Success");
-            Reporter.attachScreenshot("pop up", extentTest, "pop up");
         } catch (Exception e) {
-            Screenshot.captureScreenShot("No Thanks pop up failed");    
             Reporter.attachScreenshot("pop up", extentTest, "pop up");
             LoggerHandler.error("Could not click on No Thanks button");
             extentTest.log(Status.FAIL, "Could not click on No Thanks button");
@@ -73,12 +70,9 @@ public class PersonalisedPageActions {
             helper.clickElement(PersonalisedPageLocators.whereToDeliver);
             LoggerHandler.info("Clicked on Where to deliver?");
             extentTest.log(Status.PASS, "Clicked on Where to deliver?");
-            Screenshot.captureScreenShot("Clicked Where to Deliver Success");    
-            Reporter.attachScreenshot("Clicked Where to Deliver", extentTest, "Clicked Where to Deliver");
         } catch (Exception e) {
             LoggerHandler.error("Could not click on Where to deliver?");
             extentTest.log(Status.FAIL, "Could not click on Where to deliver?");
-            Screenshot.captureScreenShot("Clicked Where to Deliver failed");    
             Reporter.attachScreenshot("Clicked Where to Deliver", extentTest, "Clicked Where to Deliver");
         }
     }
@@ -95,8 +89,6 @@ public class PersonalisedPageActions {
         try {
             String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx", "Sheet1", 2, 1);
             helper.enterText(PersonalisedPageLocators.enterBar, area_name);
-            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             Thread.sleep(2000);
             helper.enterAction(PersonalisedPageLocators.enterBar);
             Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
@@ -104,12 +96,9 @@ public class PersonalisedPageActions {
             LoggerHandler.info("Entered Bangalore");
             extentTest.log(Status.PASS, "Entered Bangalore");
             extentTest.log(Status.PASS, "Verified pincode of Bangalore");
-            Screenshot.captureScreenShot("Entered Location name Success");    
-            Reporter.attachScreenshot("Entered Location name", extentTest, "Entered Location name");
         } catch (Exception e) {
             LoggerHandler.error("Could not enter Bangalore");
             extentTest.log(Status.FAIL, "Could not enter Bangalore");
-            Screenshot.captureScreenShot("Entered Location name failed");    
             Reporter.attachScreenshot("Entered Location name", extentTest, "Entered Location name");
         }
     }
@@ -126,14 +115,12 @@ public class PersonalisedPageActions {
         try {
             helper.waitForElementToBeVisible(PersonalisedPageLocators.continueShopping, 10);
             helper.clickElement(PersonalisedPageLocators.continueShopping);
+            Thread.sleep(2000);
             LoggerHandler.info("Clicked on Continue Shopping");
             extentTest.log(Status.PASS, "Clicked on Continue Shopping button");
-            Screenshot.captureScreenShot("Continue Shopping button Success");    
-            Reporter.attachScreenshot("Continue Shopping button", extentTest, "Continue Shopping button");
         } catch (Exception e) {
             LoggerHandler.error("Could not click Continue Shopping button");
             extentTest.log(Status.FAIL, "Could not click Continue Shopping button");
-            Screenshot.captureScreenShot("Continue Shopping button failed");    
             Reporter.attachScreenshot("Continue Shopping button", extentTest, "Continue Shopping button");
         }
     }
@@ -152,12 +139,9 @@ public class PersonalisedPageActions {
             helper.hoverElement(PersonalisedPageLocators.personalised);
             LoggerHandler.info("Hovered on Magical Mugs");
             extentTest.log(Status.PASS, "Hovered on Magical Mugs");
-            Screenshot.captureScreenShot("Hover Personalised Success");    
-            Reporter.attachScreenshot("Hover Personalised", extentTest, "Hover Personalised");
         } catch (Exception e) {
             LoggerHandler.error("Could not hover on Magical Mugs");
             extentTest.log(Status.FAIL, "Could not hover on Magical Mugs");
-            Screenshot.captureScreenShot("Hover Personalised failed");    
             Reporter.attachScreenshot("Hover Personalised", extentTest, "Hover Personalised");
         }
     }
@@ -176,12 +160,9 @@ public class PersonalisedPageActions {
             helper.clickElement(PersonalisedPageLocators.magicalMugs);
             LoggerHandler.info("Clicked on Mugs");
             extentTest.log(Status.PASS, "Clicked on Mugs");
-            Screenshot.captureScreenShot("Clicked Mugs Success");    
-            Reporter.attachScreenshot("Clicked Mugs", extentTest, "Clicked Mugs");
         } catch (Exception e) {
             LoggerHandler.error("Could not click Mugs");
             extentTest.log(Status.FAIL, "Could not click Mugs");
-            Screenshot.captureScreenShot("Clicked Mugs failed");    
             Reporter.attachScreenshot("Clicked Mugs", extentTest, "Clicked Mugs");
         }
     }
@@ -200,8 +181,6 @@ public class PersonalisedPageActions {
             helper.clickElement(PersonalisedPageLocators.magicalMugs);
             LoggerHandler.info("Clicked on Magical Mugs");
             extentTest.log(Status.PASS, "Clicked on Magical Mugs");
-            Screenshot.captureScreenShot("Clicked Magical Mugs Success");    
-            Reporter.attachScreenshot("Clicked Magical Mugs", extentTest, "Clicked Magical Mugs");
         } catch (Exception e) {
             LoggerHandler.error("Could not click Magical Mugs");
             extentTest.log(Status.FAIL, "Could not click Magical Mugs");
@@ -224,8 +203,6 @@ public class PersonalisedPageActions {
             helper.clickElement(PersonalisedPageLocators.firstProduct);
             LoggerHandler.info("Clicked on First Product");
             extentTest.log(Status.PASS, "Clicked on First Product");
-            Screenshot.captureScreenShot("Clicked first mug Success");    
-            Reporter.attachScreenshot("Clicked first mug", extentTest, "Clicked first mug");
         } catch (Exception e) {
             LoggerHandler.error("Could not click First Product");
             extentTest.log(Status.FAIL, "Could not click First Product");
@@ -247,12 +224,9 @@ public class PersonalisedPageActions {
             helper.switchWindow();
             LoggerHandler.info("Verified new page text");
             extentTest.log(Status.PASS, "Verified new page text");
-            Screenshot.captureScreenShot("new page text Success");    
-            Reporter.attachScreenshot("new page text", extentTest, "new page text");
         } catch (Exception e) {
             LoggerHandler.error("Could not verify the new page text");
             extentTest.log(Status.FAIL, "Could not verify the new page text");
-            Screenshot.captureScreenShot("new page text failed");    
             Reporter.attachScreenshot("new page text", extentTest, "new page text");
         }
     }
@@ -270,14 +244,11 @@ public class PersonalisedPageActions {
             
             helper.waitForElementToBeVisible(PersonalisedPageLocators.addToCart, 10);
             helper.clickElement(PersonalisedPageLocators.addToCart);
-            Screenshot.captureScreenShot("Available");
-            Reporter.attachScreenshot("available", extentTest, "available");
             LoggerHandler.info("Clicked on Add To Cart");
             extentTest.log(Status.PASS, "Clicked on Add To Cart");
         } catch (Exception e) {
             LoggerHandler.error("Could not click Add To Cart");
             extentTest.log(Status.FAIL, "Could not click Add To Cart");
-            Screenshot.captureScreenShot("Available failed");
             Reporter.attachScreenshot("available", extentTest, "available");
         }
     }

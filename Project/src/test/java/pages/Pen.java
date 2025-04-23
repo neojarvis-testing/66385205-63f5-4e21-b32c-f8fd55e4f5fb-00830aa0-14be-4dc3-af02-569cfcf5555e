@@ -13,6 +13,7 @@ import utils.Assertion;
 import utils.Base;
 import utils.ExcelReader;
 import utils.LoggerHandler;
+import utils.Reporter;
 import utils.WebDriverHelper;
 
 public class Pen {
@@ -22,7 +23,7 @@ public class Pen {
     public static Assertion obj;
     public Pen(ExtentTest extentTest){
         helper=new WebDriverHelper(Base.driver);
-        this.extenttest=extenttest;
+        this.extentTest=extentTest;
     }
 
     /*
@@ -37,10 +38,12 @@ public class Pen {
             helper.waitForElementToBeVisible(PenLocators.noThanks,10);                
             helper.clickElement(PenLocators.noThanks);            
             LoggerHandler.info("clicked on pop up");
-            extenttest.log(Status.PASS, "Clicked on pop-up");
+            extentTest.log(Status.PASS, "Clicked on pop-up");
         } catch (Exception e) {
             LoggerHandler.error("Failed to click on pop-up");
-            extenttest.log(Status.FAIL, "failed to click on pop-up");
+            extentTest.log(Status.FAIL, "failed to click on pop-up");
+            Reporter.attachScreenshot("pop up", extentTest, "pop up");
+
         }
 
     }
@@ -59,6 +62,7 @@ public class Pen {
         }catch(Exception e){
             LoggerHandler.error("Not click Deliver");
             extentTest.log(Status.FAIL,"Not click Deliver");
+            Reporter.attachScreenshot("where to deliver", extentTest, "where to deliver");
         }
     }
 
@@ -77,6 +81,7 @@ public class Pen {
         }catch(Exception e){
             LoggerHandler.error("Not click Location");
             extentTest.log(Status.FAIL,"Not click Location");
+            Reporter.attachScreenshot("Location", extentTest, "Location");
         }
     }
     /*
@@ -88,9 +93,6 @@ public class Pen {
     */
     public void enterArea() throws IOException{
         try{
-            String delhi=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 1);
-        LoggerHandler.info("Entered Delhi");
-        extenttest.log(Status.PASS,"Entered Delhi");
             String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 1); 
             helper.enterText(PenLocators.area,area_name);
             LoggerHandler.info("Entered Delhi");
@@ -100,13 +102,15 @@ public class Pen {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             LoggerHandler.error("failed");
-            extenttest.log(Status.FAIL,"failed");
+            extentTest.log(Status.FAIL,"failed");
         }
         helper.enterAction(PenLocators.area);
         Thread.sleep(2000);
         }catch(Exception e){
             LoggerHandler.error("Not entered location");
             extentTest.log(Status.FAIL,"Not entered location");
+            Reporter.attachScreenshot("enter location", extentTest, "enter location");
+
         }
     }
 
@@ -121,11 +125,13 @@ public class Pen {
         try{
             helper.waitForElementToBeVisible(PenLocators.continueshopping,10);
             helper.clickElement(PenLocators.continueshopping);
+            Thread.sleep(2000);
             LoggerHandler.info("Click continue shopping");
             extentTest.log(Status.PASS,"Click continue shopping");
         }catch(Exception e){
             LoggerHandler.error("Not click continue shopping");
             extentTest.log(Status.FAIL,"Not click continue shopping");
+            Reporter.attachScreenshot("continue shopping", extentTest, "continue shopping");
         }
     }
 
@@ -145,6 +151,7 @@ public class Pen {
         }catch(Exception e){
             LoggerHandler.error("Not click search");
             extentTest.log(Status.FAIL,"Not click search");
+            Reporter.attachScreenshot("search", extentTest, "search");
         }
     }
         /*
@@ -164,6 +171,8 @@ public class Pen {
         }catch(Exception e){
             LoggerHandler.error("Not Entered Delhi");
             extentTest.log(Status.FAIL,"Not Entered Delhi");
+            Reporter.attachScreenshot("pen", extentTest, "pen");
+
         }
     }
 
@@ -183,6 +192,7 @@ public class Pen {
         }catch(Exception e){
             LoggerHandler.error("Not click on first product");
             extentTest.log(Status.FAIL,"Not click on first product");
+            Reporter.attachScreenshot("first product", extentTest, "first product");
         }
     }
 
@@ -200,10 +210,10 @@ public class Pen {
             helper.clickElement(PenLocators.addtocart);
             LoggerHandler.info("click on add to cart");
             extentTest.log(Status.PASS,"click on add to cart");
-            Screenshot.captureScreenShot("pen");
         }catch(Exception e){
             LoggerHandler.error("Not click on add to cart");
             extentTest.log(Status.FAIL,"Not click on add to cart");
+            Reporter.attachScreenshot("add to cart", extentTest, "add to cart");
         }
     }
         /*
@@ -219,7 +229,7 @@ public class Pen {
             obj.verifyText(PenLocators.pincode, pinCode);
         }catch(Exception e){
             LoggerHandler.error("Not verified");
-            extenttest.log(Status.FAIL,"Not verified");
+            extentTest.log(Status.FAIL,"Not verified");
         }
     }
         /*
@@ -234,7 +244,7 @@ public class Pen {
         obj.verifyText(PenLocators.buy,"Buy");
     }catch(Exception e){
         LoggerHandler.error("Not verified");
-        extenttest.log(Status.FAIL,"Not verified");    }
+        extentTest.log(Status.FAIL,"Not verified");    }
     }
         /*
     * Method Name: pen
