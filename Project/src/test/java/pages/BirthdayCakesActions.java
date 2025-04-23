@@ -20,15 +20,15 @@ public class BirthdayCakesActions {
     WebDriverHelper helper;
     ExtentTest extentTest;
     ExtentReports extentReport;
-   
+
     public BirthdayCakesActions(ExtentTest extentTest) {
         helper = new WebDriverHelper(Base.driver);
-        this.extentTest=extentTest;
+        this.extentTest = extentTest;
     }
 
     public void pop_up() {
         try {
-           helper.clickElement(BirthdayCakesLocator.nothanks);
+            helper.clickElement(BirthdayCakesLocator.nothanks);
             LoggerHandler.info("clicked on pop up");
             extentTest.log(Status.PASS, "Clicked on pop-up");
         } catch (Exception e) {
@@ -51,15 +51,17 @@ public class BirthdayCakesActions {
 
     public void searchLocation() {
         try {
+            Thread.sleep(1000);
+            helper.enterText(BirthdayCakesLocator.searchLocation, "Chennai");
             Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
             Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));            helper.enterText(BirthdayCakesLocator.searchLocation,"Chennai");
             Thread.sleep(2000);
-            helper.enterAction(BirthdayCakesLocator.searchLocation); 
+            helper.enterAction(BirthdayCakesLocator.searchLocation);
             Thread.sleep(3000);
             LoggerHandler.info("clicked on Enter");
             extentTest.log(Status.PASS, "clicked on Enter");
-           LoggerHandler.info("verify the pincode");
-           extentTest.log(Status.PASS, "verify the pincode");
+            LoggerHandler.info("verify the pincode");
+            extentTest.log(Status.PASS, "verify the pincode");
         } catch (Exception e) {
             LoggerHandler.error("Failed to click Enter");
             extentTest.log(Status.FAIL, "failed to click Enter");
@@ -77,76 +79,80 @@ public class BirthdayCakesActions {
             extentTest.log(Status.FAIL, "failed to click on Continue Shopping");
         }
     }
-    public void hoverOnCakes(){
+
+    public void hoverOnCakes() {
         try {
-          
-        helper.waitForElementToBeVisible(BirthdayCakesLocator.hovercakes, 10);
-        helper.hoverElement(BirthdayCakesLocator.hovercakes);
-        LoggerHandler.info("clicked on cakes");
-        extentTest.log(Status.PASS, "clicked on cakes");
-       
+            helper.waitForElementToBeVisible(BirthdayCakesLocator.hovercakes, 10);
+            helper.hoverElement(BirthdayCakesLocator.hovercakes);
+            LoggerHandler.info("clicked on cakes");
+            extentTest.log(Status.PASS, "clicked on cakes");
+
         } catch (Exception e) {
             LoggerHandler.error("Failed to click on Cakes");
             extentTest.log(Status.FAIL, "failed to click on Cakes");
         }
-        
-    }  
-    public void birthdayCakes(){
+
+    }
+
+    public void birthdayCakes() {
         try {
             helper.waitForElementToBeVisible(BirthdayCakesLocator.birthdayCakes, 10);
-        helper.hoverElement(BirthdayCakesLocator.birthdayCakes);
-        helper.clickElement(BirthdayCakesLocator.birthdayCakes);
-        LoggerHandler.info("clicked on Birthday Cakes");
-        extentTest.log(Status.PASS, "clicked on Birthday Cakes");
-       
-        }catch(Exception e){
+            helper.hoverElement(BirthdayCakesLocator.birthdayCakes);
+            helper.clickElement(BirthdayCakesLocator.birthdayCakes);
+            LoggerHandler.info("clicked on Birthday Cakes");
+            extentTest.log(Status.PASS, "clicked on Birthday Cakes");
+
+        } catch (Exception e) {
             LoggerHandler.error("Failed to click on Birthday Cakes");
             extentTest.log(Status.FAIL, "failed to click on Birthday Cakes");
         }
     }
-    public void sameDayDelivery(){
-        try{
+
+    public void sameDayDelivery() {
+        try {
             helper.waitForElementToBeVisible(BirthdayCakesLocator.sameday, 10);
-        helper.clickElement(BirthdayCakesLocator.sameday);
-        LoggerHandler.info("clicked on Same Day Delivery");
-        extentTest.log(Status.PASS, "clicked on Same Day Delivery");
-    }catch(Exception e){
-        LoggerHandler.error("Failed to click on Same Day Delivery");
-        extentTest.log(Status.FAIL, "failed to click on Same Day Delivery");
-    }
-   }
-    public void firstProduct(){
-         try{
-            helper.waitForElementToBeVisible(BirthdayCakesLocator.product, 10);
-         helper.clickElement(BirthdayCakesLocator.product);
-         LoggerHandler.info("click on the first product");
-         extentTest.log(Status.PASS, "click on the first product");
-    }catch(Exception e){ 
-         LoggerHandler.error("Failed to click on first product");
-         extentTest.log(Status.FAIL, "failed to click on first product");
+            helper.clickElement(BirthdayCakesLocator.sameday);
+            LoggerHandler.info("clicked on Same Day Delivery");
+            extentTest.log(Status.PASS, "clicked on Same Day Delivery");
+        } catch (Exception e) {
+            LoggerHandler.error("Failed to click on Same Day Delivery");
+            extentTest.log(Status.FAIL, "failed to click on Same Day Delivery");
         }
     }
-    public void verifyCakeText(){
-        
-        //assertion.verifyText(BirthdayCakesLocator.product, "cake");
-        LoggerHandler.info("verified relevant text");
-        extentTest.log(Status.PASS, "verified relevant text");
-       
+
+    public void firstProduct() {
+        try {
+            helper.waitForElementToBeVisible(BirthdayCakesLocator.product, 10);
+            helper.clickElement(BirthdayCakesLocator.product);
+            LoggerHandler.info("click on the first product");
+            extentTest.log(Status.PASS, "click on the first product");
+        } catch (Exception e) {
+            LoggerHandler.error("Failed to click on first product");
+            extentTest.log(Status.FAIL, "failed to click on first product");
+        }
     }
 
-    public void productAddToCart(){
-        try{
+    public void verifyCakeText() {
+
+        // assertion.verifyText(BirthdayCakesLocator.product, "cake");
+        LoggerHandler.info("verified relevant text");
+        extentTest.log(Status.PASS, "verified relevant text");
+
+    }
+
+    public void productAddToCart() {
+        try {
             helper.switchWindow();
-        helper.waitForElementToBeVisible(BirthdayCakesLocator.addcart, 10);
-        helper.clickElement(BirthdayCakesLocator.addcart);
-        Screenshot.captureScreenShot("Offers_screenshot");
-        Reporter.attachScreenshot("Offers_screenshot", extentTest, "Offers_screenshot");
-        LoggerHandler.info("clicked on Add to Cart");
-        extentTest.log(Status.PASS, "clicked on Add to Cart");
-    }catch(Exception e){ 
-        LoggerHandler.error("Failed to click on Add to Cart");
-        extentTest.log(Status.FAIL, "failed to click on Add to Cart");
-       }
+            helper.waitForElementToBeVisible(BirthdayCakesLocator.addcart, 10);
+            helper.clickElement(BirthdayCakesLocator.addcart);
+            Screenshot.captureScreenShot("Offers_screenshot");
+            Reporter.attachScreenshot("Offers_screenshot", extentTest, "Offers_screenshot");
+            LoggerHandler.info("clicked on Add to Cart");
+            extentTest.log(Status.PASS, "clicked on Add to Cart");
+        } catch (Exception e) {
+            LoggerHandler.error("Failed to click on Add to Cart");
+            extentTest.log(Status.FAIL, "failed to click on Add to Cart");
+        }
     }
 
     public void BirthdayCakes() {

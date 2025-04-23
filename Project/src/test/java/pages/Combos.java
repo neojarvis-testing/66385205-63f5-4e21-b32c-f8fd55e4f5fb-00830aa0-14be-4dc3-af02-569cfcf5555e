@@ -47,6 +47,9 @@ public class Combos {
             Thread.sleep(2000);
             helper.clickElement(CombosLocators.location);
             helper.waitForElementToBeVisible(CombosLocators.location,10);
+            String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx","Sheet1",2,1);
+            helper.enterText(CombosLocators.location, area_name);
+            Thread.sleep(2000);
             helper.enterText(CombosLocators.location,"Bangalore");
             try {
                 Thread.sleep(2000);

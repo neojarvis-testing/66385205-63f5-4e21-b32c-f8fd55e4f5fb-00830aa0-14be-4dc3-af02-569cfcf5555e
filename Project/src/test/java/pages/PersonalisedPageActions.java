@@ -44,6 +44,8 @@ public class PersonalisedPageActions {
 
     public void enterKeyword(){
         try {
+            String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/Excel.xlsx", "Sheet1", 2, 1);
+            helper.enterText(PersonalisedPageLocators.enterBar, area_name);
             helper.enterText(PersonalisedPageLocators.enterBar, "Bangalore");
             Thread.sleep(2000);
             helper.enterAction(PersonalisedPageLocators.enterBar);
@@ -51,7 +53,6 @@ public class PersonalisedPageActions {
             LoggerHandler.info("Entered Bangalore");
             extentTest.log(Status.PASS, "Entered Bangalore");
             extentTest.log(Status.PASS, "Verified pincode of Bangalore");
-
         } catch (Exception e) {
             LoggerHandler.error("Could not enter Bangalore");
             extentTest.log(Status.FAIL, "Could not enter Bangalore");

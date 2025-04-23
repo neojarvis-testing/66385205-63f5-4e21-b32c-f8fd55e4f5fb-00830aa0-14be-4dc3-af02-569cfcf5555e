@@ -1,4 +1,5 @@
 package runner;
+
 import java.io.IOException;
 
 import org.testng.annotations.AfterClass;
@@ -21,22 +22,38 @@ import pages.Pen;
 import pages.PersonalisedPageActions;
 import pages.Plants;
 import utils.Base;
-import utils.LoggerHandler;
 
-public class TestRunner extends Base{
+public class TestRunner extends Base {
 
     ExtentReports extentReport;
     ExtentTest extenttest;
-@BeforeClass
-public void start(){
-        extentReport = utils.Reporter.generateReport("fnp");
-        extenttest=extentReport.createTest("fnp_test");
-        
-}
-@BeforeMethod
-    public void launch() throws IOException{
+    @BeforeClass
+    public void start() {
+        report = utils.Reporter.generateReport("fnp");
+        extenttest = report.createTest("fnp_test");
+
+    }
+
+    @BeforeMethod
+    public void launch() throws IOException {
         openBrowser();
     }
+
+    @Test(priority = 1)
+    public void pen_testcase() throws IOException, InterruptedException {
+        Pen penActions = new Pen(extenttest);
+        penActions.pen();
+    }
+
+    @Test(priority = 2)
+    public void plant_testcase() throws IOException {
+        Plants plantActions = new Plants(extenttest);
+        plantActions.plant();
+    }
+
+    @Test(priority = 3)
+    public void cake_testcase() throws IOException {
+        Cake cakeActions = new Cake(extenttest);
     @Test
     public void pen_testcase() throws IOException, InterruptedException{
         Pen penActions=new Pen(extenttest);
@@ -54,28 +71,49 @@ public void start(){
     }
 
     @Test
-    public void birthdayCakesProductVerification(){
-        BirthdayCakesActions birthdayCakesActionsObject= new BirthdayCakesActions(extenttest);
-        birthdayCakesActionsObject.BirthdayCakes();
+    public void BirthdayCakesProductVerification() {
+        BirthdayCakesActions birthdayCakesActionsObject = new BirthdayCakesActions(extenttest);
+        birthdayCakesActionsObject.BirthdayCakes();      
 
     }
+
     @Test
-    public void anniversary_testcase(){
+    public void anniversary_testcase() {
         AnniversaryPageActions anniversaryPageActionsObject = new AnniversaryPageActions(extenttest);
         anniversaryPageActionsObject.testAnniversary();
     }
+
     @Test
-    public void footer_testcase(){
+    public void footer_testcase() {
         FooterPageActions footerPageActionsObject = new FooterPageActions(extenttest);
         footerPageActionsObject.testFooter();
     }
 
     @Test
-        public void footerAndVerification(){
-            FooterAndVerificationActions footerAndVerificationActionsObject = new FooterAndVerificationActions(extenttest); 
-            footerAndVerificationActionsObject.FooterAndVerificationMethods(); 
+    public void FooterAndVerification() {
+        FooterAndVerificationActions footerAndVerificationActionsObject = new FooterAndVerificationActions(
+                extenttest);
 
-        }
+        footerAndVerificationActionsObject.FooterAndVerificationMethods();
+
+    }
+
+    @Test
+    public void Combo_testcase() throws InterruptedException, IOException {
+        Combos comboAction = new Combos(extenttest);
+        comboAction.clickBangalore();
+    }
+
+    @Test
+    public void lifeStyleAction() {
+        LifestylePageActions lifeStyle = new LifestylePageActions(extenttest);
+        lifeStyle.lifestyleRingsMethod();
+    }
+
+    @Test
+    public void PersonalisedAction() {
+        PersonalisedPageActions PersonalisedAction = new PersonalisedPageActions(extenttest);
+
     @Test
     public void combo_testcase() throws InterruptedException, IOException{
         Combos comboAction=new Combos(extenttest);
@@ -93,12 +131,13 @@ public void start(){
     }
 
     @AfterMethod
-    public void tear(){
+    public void tear() {
         driver.quit();
     }
 
     @AfterClass
-    public void end(){
-        extentReport.flush();
+    public void end() {
+        report.flush();
+
     }
 }
