@@ -1,5 +1,7 @@
 package pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
@@ -7,10 +9,12 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import uistore.AnniversaryPageLocators;
 import uistore.FooterAndVerificationLocators;
 import utils.Assertion;
 import utils.Base;
 import utils.LoggerHandler;
+import utils.Reporter;
 import utils.WebDriverHelper;
 
 public class FooterAndVerificationActions {
@@ -24,6 +28,11 @@ public class FooterAndVerificationActions {
         helper = new WebDriverHelper(Base.driver);
         this.extentTest = extentTest;
     }
+    public void clickOnNoThanks(){
+        helper.waitForElementToBeVisible(AnniversaryPageLocators.noThanks,10);
+        helper.clickElement(AnniversaryPageLocators.noThanks);
+    }
+
 
     public void scrollToFooter() {
         try {
@@ -39,6 +48,7 @@ public class FooterAndVerificationActions {
     public void VerifyDecorationLink() {
         try {
             helper.scrollBy();
+            helper.waitForElementToBeVisible(FooterAndVerificationLocators.FNPBusiness,10);
             helper.clickElement(FooterAndVerificationLocators.FNPBusiness);
             Assertion.verifyUrl("https://www.fnp.com/decoration-services-lp");
             LoggerHandler.info(" Page is verified");
@@ -54,6 +64,7 @@ public class FooterAndVerificationActions {
     public void corporateServiceLink() {
         try {
             helper.scrollBy();
+            helper.waitForElementToBeVisible(FooterAndVerificationLocators.corporateService,10);
             helper.clickElement(FooterAndVerificationLocators.corporateService);
             Assertion.verifyUrl("https://www.fnp.com/corporate/");
             LoggerHandler.info("Corporate Page is verified");
@@ -69,6 +80,7 @@ public class FooterAndVerificationActions {
     public void affiliateProgrameLink() {
         try {
             helper.scrollBy();
+            helper.waitForElementToBeVisible(FooterAndVerificationLocators.affiliatePrograme,10);
             helper.clickElement(FooterAndVerificationLocators.affiliatePrograme);
             Assertion.verifyUrl("https://www.fnp.com/info/affiliate-program");
             LoggerHandler.info("Affiliate Programe Page is verified");
@@ -84,6 +96,7 @@ public class FooterAndVerificationActions {
     public void retailStoresLink() {
         try {
             helper.scrollBy();
+            helper.waitForElementToBeVisible(FooterAndVerificationLocators.retailStores,10);
             helper.clickElement(FooterAndVerificationLocators.retailStores);
             Assertion.verifyUrl("https://www.fnp.com/info/retail-stores");
             LoggerHandler.info("Retail Stores Page is verified");
@@ -99,6 +112,7 @@ public class FooterAndVerificationActions {
     public void franchiseLink() {
         try {
             helper.scrollBy();
+            helper.waitForElementToBeVisible(FooterAndVerificationLocators.franchies,10);
             helper.clickElement(FooterAndVerificationLocators.franchies);
             Assertion.verifyUrl("https://www.fnp.com/info/franchise-programme");
             LoggerHandler.info("Franchise Page is verified");
@@ -114,6 +128,7 @@ public class FooterAndVerificationActions {
     public void quotesNWishesLink() {
         try {
             helper.scrollBy();
+            helper.waitForElementToBeVisible(FooterAndVerificationLocators.QuotesNWishesLink,10);
             helper.clickElement(FooterAndVerificationLocators.QuotesNWishesLink);
             Assertion.verifyUrl("https://www.fnp.com/quotes/wishes-n-messages");
             LoggerHandler.info("Quotes N Wishes Page is verified");
@@ -129,12 +144,14 @@ public class FooterAndVerificationActions {
     public void blogLink() {
         try {
             helper.scrollBy();
+            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(7));
+            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
+            helper.waitForElementToBeVisible(FooterAndVerificationLocators.blog, 10);
             helper.clickElement(FooterAndVerificationLocators.blog);
-            Thread.sleep(3000);
             Assertion.verifyUrl("https://www.fnp.com/blog/");
             LoggerHandler.info("Blog Page is verified");
             extentTest.log(Status.PASS, "Retail Stores Page is verified");
-            helper.navigateBack();
+    helper.navigateBack();
 
         } catch (Exception e) {
             LoggerHandler.error("Failed page verification");
@@ -144,6 +161,7 @@ public class FooterAndVerificationActions {
 
     public void footerAndVerificationMethods() {
         try {
+            clickOnNoThanks();
             scrollToFooter();
             VerifyDecorationLink();
             corporateServiceLink();

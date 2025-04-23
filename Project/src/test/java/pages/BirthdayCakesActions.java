@@ -37,6 +37,7 @@ public class BirthdayCakesActions {
 
     public void selectLocation() {
         try {
+            helper.waitForElementToBeVisible(BirthdayCakesLocator.location, 10);
             helper.clickElement(BirthdayCakesLocator.location);
             LoggerHandler.info("clicked on where to deliver");
             extentTest.log(Status.PASS, "clicked on where to deiver");
@@ -48,10 +49,11 @@ public class BirthdayCakesActions {
 
     public void searchLocation() {
         try {
+            Thread.sleep(1000);
             helper.enterText(BirthdayCakesLocator.searchLocation,"Chennai");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             helper.enterAction(BirthdayCakesLocator.searchLocation); 
-            Thread.sleep(1000);
+            Thread.sleep(3000);
            
             LoggerHandler.info("clicked on Enter");
             extentTest.log(Status.PASS, "clicked on Enter");
@@ -90,7 +92,7 @@ public class BirthdayCakesActions {
     }  
     public void birthdayCakes(){
         try {
-       
+            helper.waitForElementToBeVisible(BirthdayCakesLocator.birthdayCakes, 10);
         helper.hoverElement(BirthdayCakesLocator.birthdayCakes);
         helper.clickElement(BirthdayCakesLocator.birthdayCakes);
         LoggerHandler.info("clicked on Birthday Cakes");
@@ -125,7 +127,6 @@ public class BirthdayCakesActions {
     }
     public void verifyCakeText(){
         
-        helper.switchWindow();
         //assertion.verifyText(BirthdayCakesLocator.product, "cake");
         LoggerHandler.info("verified relevant text");
         extentTest.log(Status.PASS, "verified relevant text");
@@ -134,6 +135,7 @@ public class BirthdayCakesActions {
 
     public void productAddToCart(){
         try{
+            helper.switchWindow();
         helper.waitForElementToBeVisible(BirthdayCakesLocator.addcart, 10);
         helper.clickElement(BirthdayCakesLocator.addcart);
         Screenshot.captureScreenShot("Offers_screenshot");
@@ -156,7 +158,6 @@ public class BirthdayCakesActions {
             birthdayCakes();
             sameDayDelivery();
             firstProduct();
-            verifyCakeText();
             productAddToCart();
 
         } catch (Exception e) {

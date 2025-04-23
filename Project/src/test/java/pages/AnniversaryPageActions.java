@@ -28,6 +28,7 @@ public class AnniversaryPageActions {
     public void clickOnNoThanks(){
         helper.waitForElementToBeVisible(AnniversaryPageLocators.noThanks,10);
         helper.clickElement(AnniversaryPageLocators.noThanks);
+        Reporter.attachScreenshot("FNP", extentTest, "FNP Screenshot");
     }
 
     public void clickOnWhereToDeliver() {
@@ -46,6 +47,8 @@ public class AnniversaryPageActions {
             helper.enterText(AnniversaryPageLocators.inputLocation, "Chennai");
             Thread.sleep(2000);
             helper.enterAction(AnniversaryPageLocators.inputLocation);
+            Screenshot.captureScreenShot("FNP");
+            Thread.sleep(2000);
             LoggerHandler.info("Entered city");
             extentTest.log(Status.PASS, "Entered city");
         } catch (Exception e) {
