@@ -14,6 +14,7 @@ import utils.Assertion;
 import utils.Base;
 import utils.ExcelReader;
 import utils.LoggerHandler;
+import utils.Reporter;
 import utils.Screenshot;
 import utils.WebDriverHelper;
 
@@ -22,19 +23,61 @@ public class Combos {
     public static ExtentReports extentReport;
     public static ExtentTest extentTest;
     public static Assertion obj;
+    /*Author: D.B.S.Rohan
+     * Method Name: Combos
+     * Description: This is a constructor that initializes the driver, helper, test and assertion objects.
+     * Parameters: ExtentTest test
+     * Return Type: NA
+    */
     public Combos(ExtentTest extentTest){
         helper=new WebDriverHelper(Base.driver);
         this.extentTest=extentTest;
     }
+    /*Author: D.B.S.Rohan
+     * Method Name: clickNoThanks
+     * Description: This method is used to click nothanks
+     * Parameters: NA
+     * Return Type: void
+    */
 
     public void clickNoThanks(){
-        helper.waitForElementToBeVisible(CombosLocators.noThanks,10);
-        helper.clickElement(CombosLocators.noThanks);
+        try{
+            helper.waitForElementToBeVisible(CombosLocators.noThanks,10);
+            helper.clickElement(CombosLocators.noThanks);
+        }
+        catch(Exception e){
+            LoggerHandler.info("couldn't hovered over combos");
+            extentTest.log(Status.FAIL,"couldn't hovered over combos");
+            Screenshot.captureScreenShot("clicked_on_nothanks");
+            Reporter.attachScreenshot("clicked_on_nothanks", extentTest,"clicked_on_nothanks");
+        }
     }
-
+    /*Author: D.B.S.Rohan
+     * Method Name: clickWhere
+     * Description: This method is used to select the where to deliver
+     * Parameters: NA
+     * Return Type: void
+    */
     public void clickWhere(){
         try {
             helper.clickElement(CombosLocators.where);
+            LoggerHandler.info("hovered over combos");
+            extentTest.log(Status.PASS,"hovered over combos");
+        }
+        catch(Exception e){
+            LoggerHandler.info("couldn't hovered over combos");
+            extentTest.log(Status.FAIL,"couldn't hovered over combos");
+            Screenshot.captureScreenShot("clicked_on_where_to_deliver");
+            Reporter.attachScreenshot("clicked_on_where_to_deliver", extentTest,"clicked_on_where_to_deliver");
+        }
+        
+    }
+    /*Author: D.B.S.Rohan
+     * Method Name: enteringLocation
+     * Description: This method is used to select the where to deliver
+     * Parameters: NA
+     * Return Type: void
+    */
             LoggerHandler.info("click Deliver");
             extentTest.log(Status.PASS, "click Deliver");
         } catch (Exception e) {
@@ -43,7 +86,6 @@ public class Combos {
         }
         
     }
-
     public void enteringLocation() {
         try{
             Thread.sleep(2000);
@@ -68,10 +110,17 @@ public class Combos {
         catch(Exception e){
             LoggerHandler.info("couldn't hovered over combos");
             extentTest.log(Status.FAIL,"couldn't hovered over combos");
+            Screenshot.captureScreenShot("hovered_on_combos");
+            Reporter.attachScreenshot("hovered_on_combos", extentTest,"hovered_on_combos");
         }
  
     }
-
+    /*Author: D.B.S.Rohan
+     * Method Name: continueShopping
+     * Description: This method is used to select the continue
+     * Parameters: NA
+     * Return Type: void
+    */
     public void continueShopping(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.continueShop,10);
@@ -85,9 +134,16 @@ public class Combos {
         catch(Exception e){
             LoggerHandler.info("couldn't clicked on continue shopping");
             extentTest.log(Status.FAIL,"couldn't clicked on continue shopping");
+            Screenshot.captureScreenShot("clicked_on_continue_shopping");
+            Reporter.attachScreenshot("clicked_on_continue_shopping", extentTest,"clicked_on_continue_shopping");
         }
     }
-
+    /*Author: D.B.S.Rohan
+     * Method Name: hoverCombos
+     * Description: This method is used to hover on the combos
+     * Parameters: NA
+     * Return Type: void
+    */
     public void hoverCombos(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.combos,10);
@@ -98,9 +154,16 @@ public class Combos {
         catch(Exception e){
             LoggerHandler.info("couldn't hovered over combos");
             extentTest.log(Status.FAIL,"couldn't hovered over combos");
+            Screenshot.captureScreenShot("hovered_on_combos");
+            Reporter.attachScreenshot("hovered_on_combos", extentTest,"hovered_on_combos");
         }
     }
-
+    /*Author: D.B.S.Rohan
+     * Method Name: clickHampers
+     * Description: This method is used to click on hampers
+     * Parameters: NA
+     * Return Type: void
+    */
     public void clickHampers(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.healthyhampers,10);
@@ -111,9 +174,16 @@ public class Combos {
         catch(Exception e){
             LoggerHandler.info("couldn't clicked helathy hampers");
             extentTest.log(Status.FAIL,"couldn't clicked helathy hampers");
+            Screenshot.captureScreenShot("clicked_on_hampers");
+            Reporter.attachScreenshot("clicked_on_hampers", extentTest,"clicked_on_hampers");
         }
     }
-
+    /*Author: D.B.S.Rohan
+     * Method Name: clickAvailability
+     * Description: This method is used to click on availability
+     * Parameters: NA
+     * Return Type: void
+    */
     public void clickAvailability(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.availability,10);
@@ -125,9 +195,16 @@ public class Combos {
         catch(Exception e){
             LoggerHandler.info("couldn't clicked helathy hampers");
             extentTest.log(Status.FAIL,"couldn't clicked helathy hampers");
+            Screenshot.captureScreenShot("clicked_on_availability");
+            Reporter.attachScreenshot("clicked_on_availability", extentTest,"clicked_on_availability");
         }
     }
-
+    /*Author: D.B.S.Rohan
+     * Method Name: clickTrue
+     * Description: This method is used to click on true filter
+     * Parameters: NA
+     * Return Type: void
+    */
     public void clickTrue(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.trues,10);
@@ -138,9 +215,16 @@ public class Combos {
         catch(Exception e){
             LoggerHandler.info("couldn't clicked true");
             extentTest.log(Status.FAIL,"couldn't clicked true");
+            Screenshot.captureScreenShot("clicked_on_true");
+            Reporter.attachScreenshot("clicked_on_true", extentTest,"clicked_on_true");
         }
     }
-
+    /*Author: D.B.S.Rohan
+     * Method Name: clickProduct
+     * Description: This method is used to click on the first product
+     * Parameters: NA
+     * Return Type: void
+    */
     public void clickProduct(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.firstProduct,10);
@@ -153,9 +237,16 @@ public class Combos {
         catch(Exception e){
             LoggerHandler.info("couldn't clicked firstProduct");
             extentTest.log(Status.FAIL,"couldn't clicked firstProduct");
+            Screenshot.captureScreenShot("clicked_on_first_product");
+            Reporter.attachScreenshot("clicked_on_first_product", extentTest,"clicked_on_first_product");
         }
     }
-
+    /*Author: D.B.S.Rohan
+     * Method Name: addToCart
+     * Description: This method is used to add the product to the cart
+     * Parameters: NA
+     * Return Type: void
+    */
     public void addToCart(){
         try{
             helper.switchWindow();
@@ -168,9 +259,16 @@ public class Combos {
     catch(Exception e){
         LoggerHandler.info("couldn't added product");
         extentTest.log(Status.FAIL,"couldn't added product");
+        Screenshot.captureScreenShot("clicked_on_add_product");
+        Reporter.attachScreenshot("clicked_on_add_product", extentTest,"clicked_on_add_product");
     }
     }
-
+    /*Author: D.B.S.Rohan
+     * Method Name: clickBangalore
+     * Description: This method contains cluster of methods of the entire testcase
+     * Parameters: NA
+     * Return Type: void
+    */
     public void clickBangalore() throws InterruptedException, IOException{
         clickNoThanks();
         clickWhere();

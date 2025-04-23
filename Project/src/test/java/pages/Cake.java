@@ -71,7 +71,6 @@ public class Cake {
             extentTest.log(Status.FAIL, "Not click Location");
         }
     }
-
         /*
     * Method Name: enterArea
     * Author Name: prakash
