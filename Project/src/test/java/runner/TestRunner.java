@@ -11,73 +11,102 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
+import pages.BirthdayCakesActions;
+import pages.FooterAndVerificationActions;
 import pages.AnniversaryPageActions;
 import pages.Cake;
+import pages.Combos;
 import pages.FooterPageActions;
 import pages.LifestylePageActions;
 import pages.Pen;
 import pages.PersonalisedPageActions;
 import pages.Plants;
 import utils.Base;
-import utils.LoggerHandler;
 
-public class TestRunner extends Base{
-    ExtentReports report;
-    ExtentTest extenttest;
+public class TestRunner extends Base {
+
+    ExtentReports extentReport;
+    ExtentTest extentTest;
+
     @BeforeClass
-    public void start(){
-        report = utils.Reporter.generateReport("fnp");
-        extenttest=report.createTest("fnp_test");
-        
+    public void start() {
+        extentReport = utils.Reporter.generateReport("fnp");
+        extentTest = extentReport.createTest("fnp_test");
+
     }
+
     @BeforeMethod
-    public void launch() {
+    public void launch() throws IOException {
         openBrowser();
     }
-    @Test(priority = 1)
-    public void pen_testcase() throws IOException, InterruptedException{
-        Pen penActions=new Pen(extenttest);
-        penActions.pen();    
-    }
-    @Test(priority = 2)
-    public void plant_testcase() throws IOException{
-        Plants plantActions=new Plants(extenttest);
-        plantActions.plant();    
-    }
-    @Test(priority = 3)
-    public void cake_testcase() throws IOException{
-        Cake cakeActions=new Cake(extenttest);
-        cakeActions.cake();
+
+    @Test
+    public void pen_testcase01() throws IOException, InterruptedException {
+        Pen penActionsObject = new Pen(extentTest);
+        penActionsObject.pen();
     }
 
     @Test
-    public void anniversary_testcase(){
-        AnniversaryPageActions anniversaryPageActionsObject = new AnniversaryPageActions(extenttest);
+    public void plant_testcase06() throws IOException {
+        Plants plantActionsObject = new Plants(extentTest);
+        plantActionsObject.plant();
+    }
+
+    @Test
+    public void cake_testcase02() throws IOException {
+        Cake cakeActionsObject = new Cake(extentTest);
+        cakeActionsObject.cake();
+    }
+
+    @Test
+    public void birthdayCakesProductVerification_testcase04() {
+        BirthdayCakesActions birthdayCakesActionsObject = new BirthdayCakesActions(extentTest);
+        birthdayCakesActionsObject.BirthdayCakes();
+    }
+
+    @Test
+    public void anniversary_testcase03() {
+        AnniversaryPageActions anniversaryPageActionsObject = new AnniversaryPageActions(extentTest);
         anniversaryPageActionsObject.testAnniversary();
     }
+
     @Test
-    public void footer_testcase(){
-        FooterPageActions footerPageActionsObject = new FooterPageActions(extenttest);
+    public void footer_testcase08() {
+        FooterPageActions footerPageActionsObject = new FooterPageActions(extentTest);
         footerPageActionsObject.testFooter();
     }
 
-    @Test(priority = 10)
-    public void lifestyleRings(){
-        try {
-            LifestylePageActions lifestylepageactionsObject = new LifestylePageActions(extenttest);
-            lifestylepageactionsObject.lifestyleRingsMethod();
-        } catch (Exception e) {
-            LoggerHandler.info("Verification failed in runner");
-        }
+    @Test
+    public void footerAndVerification_testcase09() {
+        FooterAndVerificationActions footerAndVerificationActionsObject = new FooterAndVerificationActions(extentTest);
+        footerAndVerificationActionsObject.FooterAndVerificationMethods();
     }
-    
+
+    @Test
+    public void combo_testcase07() throws InterruptedException, IOException {
+        Combos comboActionObject = new Combos(extentTest);
+        comboActionObject.clickBangalore();
+    }
+
+    @Test
+    public void lifeStyle_testcase10() {
+        LifestylePageActions lifeStyleObject = new LifestylePageActions(extentTest);
+        lifeStyleObject.lifestyleRingsMethod();
+    }
+
+    @Test
+    public void personalised_testcase05() {
+        PersonalisedPageActions PersonalisedActionObject = new PersonalisedPageActions(extentTest);
+        PersonalisedActionObject.personalisedGiftsMethod();
+    }
+
     @AfterMethod
-    public void tear(){
+    public void tear() {
         driver.quit();
     }
 
     @AfterClass
-    public void end(){
-        report.flush();
-    } 
+    public void end() {
+        extentReport.flush();
+    }
 }

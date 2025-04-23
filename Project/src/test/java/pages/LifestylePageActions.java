@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import uistore.AnniversaryPageLocators;
 import uistore.LifestylePageLocators;
 import utils.Assertion;
 import utils.Base;
@@ -14,7 +15,7 @@ import utils.Screenshot;
 import utils.WebDriverHelper;
 
 public class LifestylePageActions {
-    ExtentReports extent;
+    ExtentReports extentReport;
     ExtentTest extentTest;
     WebDriverHelper helper;
     Assertion assertion;
@@ -24,6 +25,10 @@ public class LifestylePageActions {
         this.extentTest=extentTest;
     }
 
+    public void clickOnNoThanks(){
+        helper.waitForElementToBeVisible(AnniversaryPageLocators.noThanks,10);
+        helper.clickElement(AnniversaryPageLocators.noThanks);
+    }
     public void clickOnDeliver(){
         try {
             helper.clickElement(LifestylePageLocators.location);
@@ -38,18 +43,15 @@ public class LifestylePageActions {
 
     public void enterLocation(){
         try {
-            helper.enterText(LifestylePageLocators.searchBar, "Kolkata");
-            // helper.enterText(LifestylePageLocators.searchBar, ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/Excel.xlsx", "Sheet1", 1, 0));
+            String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx","Sheet1",6,1);
+            helper.enterText(LifestylePageLocators.searchBar, area_name);
             Thread.sleep(2000);
 
             helper.enterAction(LifestylePageLocators.searchBar);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             
-            LoggerHandler.info("Entered Kolkata");
-            extentTest.log(Status.PASS, "Entered Kolkata");
-            helper.enterText(LifestylePageLocators.pincodeKolkata, "700073");
-            // helper.enterText(LifestylePageLocators.pincodeKolkata, ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/Excel.xlsx", "Sheet1", 1, 1));
-            extentTest.log(Status.PASS, "Verified pincode of Kolkata");
+            LoggerHandler.info("verify the pincode");
+            extentTest.log(Status.PASS, "verify the pincode");
             
         } catch (Exception e) {
             LoggerHandler.error("Could not enter Kolkata");
@@ -62,6 +64,7 @@ public class LifestylePageActions {
         try {
             helper.waitForElementToBeVisible(LifestylePageLocators.continueShopping,10);
             helper.clickElement(LifestylePageLocators.continueShopping);
+            Thread.sleep(1000);
             LoggerHandler.info("Clicked on Continue Shopping Button");
             extentTest.log(Status.PASS, "Clicked on Continue Shopping Button");
             
@@ -146,6 +149,7 @@ public class LifestylePageActions {
     }
 
     public void lifestyleRingsMethod(){
+        clickOnNoThanks();
         clickOnDeliver();
         enterLocation();
         clickOnContinueShopping();

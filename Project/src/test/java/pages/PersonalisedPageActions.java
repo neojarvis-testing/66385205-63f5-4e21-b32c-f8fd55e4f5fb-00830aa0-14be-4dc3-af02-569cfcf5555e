@@ -4,6 +4,8 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import uistore.LifestylePageLocators;
+import uistore.PenLocators;
 import uistore.PersonalisedPageLocators;
 import utils.Assertion;
 import utils.Base;
@@ -14,7 +16,7 @@ import utils.Screenshot;
 import utils.WebDriverHelper;
 
 public class PersonalisedPageActions {
-    ExtentReports extent;
+    ExtentReports extentReport;
     ExtentTest extentTest;
     WebDriverHelper helper;
     Assertion assertion;
@@ -24,20 +26,13 @@ public class PersonalisedPageActions {
         this.extentTest = extentTest;
     }
 
-    public void clickOnPopUp(){
-        try {
-            helper.clickElement(PersonalisedPageLocators.popUp);
-            LoggerHandler.info("Clicked on Cnacel Pop Up");
-            extentTest.log(Status.PASS, "Clicked on Cnacel Pop Up");
-        } catch (Exception e) {
-            LoggerHandler.error("Could not click on cancel pop up");
-            extentTest.log(Status.FAIL, "Could not click on cancel pop up");
-        }
-
+    public void clickNoThanks(){
+        helper.waitForElementToBeVisible(PenLocators.noThanks,10);
+        helper.clickElement(PenLocators.noThanks);
     }
-
     public void clickOnWhereToDeliver(){
         try {
+            helper.waitForElementToBeVisible(PersonalisedPageLocators.whereToDeliver,10);
             helper.clickElement(PersonalisedPageLocators.whereToDeliver);
             LoggerHandler.info("Clicked on Where to deliver?");
             extentTest.log(Status.PASS, "Clicked on Where to deliver?");
@@ -51,18 +46,15 @@ public class PersonalisedPageActions {
     public void enterKeyword(){
         try {
             helper.enterText(PersonalisedPageLocators.enterBar, "Bangalore");
-            // helper.enterText(PersonalisedPageLocators.enterBar,ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/Excel.xlsx", "Sheet1", 0, 0));
-            Thread.sleep(1000);
+            helper.enterText(PersonalisedPageLocators.enterBar,ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx", "Sheet1", 2, 1));
+            Thread.sleep(2000);
 
             helper.enterAction(PersonalisedPageLocators.enterBar);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             LoggerHandler.info("Entered Bangalore");
             extentTest.log(Status.PASS, "Entered Bangalore");
-            helper.enterText(PersonalisedPageLocators.pincode, "560001");
-            // helper.enterText(PersonalisedPageLocators.pincode, ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/Excel.xlsx", "Sheet1", 0, 1));
             extentTest.log(Status.PASS, "Verified pincode of Bangalore");
-
 
         } catch (Exception e) {
             LoggerHandler.error("Could not enter Bangalore");
@@ -158,6 +150,7 @@ public class PersonalisedPageActions {
 
     public void personalisedGiftsMethod(){
         try {
+            clickNoThanks();
             clickOnWhereToDeliver();
             enterKeyword();
             clickOnContinueShopping();

@@ -8,6 +8,7 @@ import com.aventstack.extentreports.Status;
 import uistore.AnniversaryPageLocators;
 import utils.Assertion;
 import utils.Base;
+import utils.ExcelReader;
 import utils.LoggerHandler;
 import utils.Reporter;
 import utils.Screenshot;
@@ -21,13 +22,13 @@ public class AnniversaryPageActions {
 
     public AnniversaryPageActions(ExtentTest extentTest) {
         helper = new WebDriverHelper(Base.driver);
-        //assertion = new Assertion(Base.driver);
         this.extentTest = extentTest;
     }
 
     public void clickOnNoThanks(){
         helper.waitForElementToBeVisible(AnniversaryPageLocators.noThanks,10);
         helper.clickElement(AnniversaryPageLocators.noThanks);
+        Reporter.attachScreenshot("FNP", extentTest, "FNP Screenshot");
     }
 
     public void clickOnWhereToDeliver() {
@@ -43,9 +44,12 @@ public class AnniversaryPageActions {
 
     public void inputCity() {
         try {
-            helper.enterText(AnniversaryPageLocators.inputLocation, "Chennai");
+            String area_name = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
+            helper.enterText(AnniversaryPageLocators.inputLocation, area_name);
             Thread.sleep(2000);
             helper.enterAction(AnniversaryPageLocators.inputLocation);
+            Screenshot.captureScreenShot("FNP");
+            Thread.sleep(2000);
             LoggerHandler.info("Entered city");
             extentTest.log(Status.PASS, "Entered city");
         } catch (Exception e) {
@@ -129,7 +133,8 @@ public class AnniversaryPageActions {
     }
 
     public void verifyHome() {
-        assertion.verifyText(AnniversaryPageLocators.home, "Home");
+        String text = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 10,0);
+        assertion.verifyText(AnniversaryPageLocators.home, text);
         Screenshot.captureScreenShot("first product");
         Reporter.attachScreenshot("first_product", extentTest, "This is the first product");
     }
