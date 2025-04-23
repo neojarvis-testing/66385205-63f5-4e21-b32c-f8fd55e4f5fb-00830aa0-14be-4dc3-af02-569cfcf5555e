@@ -137,7 +137,7 @@ public class BirthdayCakesActions {
         helper.waitForElementToBeVisible(BirthdayCakesLocator.addcart, 10);
         helper.clickElement(BirthdayCakesLocator.addcart);
         Screenshot.captureScreenShot("Offers_screenshot");
-        Reporter.addScreenshot("Offers_screenshot", extentTest, "Offers_screenshot", null);
+        Reporter.attachScreenshot("Offers_screenshot", extentTest, "Offers_screenshot");
         LoggerHandler.info("clicked on Add to Cart");
         extentTest.log(Status.PASS, "clicked on Add to Cart");
     }catch(Exception e){ 

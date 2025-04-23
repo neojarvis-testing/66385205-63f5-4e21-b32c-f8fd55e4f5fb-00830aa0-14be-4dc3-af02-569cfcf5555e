@@ -111,7 +111,7 @@ public class FooterAndVerificationActions {
         }
     }
 
-    public void QuotesNWishesLink() {
+    public void quotesNWishesLink() {
         try {
             helper.scrollBy();
             helper.clickElement(FooterAndVerificationLocators.QuotesNWishesLink);
@@ -126,7 +126,7 @@ public class FooterAndVerificationActions {
         }
     }
 
-    public void BlogLink() {
+    public void blogLink() {
         try {
             helper.scrollBy();
             helper.clickElement(FooterAndVerificationLocators.blog);
@@ -142,7 +142,7 @@ public class FooterAndVerificationActions {
         }
     }
 
-    public void FooterAndVerificationMethods() {
+    public void footerAndVerificationMethods() {
         try {
             scrollToFooter();
             VerifyDecorationLink();
@@ -150,8 +150,8 @@ public class FooterAndVerificationActions {
             affiliateProgrameLink();
             retailStoresLink();
             franchiseLink();
-            QuotesNWishesLink();
-            BlogLink();
+            quotesNWishesLink();
+            blogLink();
         } catch (Exception e) {
             LoggerHandler.error("Failed page verification for FooterAndVerification");
         }

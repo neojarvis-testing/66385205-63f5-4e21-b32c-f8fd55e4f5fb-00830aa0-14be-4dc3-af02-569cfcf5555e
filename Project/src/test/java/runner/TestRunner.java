@@ -12,7 +12,9 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
 import pages.AnniversaryPageActions;
+import pages.BirthdayCakesActions;
 import pages.Cake;
+import pages.FooterAndVerificationActions;
 import pages.FooterPageActions;
 import pages.LifestylePageActions;
 import pages.Pen;
@@ -67,6 +69,25 @@ public class TestRunner extends Base{
             lifestylepageactionsObject.lifestyleRingsMethod();
         } catch (Exception e) {
             LoggerHandler.info("Verification failed in runner");
+        }
+    }
+//
+    @Test(priority = 4)
+    public void BirthdayCakeMethod(){
+        try {
+            BirthdayCakesActions birthdayCakesObject= new BirthdayCakesActions(extenttest);
+            birthdayCakesObject.birthdayCakes();
+        } catch (Exception e) {
+            LoggerHandler.info("Verification for BirthdayCakeMethod failed in runner");
+        }
+    }
+    @Test(priority = 9)
+    public void FooterAndVerificationMethod(){
+        try {
+            FooterAndVerificationActions footerpageObject = new FooterAndVerificationActions(extenttest);
+            footerpageObject.footerAndVerificationMethods();
+        } catch (Exception e) {
+            LoggerHandler.info("Verification for FooterAndVerification Page failed in runner");
         }
     }
     
