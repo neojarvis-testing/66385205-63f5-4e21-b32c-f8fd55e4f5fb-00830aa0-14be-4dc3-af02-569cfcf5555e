@@ -1,5 +1,7 @@
 package pages;
 
+import java.time.Duration;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -49,12 +51,11 @@ public class BirthdayCakesActions {
 
     public void searchLocation() {
         try {
-            Thread.sleep(1000);
-            helper.enterText(BirthdayCakesLocator.searchLocation,"Chennai");
+            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));            helper.enterText(BirthdayCakesLocator.searchLocation,"Chennai");
             Thread.sleep(2000);
             helper.enterAction(BirthdayCakesLocator.searchLocation); 
             Thread.sleep(3000);
-           
             LoggerHandler.info("clicked on Enter");
             extentTest.log(Status.PASS, "clicked on Enter");
            LoggerHandler.info("verify the pincode");
