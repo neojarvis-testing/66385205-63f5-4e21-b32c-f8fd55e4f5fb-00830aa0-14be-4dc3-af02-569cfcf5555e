@@ -75,7 +75,7 @@
       <artifactId>slf4j-simple</artifactId>
       <version>2.0.7</version>
       <scope>test</scope>
-    </dependency>
+    </dependency>    
   </dependencies>
  
   <build>
@@ -123,5 +123,5 @@
       </plugins>
     </pluginManagement>
   </build>
- 
+  
 </project>
