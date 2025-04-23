@@ -4,7 +4,9 @@ import org.openqa.selenium.By;
 
 public class PlantLocators {
     public static By deliver=By.xpath("//span[text()='Where to deliver?']");
-    public static By area=By.xpath("//input[@id='pincode-location-input']");
+    public static By area=By.id("pincode-location-input");
+
+    //public static By area=By.xpath("//input[@id='pincode-location-input']");
     public static By continueshopping=By.xpath("//div[text()='Continue Shopping']");
     public static By pincode = By.xpath("//div[@class='flex items-center gap-2']");
     public static By plant=By.xpath("//span[text()='Plants']");

@@ -6,12 +6,15 @@ import java.time.Duration;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.model.Author;
 
 import uistore.CakeLocators;
+import uistore.PenLocators;
 import utils.Assertion;
 import utils.Base;
 import utils.ExcelReader;
 import utils.LoggerHandler;
+import utils.Reporter;
 import utils.WebDriverHelper;
 
 public class Cake {
@@ -22,15 +25,28 @@ public class Cake {
     
     public Cake(ExtentTest extentTest){
         helper=new WebDriverHelper(Base.driver);
-        this.extentTest=extentTest;
+        this.extentTest=extenttest;
+    }
+        /*
+    * Method Name: clickNoThanks
+    * Author Name: prakash
+    * Description: This method click on the no thanks
+    * Return Type: void
+    * Parameter List: NA
+    */
+    public void clickNoThanks(){
+        try {
+            helper.waitForElementToBeVisible(CakeLocators.noThanks,10);
+            helper.clickElement(CakeLocators.noThanks);           
+            LoggerHandler.info("clicked on pop up");
+            extentTest.log(Status.PASS, "Clicked on pop-up");
+        } catch (Exception e) {
+            LoggerHandler.error("Failed to click on pop-up");
+            extentTest.log(Status.FAIL, "failed to click on pop-up");
+            Reporter.attachScreenshot("failednothanks", extentTest, "nothanks");
+        }
 
     }
-
-    public void clickNoThanks() {
-        helper.waitForElementToBeVisible(CakeLocators.noThanks, 10);
-        helper.clickElement(CakeLocators.noThanks);
-    }
-
     public void clickDeliver() {
         try {
             helper.clickElement(CakeLocators.deliver);
@@ -38,10 +54,11 @@ public class Cake {
             extentTest.log(Status.PASS, "click Deliver");
         } catch (Exception e) {
             LoggerHandler.error("Not click Deliver");
-            extentTest.log(Status.FAIL, "Not click Deliver");
+            extentTest.log(Status.FAIL,"Not click Deliver");
+            Reporter.attachScreenshot("faileddeliver", extentTest, "where to deliver");
+
         }
     }
-
     public void clickArea() {
         try {
             helper.clickElement(CakeLocators.area);
@@ -49,26 +66,38 @@ public class Cake {
             extentTest.log(Status.PASS, "click location");
         } catch (Exception e) {
             LoggerHandler.error("Not click Location");
+            extentTest.log(Status.FAIL,"Not click Location");
+            Reporter.attachScreenshot("failedlocation", extentTest, "location");
             extentTest.log(Status.FAIL, "Not click Location");
         }
     }
+        /*
+    * Method Name: enterArea
+    * Author Name: prakash
+    * Description: This method click on the enter location
+    * Return Type: void
+    * Parameter List: NA
+    */
     public void enterArea() throws IOException{
         try{
-            String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 1);
+            String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
             helper.enterText(CakeLocators.area,area_name);
             LoggerHandler.info("Entered Delhi");
             extentTest.log(Status.PASS,"Entered Delhi");
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    LoggerHandler.error("failed");
+                    extentTest.log(Status.FAIL,"failed");
                 }
             helper.enterAction(CakeLocators.area);
             Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
             Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));        
         }catch(Exception e){
             LoggerHandler.error("Not entered location");
-            extentTest.log(Status.FAIL, "Not entered location");
+            extentTest.log(Status.FAIL,"Not entered location");
+            Reporter.attachScreenshot("failedarea", extentTest, "area");
+
         }
     }
 
@@ -81,7 +110,9 @@ public class Cake {
             extentTest.log(Status.PASS, "Click continue shopping");
         } catch (Exception e) {
             LoggerHandler.error("Not click continue shopping");
-            extentTest.log(Status.FAIL, "Not click continue shopping");
+            extentTest.log(Status.FAIL,"Not click continue shopping");
+            Reporter.attachScreenshot("failedcontinueshopping", extentTest, "continueshopping");
+
         }
     }
 
@@ -93,12 +124,12 @@ public class Cake {
             extentTest.log(Status.PASS, "Click csearch");
         } catch (Exception e) {
             LoggerHandler.error("Not click search");
-            extentTest.log(Status.FAIL, "Not click search");
+            extentTest.log(Status.FAIL,"Not click search");
+            Reporter.attachScreenshot("failedsearch", extentTest, "search");
         }
     }
-
-    public void typeSearch() throws IOException {
-        try {
+    public void typeSearch() throws IOException{
+        try{
             String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 3, 1);
             helper.enterText(CakeLocators.search,name);
 
@@ -107,10 +138,11 @@ public class Cake {
             extentTest.log(Status.PASS, "Entered Cake");
         } catch (Exception e) {
             LoggerHandler.error("Not Entered Delhi");
-            extentTest.log(Status.FAIL, "Not Entered Cake");
+            extentTest.log(Status.FAIL,"Not Entered Cake");
+            Reporter.attachScreenshot("failedcake", extentTest, "cake");
+
         }
     }
-
     public void clickFlavour() {
         try {
             helper.waitForElementToBeVisible(CakeLocators.flavour, 10);
@@ -119,10 +151,11 @@ public class Cake {
             extentTest.log(Status.PASS, "click flavour");
         } catch (Exception e) {
             LoggerHandler.error("Not clicked flavour");
-            extentTest.log(Status.FAIL, "Not clicked flavour");
+            extentTest.log(Status.FAIL,"Not clicked flavour");
+            Reporter.attachScreenshot("failedflavour", extentTest, "flavour");
+
         }
     }
-
     public void clickChocolates() {
         try {
             helper.waitForElementToBeVisible(CakeLocators.chocoloate, 10);
@@ -131,7 +164,8 @@ public class Cake {
             extentTest.log(Status.PASS, "click chocolate");
         } catch (Exception e) {
             LoggerHandler.error("Not clicked chocolate");
-            extentTest.log(Status.FAIL, "Not clicked chocolate");
+            extentTest.log(Status.FAIL,"Not clicked chocolate");
+            Reporter.attachScreenshot("failedchocolates", extentTest, "nothanks");
         }
     }
 
@@ -143,10 +177,10 @@ public class Cake {
             extentTest.log(Status.PASS, "click on first product");
         } catch (Exception e) {
             LoggerHandler.error("Not click on first product");
-            extentTest.log(Status.FAIL, "Not click on first product");
+            extentTest.log(Status.FAIL,"Not click on first product");
+            Reporter.attachScreenshot("failedcake", extentTest, "cake");
         }
     }
-
     public void clickBuyNow() {
         try {
             helper.switchWindow();
@@ -156,7 +190,9 @@ public class Cake {
             extentTest.log(Status.PASS, "click on buynow");
         } catch (Exception e) {
             LoggerHandler.error("Not click on buy now");
-            extentTest.log(Status.FAIL, "Not click on buy now");
+            extentTest.log(Status.FAIL,"Not click on buy now");
+            Reporter.attachScreenshot("failedbuynow", extentTest, "buynow");
+
         }
     }
 
