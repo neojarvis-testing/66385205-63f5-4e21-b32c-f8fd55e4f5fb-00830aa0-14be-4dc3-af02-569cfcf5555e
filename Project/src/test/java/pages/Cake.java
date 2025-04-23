@@ -52,21 +52,21 @@ public class Cake {
             extentTest.log(Status.FAIL, "Not click Location");
         }
     }
-    public void enterArea() throws IOException{
-        try{
-        String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 1);
-        helper.enterText(CakeLocators.area,area_name);
-        LoggerHandler.info("Entered Delhi");
-        extentTest.log(Status.PASS,"Entered Delhi");
+    // public void enterArea() throws IOException{
+    //     try{
+    //     String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 1);
+    //     helper.enterText(CakeLocators.area,area_name);
+    //     LoggerHandler.info("Entered Delhi");
+    //     extentTest.log(Status.PASS,"Entered Delhi");
 
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            helper.enterAction(CakeLocators.area);
-            Thread.sleep(2000);
-        } catch (Exception e) {
+    //         try {
+    //             Thread.sleep(2000);
+    //         } catch (InterruptedException e) {
+    //             e.printStackTrace();
+    //         }
+    //         helper.enterAction(CakeLocators.area);
+    //         Thread.sleep(2000);
+    //     } catch (Exception e) {
     public void enterArea() throws IOException{
         try{
             String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
@@ -112,10 +112,7 @@ public class Cake {
         }
     }
 
-    public void typeSearch() throws IOException {
-        try {
-             String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 3, 1);
-            helper.enterText(CakeLocators.search, name);
+    
     public void typeSearch() throws IOException{
         try{
             String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 3, 1);

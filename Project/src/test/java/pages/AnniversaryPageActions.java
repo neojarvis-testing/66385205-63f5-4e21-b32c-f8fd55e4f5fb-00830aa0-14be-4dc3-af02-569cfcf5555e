@@ -22,15 +22,25 @@ public class AnniversaryPageActions {
     public WebDriverHelper helper;
     public Assertion assertion;
 
+     /* 
+     * Constructor Name: AnniversaryPageActions
+     * Author Name: Deeksha
+     * Description: AnniversaryPageActions Constructor
+     */
     public AnniversaryPageActions(ExtentTest extentTest) {
         helper = new WebDriverHelper(Base.driver);
         this.extentTest = extentTest;
     }
 
     public void clickOnNoThanks(){
+        try{
         helper.waitForElementToBeVisible(AnniversaryPageLocators.noThanks,10);
         helper.clickElement(AnniversaryPageLocators.noThanks);
         Reporter.attachScreenshot("FNP", extentTest, "FNP Screenshot");
+        }catch (Exception e) {
+            LoggerHandler.error("Failed to click on pop-up");
+            extentTest.log(Status.FAIL, "failed to click on pop-up");
+        }
     }
 
     public void clickOnWhereToDeliver() {
