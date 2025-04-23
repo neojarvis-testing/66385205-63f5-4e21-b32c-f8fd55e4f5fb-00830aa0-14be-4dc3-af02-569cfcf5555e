@@ -33,6 +33,14 @@ public class AnniversaryPageActions {
         this.extentTest = extentTest;
     }
 
+    public void clickOnNoThanks(){
+        try{
+        helper.waitForElementToBeVisible(AnniversaryPageLocators.noThanks,10);
+        helper.clickElement(AnniversaryPageLocators.noThanks);
+        Reporter.attachScreenshot("FNP", extentTest, "FNP Screenshot");
+        }catch (Exception e) {
+            LoggerHandler.error("Failed to click on pop-up");
+            extentTest.log(Status.FAIL, "failed to click on pop-up");
     /*
      * Method name: clickOnNoThanks
      * Author Name: Lagisetty Srihith

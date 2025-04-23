@@ -231,10 +231,7 @@ public class Plants {
             } catch (InterruptedException e) {
                 LoggerHandler.error("failed");
                 extenttest.log(Status.FAIL,"failed");            }
-                e.printStackTrace();
             }
-            extentTest.log(Status.PASS,"Click Cart");
-            Thread.sleep(3000);
         }catch(Exception e){
             LoggerHandler.error("Not click Cart");
             extentTest.log(Status.FAIL,"Not click Cart");
