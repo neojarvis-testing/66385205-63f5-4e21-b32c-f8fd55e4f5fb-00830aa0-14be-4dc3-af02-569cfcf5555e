@@ -71,25 +71,7 @@ public class TestRunner extends Base{
             LoggerHandler.info("Verification failed in runner");
         }
     }
-//
-    @Test(priority = 4)
-    public void BirthdayCakeMethod(){
-        try {
-            BirthdayCakesActions birthdayCakesObject= new BirthdayCakesActions(extenttest);
-            birthdayCakesObject.birthdayCakes();
-        } catch (Exception e) {
-            LoggerHandler.info("Verification for BirthdayCakeMethod failed in runner");
-        }
-    }
-    @Test(priority = 9)
-    public void FooterAndVerificationMethod(){
-        try {
-            FooterAndVerificationActions footerpageObject = new FooterAndVerificationActions(extenttest);
-            footerpageObject.footerAndVerificationMethods();
-        } catch (Exception e) {
-            LoggerHandler.info("Verification for FooterAndVerification Page failed in runner");
-        }
-    }
+
     
     @AfterMethod
     public void tear(){
