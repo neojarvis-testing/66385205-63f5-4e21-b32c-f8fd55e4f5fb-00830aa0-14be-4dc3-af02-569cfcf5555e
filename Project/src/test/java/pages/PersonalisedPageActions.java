@@ -44,7 +44,8 @@ public class PersonalisedPageActions {
 
     public void enterKeyword(){
         try {
-            helper.enterText(PersonalisedPageLocators.enterBar, "Bangalore");
+            String bangalore=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 1);
+            helper.enterText(PersonalisedPageLocators.enterBar, bangalore);
             Thread.sleep(2000);
             helper.enterAction(PersonalisedPageLocators.enterBar);
             Thread.sleep(2000);

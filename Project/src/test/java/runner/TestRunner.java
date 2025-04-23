@@ -30,7 +30,6 @@ public class TestRunner extends Base{
 @BeforeClass
 public void start(){
         extentReport = utils.Reporter.generateReport("fnp");
-        extenttest=extentReport.createTest("fnp_test");
         
 }
 @BeforeMethod
@@ -39,6 +38,7 @@ public void start(){
     }
     @Test
     public void pen_testcase() throws IOException, InterruptedException{
+        extenttest=extentReport.createTest("pen_test");
         Pen penActions=new Pen(extenttest);
         penActions.pen(); 
     }
