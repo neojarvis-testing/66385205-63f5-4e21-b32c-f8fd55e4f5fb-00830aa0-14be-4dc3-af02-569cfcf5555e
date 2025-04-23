@@ -7,6 +7,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import uistore.CakeLocators;
 import uistore.CombosLocators;
 
 import utils.Assertion;
@@ -38,6 +39,7 @@ public class Combos {
      * Parameters: NA
      * Return Type: void
     */
+
     public void clickNoThanks(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.noThanks,10);
@@ -57,8 +59,7 @@ public class Combos {
      * Return Type: void
     */
     public void clickWhere(){
-        try{
-            helper.waitForElementToBeVisible(CombosLocators.where,10);
+        try {
             helper.clickElement(CombosLocators.where);
             LoggerHandler.info("hovered over combos");
             extentTest.log(Status.PASS,"hovered over combos");
@@ -77,11 +78,27 @@ public class Combos {
      * Parameters: NA
      * Return Type: void
     */
+            LoggerHandler.info("click Deliver");
+            extentTest.log(Status.PASS, "click Deliver");
+        } catch (Exception e) {
+            LoggerHandler.error("Not click Deliver");
+            extentTest.log(Status.FAIL, "Not click Deliver");
+        }
+        
+    }
     public void enteringLocation() {
         try{
             Thread.sleep(2000);
             helper.clickElement(CombosLocators.location);
             helper.waitForElementToBeVisible(CombosLocators.location,10);
+            String bangalore=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 1);
+            helper.enterText(CombosLocators.location,bangalore);
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx","Sheet1",2,1);
             helper.enterText(CombosLocators.location, area_name);
             Thread.sleep(2000);
