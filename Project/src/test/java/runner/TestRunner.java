@@ -16,6 +16,7 @@ import pages.Cake;
 import pages.FooterPageActions;
 import pages.LifestylePageActions;
 import pages.Pen;
+import pages.PersonalisedPageActions;
 import pages.Plants;
 import utils.Base;
 import utils.LoggerHandler;
@@ -60,7 +61,7 @@ public class TestRunner extends Base{
         footerPageActionsObject.testFooter();
     }
 
-    @Test(enabled = true)
+    @Test(priority = 10)
     public void lifestyleRings(){
         try {
             LifestylePageActions lifestylepageactionsObject = new LifestylePageActions(extenttest);
