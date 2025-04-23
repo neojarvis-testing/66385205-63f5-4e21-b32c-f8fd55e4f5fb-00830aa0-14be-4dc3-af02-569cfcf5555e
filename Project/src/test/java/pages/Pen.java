@@ -53,6 +53,7 @@ public class Pen {
         try{
         String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 1);
         helper.enterText(PenLocators.area,area_name);
+        helper.enterText(PenLocators.area,"Delhi");
         LoggerHandler.info("Entered Delhi");
         extenttest.log(Status.PASS,"Entered Delhi");
         try {
@@ -95,6 +96,7 @@ public class Pen {
         try{
             String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 1, 1);
             helper.enterText(PenLocators.search,name);
+            helper.enterText(PenLocators.search,"pen");
             helper.enterAction(PenLocators.search);
             LoggerHandler.info("Entered pen");
             extenttest.log(Status.PASS,"Entered pen");

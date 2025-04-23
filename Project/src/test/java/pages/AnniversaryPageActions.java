@@ -1,6 +1,8 @@
 package pages;
 
 
+import java.time.Duration;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -22,7 +24,6 @@ public class AnniversaryPageActions {
 
     public AnniversaryPageActions(ExtentTest extentTest) {
         helper = new WebDriverHelper(Base.driver);
-        //assertion = new Assertion(Base.driver);
         this.extentTest = extentTest;
     }
 
@@ -64,7 +65,8 @@ public class AnniversaryPageActions {
         try {
             helper.waitForElementToBeVisible(AnniversaryPageLocators.continueShopping, 10);
             helper.clickElement(AnniversaryPageLocators.continueShopping);
-            Thread.sleep(2000);
+            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             LoggerHandler.info("Clicked on Continue Shopping");
             extentTest.log(Status.PASS, "Clicked on Continue Shopping");
         } catch (Exception e) {
@@ -87,7 +89,7 @@ public class AnniversaryPageActions {
 
     public void clickOnFlowers() {
         try {
-            helper.clickElement(AnniversaryPageLocators.flowers);
+            helper.clickElement(AnniversaryPageLocators.flowers);           
             LoggerHandler.info("Clicked on flowers");
             extentTest.log(Status.PASS, "Clicked on flowers");
         } catch (Exception e) {

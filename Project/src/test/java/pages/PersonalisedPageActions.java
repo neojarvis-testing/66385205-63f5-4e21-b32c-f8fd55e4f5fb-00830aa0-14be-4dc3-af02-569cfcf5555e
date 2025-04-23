@@ -46,15 +46,13 @@ public class PersonalisedPageActions {
         try {
             String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/Excel.xlsx", "Sheet1", 2, 1);
             helper.enterText(PersonalisedPageLocators.enterBar, area_name);
+            helper.enterText(PersonalisedPageLocators.enterBar, "Bangalore");
             Thread.sleep(2000);
-
             helper.enterAction(PersonalisedPageLocators.enterBar);
             Thread.sleep(2000);
-
             LoggerHandler.info("Entered Bangalore");
             extentTest.log(Status.PASS, "Entered Bangalore");
-
-
+            extentTest.log(Status.PASS, "Verified pincode of Bangalore");
         } catch (Exception e) {
             LoggerHandler.error("Could not enter Bangalore");
             extentTest.log(Status.FAIL, "Could not enter Bangalore");
@@ -67,7 +65,6 @@ public class PersonalisedPageActions {
             helper.clickElement(PersonalisedPageLocators.continueShopping);
             LoggerHandler.info("Clicked on Continue Shopping");
             extentTest.log(Status.PASS, "Clicked on Continue Shopping");
-            
         } catch (Exception e) {
             LoggerHandler.error("Could not click Continue Shopping");
             extentTest.log(Status.FAIL, "Could not click Continue Shopping");
@@ -80,7 +77,6 @@ public class PersonalisedPageActions {
             helper.hoverElement(PersonalisedPageLocators.personalised);
             LoggerHandler.info("Hovered on Magical Mugs");
             extentTest.log(Status.PASS, "Hovered on Magical Mugs");
-            
         } catch (Exception e) {
             LoggerHandler.error("Could not hover on Magical Mugs");
             extentTest.log(Status.FAIL, "Could not hover on Magical Mugs");
@@ -93,7 +89,7 @@ public class PersonalisedPageActions {
             helper.clickElement(PersonalisedPageLocators.magicalMugs);
             LoggerHandler.info("Clicked on Mugs");
             extentTest.log(Status.PASS, "Clicked on Mugs");
-            
+
         } catch (Exception e) {
             LoggerHandler.error("Could not click Mugs");
             extentTest.log(Status.FAIL, "Could not click Mugs");

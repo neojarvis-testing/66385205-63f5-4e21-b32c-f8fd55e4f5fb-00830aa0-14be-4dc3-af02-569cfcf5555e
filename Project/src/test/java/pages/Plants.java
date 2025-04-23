@@ -22,7 +22,6 @@ public class Plants {
     public Plants(ExtentTest extenttest){
         helper=new WebDriverHelper(Base.driver);
         this.extenttest=extenttest;
-        //obj = new Assertion(Base.driver);
     }
 
     public void clickNoThanks(){
@@ -60,6 +59,10 @@ public class Plants {
             extenttest.log(Status.PASS,"Entered Bangalore");
             Thread.sleep(2000);
             helper.enterAction(PlantLocators.area);
+        helper.enterText(PlantLocators.area,"Bangalore");
+        LoggerHandler.info("Entered Bangalore");
+        extenttest.log(Status.PASS,"Entered Bangalore");
+        try {
             Thread.sleep(2000);
         }catch(Exception e){
             LoggerHandler.error("Not entered location");

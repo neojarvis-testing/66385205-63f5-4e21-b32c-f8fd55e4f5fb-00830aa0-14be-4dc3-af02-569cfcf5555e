@@ -1,6 +1,7 @@
 package pages;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -23,7 +24,6 @@ public class Combos {
     public Combos(ExtentTest test){
         helper=new WebDriverHelper(Base.driver);
         this.test=test;
-       // obj = new Assertion(Base.driver);
     }
     public void clickNoThanks(){
         helper.waitForElementToBeVisible(CombosLocators.noThanks,10);
@@ -50,8 +50,16 @@ public class Combos {
             String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx","Sheet1",2,1);
             helper.enterText(CombosLocators.location, area_name);
             Thread.sleep(2000);
+            helper.enterText(CombosLocators.location,"Bangalore");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             helper.enterAction(CombosLocators.location);
-            Thread.sleep(2000);
+            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         }
         catch(Exception e){
             LoggerHandler.info("couldn't hovered over combos");
@@ -64,7 +72,8 @@ public class Combos {
             helper.waitForElementToBeVisible(CombosLocators.continueShop,10);
             helper.hoverElement(CombosLocators.continueShop);
             helper.clickElement(CombosLocators.continueShop);
-            Thread.sleep(3000);
+            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             LoggerHandler.info("clicked on continue shopping");
             test.log(Status.PASS,"clicked on continue shopping");
         }

@@ -25,9 +25,8 @@ import utils.Base;
 
 public class TestRunner extends Base {
 
-    ExtentReports report;
+    ExtentReports extentReport;
     ExtentTest extenttest;
-
     @BeforeClass
     public void start() {
         report = utils.Reporter.generateReport("fnp");
@@ -55,6 +54,19 @@ public class TestRunner extends Base {
     @Test(priority = 3)
     public void cake_testcase() throws IOException {
         Cake cakeActions = new Cake(extenttest);
+    @Test
+    public void pen_testcase() throws IOException, InterruptedException{
+        Pen penActions=new Pen(extenttest);
+        penActions.pen(); 
+    }
+    @Test
+    public void plant_testcase() throws IOException{
+        Plants plantActions=new Plants(extenttest);
+        plantActions.plant();    
+    }
+    @Test
+    public void cake_testcase() throws IOException{
+        Cake cakeActions=new Cake(extenttest);
         cakeActions.cake();
     }
 
@@ -62,6 +74,7 @@ public class TestRunner extends Base {
     public void BirthdayCakesProductVerification() {
         BirthdayCakesActions birthdayCakesActionsObject = new BirthdayCakesActions(extenttest);
         birthdayCakesActionsObject.BirthdayCakes();      
+
     }
 
     @Test
@@ -100,6 +113,20 @@ public class TestRunner extends Base {
     @Test
     public void PersonalisedAction() {
         PersonalisedPageActions PersonalisedAction = new PersonalisedPageActions(extenttest);
+
+    @Test
+    public void combo_testcase() throws InterruptedException, IOException{
+        Combos comboAction=new Combos(extenttest);
+        comboAction.clickBangalore();
+    }
+    @Test
+    public void lifeStyleAction(){
+        LifestylePageActions lifeStyle=new LifestylePageActions(extenttest);
+        lifeStyle.lifestyleRingsMethod();
+    }
+    @Test
+    public void personalisedAction(){
+        PersonalisedPageActions PersonalisedAction=new PersonalisedPageActions(extenttest);
         PersonalisedAction.personalisedGiftsMethod();
     }
 
@@ -111,5 +138,6 @@ public class TestRunner extends Base {
     @AfterClass
     public void end() {
         report.flush();
+
     }
 }
