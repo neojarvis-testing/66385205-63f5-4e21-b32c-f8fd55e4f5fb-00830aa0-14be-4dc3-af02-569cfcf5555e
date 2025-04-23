@@ -23,54 +23,41 @@ import pages.Pen;
 import pages.PersonalisedPageActions;
 import pages.Plants;
 import utils.Base;
-import utils.LoggerHandler;
 
 public class TestRunner extends Base {
 
-    ExtentReports report;
+    ExtentReports extentReport;
     ExtentTest extenttest;
-
     @BeforeClass
     public void start() {
         report = utils.Reporter.generateReport("fnp");
         extenttest = report.createTest("fnp_test");
 
     }
-
     @BeforeMethod
     public void launch() throws IOException {
-
         openBrowser();
-        // driver.navigate().refresh();
     }
-
-    @Test(priority = 1)
-    public void pen_testcase() throws IOException, InterruptedException {
-        Pen penActions = new Pen(extenttest);
-        penActions.pen();
+    @Test
+    public void pen_testcase() throws IOException, InterruptedException{
+        Pen penActions=new Pen(extenttest);
+        penActions.pen(); 
     }
-
-    @Test(priority = 2)
-    public void plant_testcase() throws IOException {
-        Plants plantActions = new Plants(extenttest);
-        plantActions.plant();
+    @Test
+    public void plant_testcase() throws IOException{
+        Plants plantActions=new Plants(extenttest);
+        plantActions.plant();    
     }
-
-    @Test(priority = 3)
-    public void cake_testcase() throws IOException {
-        Cake cakeActions = new Cake(extenttest);
+    @Test
+    public void cake_testcase() throws IOException{
+        Cake cakeActions=new Cake(extenttest);
         cakeActions.cake();
     }
 
     @Test
     public void BirthdayCakesProductVerification() {
-        try {
-            extenttest = report.createTest("testcase_4");
-            BirthdayCakesActions birthdayCakesActionsObject = new BirthdayCakesActions(extenttest);
-            birthdayCakesActionsObject.BirthdayCakes();
-        } catch (Exception e) {
-            LoggerHandler.info("Verification failed in runner");
-        }
+        BirthdayCakesActions birthdayCakesActionsObject = new BirthdayCakesActions(extenttest);
+        birthdayCakesActionsObject.BirthdayCakes();      
     }
 
     @Test
@@ -87,17 +74,15 @@ public class TestRunner extends Base {
 
     @Test
     public void FooterAndVerification() {
-        try {
-            extenttest = report.createTest("testcase_9");
-            FooterAndVerificationActions footerAndVerificationActionsObject = new FooterAndVerificationActions(
-                    extenttest);
+        FooterAndVerificationActions footerAndVerificationActionsObject = new FooterAndVerificationActions(extenttest);
+        footerAndVerificationActionsObject.FooterAndVerificationMethods();
 
-            footerAndVerificationActionsObject.footerAndVerificationMethods();
+    }
 
-        } catch (Exception e) {
-
-            LoggerHandler.info("Verification failed in runner");
-        }
+    @Test
+    public void Combo_testcase() throws InterruptedException, IOException {
+        Combos comboAction = new Combos(extenttest);
+        comboAction.clickBangalore();
     }
 
     @Test
@@ -117,7 +102,6 @@ public class TestRunner extends Base {
         Combos comboAction = new Combos(extenttest);
         comboAction.clickBangalore();
     }
-
     @AfterMethod
     public void tear() {
         driver.quit();
@@ -126,5 +110,6 @@ public class TestRunner extends Base {
     @AfterClass
     public void end() {
         report.flush();
+
     }
 }

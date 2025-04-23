@@ -10,6 +10,7 @@ import utils.Screenshot;
 import uistore.PenLocators;
 import utils.Assertion;
 import utils.Base;
+import utils.ExcelReader;
 import utils.LoggerHandler;
 import utils.WebDriverHelper;
 
@@ -50,7 +51,8 @@ public class Pen {
     }
     public void enterArea() throws IOException{
         try{
-        //String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
+        String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 1);
+        helper.enterText(PenLocators.area,area_name);
         helper.enterText(PenLocators.area,"Delhi");
         LoggerHandler.info("Entered Delhi");
         extenttest.log(Status.PASS,"Entered Delhi");
@@ -92,7 +94,8 @@ public class Pen {
     }
     public void typeSearch() throws IOException{
         try{
-            //String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 1, 0);
+            String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 1, 1);
+            helper.enterText(PenLocators.search,name);
             helper.enterText(PenLocators.search,"pen");
             helper.enterAction(PenLocators.search);
             LoggerHandler.info("Entered pen");
@@ -130,7 +133,8 @@ public class Pen {
     }
     public void verifyPinCode(){
         try{
-            obj.verifyText(PenLocators.pincode, "110085");
+            String pinCode = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 4, 1);
+            obj.verifyText(PenLocators.pincode, pinCode);
         }catch(Exception e){
             e.printStackTrace();
         }

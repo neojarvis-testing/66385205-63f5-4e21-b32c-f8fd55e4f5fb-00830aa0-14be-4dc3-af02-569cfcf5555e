@@ -10,6 +10,7 @@ import uistore.PenLocators;
 import uistore.PlantLocators;
 import utils.Assertion;
 import utils.Base;
+import utils.ExcelReader;
 import utils.LoggerHandler;
 import utils.WebDriverHelper;
 
@@ -21,7 +22,6 @@ public class Plants {
     public Plants(ExtentTest extenttest){
         helper=new WebDriverHelper(Base.driver);
         this.extenttest=extenttest;
-        //obj = new Assertion(Base.driver);
     }
 
     public void clickNoThanks(){
@@ -53,18 +53,17 @@ public class Plants {
     public void enterArea() throws IOException{
         try{
             helper.waitForElementToBeVisible(PlantLocators.area,10);
-        //String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 0);
+            String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 1);
+            helper.enterText(PlantLocators.area,area_name);
+            LoggerHandler.info("Entered Bangalore");
+            extenttest.log(Status.PASS,"Entered Bangalore");
+            Thread.sleep(2000);
+            helper.enterAction(PlantLocators.area);
         helper.enterText(PlantLocators.area,"Bangalore");
         LoggerHandler.info("Entered Bangalore");
         extenttest.log(Status.PASS,"Entered Bangalore");
         try {
             Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        helper.enterAction(PlantLocators.area);
-        Thread.sleep(2000);
         }catch(Exception e){
             LoggerHandler.error("Not entered location");
             extenttest.log(Status.FAIL,"Not entered location");
@@ -84,13 +83,6 @@ public class Plants {
             extenttest.log(Status.FAIL,"Not click continue shopping");
         }
     }
-    // public void verifyPinCode(){
-    //     try{
-    //         obj.verifyText(PenLocators.pincode, "560001");
-    //     }catch(Exception e){
-    //         e.printStackTrace();
-    //     }
-    // }
     public void clickPlant(){
         try{
             Thread.sleep(2000);
@@ -145,12 +137,7 @@ public class Plants {
             helper.clickElement(PlantLocators.cart);
             LoggerHandler.info("Click Cart");
             extenttest.log(Status.PASS,"Click Cart");
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            Thread.sleep(3000);
         }catch(Exception e){
             LoggerHandler.error("Not click Cart");
             extenttest.log(Status.FAIL,"Not click Cart");
