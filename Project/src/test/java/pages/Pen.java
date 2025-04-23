@@ -54,6 +54,7 @@ public class Pen {
             helper.enterText(PenLocators.area,area_name);
             LoggerHandler.info("Entered Delhi");
             extentTest.log(Status.PASS,"Entered Delhi");
+
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -92,7 +93,10 @@ public class Pen {
     }
     public void typeSearch() throws IOException{
         try{
-            helper.enterText(PenLocators.search,"pen");
+
+            String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 1, 1);
+            helper.enterText(PenLocators.search,name);
+
             helper.enterAction(PenLocators.search);
             LoggerHandler.info("Entered pen");
             extentTest.log(Status.PASS,"Entered pen");

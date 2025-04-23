@@ -16,6 +16,7 @@ import pages.FooterAndVerificationActions;
 import pages.AnniversaryPageActions;
 import pages.Cake;
 import pages.Combos;
+import pages.FooterAndVerificationActions;
 import pages.FooterPageActions;
 import pages.LifestylePageActions;
 import pages.Pen;
@@ -27,19 +28,16 @@ public class TestRunner extends Base {
 
     ExtentReports extentReport;
     ExtentTest extentTest;
-
     @BeforeClass
     public void start() {
         extentReport = utils.Reporter.generateReport("fnp");
         extentTest = extentReport.createTest("fnp_test");
 
     }
-
     @BeforeMethod
     public void launch() throws IOException {
         openBrowser();
     }
-
     @Test
     public void pen_testcase01() throws IOException, InterruptedException {
         Pen penActionsObject = new Pen(extentTest);
@@ -99,7 +97,6 @@ public class TestRunner extends Base {
         PersonalisedPageActions PersonalisedActionObject = new PersonalisedPageActions(extentTest);
         PersonalisedActionObject.personalisedGiftsMethod();
     }
-
     @AfterMethod
     public void tear() {
         driver.quit();
@@ -108,5 +105,6 @@ public class TestRunner extends Base {
     @AfterClass
     public void end() {
         extentReport.flush();
+
     }
 }

@@ -1,6 +1,7 @@
 package pages;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -51,6 +52,8 @@ public class Combos {
             Thread.sleep(2000);
             helper.enterAction(CombosLocators.location);
             Thread.sleep(2000);
+            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         }
         catch(Exception e){
             LoggerHandler.info("couldn't hovered over combos");
@@ -63,7 +66,8 @@ public class Combos {
             helper.waitForElementToBeVisible(CombosLocators.continueShop,10);
             helper.hoverElement(CombosLocators.continueShop);
             helper.clickElement(CombosLocators.continueShop);
-            Thread.sleep(3000);
+            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             LoggerHandler.info("clicked on continue shopping");
             extentTest.log(Status.PASS,"clicked on continue shopping");
         }
@@ -99,6 +103,7 @@ public class Combos {
     public void clickAvailability(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.availability,10);
+            Thread.sleep(1000);
             helper.clickElement(CombosLocators.availability);
             LoggerHandler.info("clicked availability");
             extentTest.log(Status.PASS,"clicked availability");

@@ -10,6 +10,7 @@ import uistore.PenLocators;
 import uistore.PlantLocators;
 import utils.Assertion;
 import utils.Base;
+import utils.ExcelReader;
 import utils.LoggerHandler;
 import utils.WebDriverHelper;
 
@@ -21,6 +22,7 @@ public class Plants {
     public Plants(ExtentTest extentTest){
         helper=new WebDriverHelper(Base.driver);
         this.extentTest=extentTest;
+
     }
 
     public void clickNoThanks(){
@@ -52,7 +54,12 @@ public class Plants {
     public void enterArea() throws IOException{
         try{
             helper.waitForElementToBeVisible(PlantLocators.area,10);
-        //String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 0);
+            String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 1);
+            helper.enterText(PlantLocators.area,area_name);
+            LoggerHandler.info("Entered Bangalore");
+            extenttest.log(Status.PASS,"Entered Bangalore");
+            Thread.sleep(2000);
+            helper.enterAction(PlantLocators.area);
         helper.enterText(PlantLocators.area,"Bangalore");
         LoggerHandler.info("Entered Bangalore");
         extentTest.log(Status.PASS,"Entered Bangalore");
@@ -142,6 +149,8 @@ public class Plants {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            extenttest.log(Status.PASS,"Click Cart");
+            Thread.sleep(3000);
         }catch(Exception e){
             LoggerHandler.error("Not click Cart");
             extentTest.log(Status.FAIL,"Not click Cart");

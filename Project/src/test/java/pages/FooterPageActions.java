@@ -17,17 +17,17 @@ public class FooterPageActions {
     public ExtentTest extentTest;
     public WebDriverHelper helper;
     public Assertion assertion;
- 
+
     public FooterPageActions(ExtentTest extentTest) {
         helper = new WebDriverHelper(Base.driver);
         this.extentTest = extentTest;
     }
- 
+
     public void clickOnNoThanks() {
         helper.waitForElementToBeVisible(FooterLocators.noThanks, 10);
         helper.clickElement(FooterLocators.noThanks);
     }
- 
+
     public void verifyTermsAndConditions() {
         try {
             helper.scroll(FooterLocators.termsAndConditions);
@@ -37,6 +37,7 @@ public class FooterPageActions {
             LoggerHandler.info("Clicked on Terms and Conditions");
             extentTest.log(Status.PASS, "Clicked on Terms and Conditions");
             String termsAndConditionsURL = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx","Sheet1", 1,0);
+
             assertion.verifyUrl(termsAndConditionsURL);
             LoggerHandler.info("Terms and Conditions url is correct");
             extentTest.log(Status.PASS, "Terms and Conditions url is correct");
@@ -46,7 +47,7 @@ public class FooterPageActions {
             extentTest.log(Status.FAIL, "Terms and Conditions url is incorrect");
         }
     }
- 
+
     public void verifyPrivacyPolicy() {
         try {
             helper.scroll(FooterLocators.privacyPolicy);
@@ -56,6 +57,7 @@ public class FooterPageActions {
             LoggerHandler.info("Clicked on Privacy Policy");
             extentTest.log(Status.PASS, "Clicked on Privacy Policy");
             String privacyPolicyURL = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx","Sheet1", 2,0);
+
             assertion.verifyUrl(privacyPolicyURL);
             LoggerHandler.info("Privacy Policy url is correct");
             extentTest.log(Status.FAIL, "Privacy Policy url is correct");
@@ -65,7 +67,7 @@ public class FooterPageActions {
             extentTest.log(Status.FAIL, "Privacy Policy url is incorrect");
         }
     }
- 
+
     public void verifyTermsOfUse() {
         try {
             helper.scroll(FooterLocators.termsOfUse);
@@ -75,6 +77,7 @@ public class FooterPageActions {
             LoggerHandler.info("Clicked on Terms of Use");
             extentTest.log(Status.PASS, "Clicked on Terms of Use");
             String termsOfUseURL = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1",3,0);
+
             assertion.verifyUrl(termsOfUseURL);
             LoggerHandler.info("Terms of Use url is correct");
             extentTest.log(Status.PASS, "Terms of Use url is correct");
@@ -84,7 +87,7 @@ public class FooterPageActions {
             extentTest.log(Status.FAIL, "Terms of Use url is incorrect");
         }
     }
- 
+
     public void verifyDisclaimer() {
         try {
             helper.scroll(FooterLocators.disclaimer);
@@ -94,6 +97,7 @@ public class FooterPageActions {
             LoggerHandler.info("Clicked on Disclaimer");
             extentTest.log(Status.PASS, "Clicked on Disclaimer");
             String disclaimerURL = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1",4,0);
+
             assertion.verifyUrl(disclaimerURL);
             LoggerHandler.info("Disclaimer url is correct");
             extentTest.log(Status.PASS, "Disclaimer url is correct");
@@ -103,7 +107,7 @@ public class FooterPageActions {
             extentTest.log(Status.FAIL, "Disclaimer url is incorrect");
         }
     }
- 
+
     public void verifyAboutUs() {
         try {
             helper.scroll(FooterLocators.aboutUs);
@@ -113,6 +117,7 @@ public class FooterPageActions {
             LoggerHandler.info("Clicked on About Us");
             extentTest.log(Status.PASS, "Clicked on About Us");
             String aboutUsURL = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 5,0);
+
             assertion.verifyUrl(aboutUsURL);
             LoggerHandler.info("About Us url is correct");
             extentTest.log(Status.PASS, "About Us url is correct");
@@ -122,7 +127,7 @@ public class FooterPageActions {
             extentTest.log(Status.FAIL, "About Us url is incorrect");
         }
     }
- 
+
     public void verifyFNPTeam() {
         try {
             helper.scroll(FooterLocators.fnpTeam);
@@ -132,6 +137,7 @@ public class FooterPageActions {
             LoggerHandler.info("Clicked on FNP Team");
             extentTest.log(Status.PASS, "Clicked on FNP Team");
             String disclaimerURL = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1",6,0);
+
             assertion.verifyUrl(disclaimerURL);
             LoggerHandler.info("Disclaimer url is correct");
             extentTest.log(Status.PASS, "Disclaimer url is correct");
@@ -141,7 +147,7 @@ public class FooterPageActions {
             extentTest.log(Status.FAIL, "Disclaimer url is incorrect");
         }
     }
- 
+
     public void verifyCareers() {
         try {
             helper.scroll(FooterLocators.careers);
@@ -151,6 +157,7 @@ public class FooterPageActions {
             LoggerHandler.info("Clicked on Careers");
             extentTest.log(Status.PASS, "Clicked on Careers");
             String careersURL = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 7, 0);
+
             assertion.verifyUrl(careersURL);
             LoggerHandler.info("Careers url is correct");
             extentTest.log(Status.PASS, "Careers url is correct");
@@ -160,7 +167,7 @@ public class FooterPageActions {
             extentTest.log(Status.FAIL, "Disclaimer url is incorrect");
         }
     }
- 
+
     public void verifyTestimonials() {
         try {
             helper.scroll(FooterLocators.testimonial);
@@ -187,7 +194,7 @@ public class FooterPageActions {
             extentTest.log(Status.FAIL, "Policy info couldn't verified");
         }
     }
- 
+
     public void testFooter() {
         clickOnNoThanks();
         verifyTermsAndConditions();

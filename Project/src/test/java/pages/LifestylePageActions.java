@@ -1,5 +1,7 @@
 package pages;
 
+import java.time.Duration;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -46,7 +48,9 @@ public class LifestylePageActions {
             String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx","Sheet1",6,1);
             helper.enterText(LifestylePageLocators.searchBar, area_name);
             Thread.sleep(2000);
-
+            helper.enterAction(LifestylePageLocators.searchBar);
+            Thread.sleep(1000);            
+            Thread.sleep(2000);
             helper.enterAction(LifestylePageLocators.searchBar);
             Thread.sleep(3000);
             
@@ -64,7 +68,8 @@ public class LifestylePageActions {
         try {
             helper.waitForElementToBeVisible(LifestylePageLocators.continueShopping,10);
             helper.clickElement(LifestylePageLocators.continueShopping);
-            Thread.sleep(1000);
+            Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));            
             LoggerHandler.info("Clicked on Continue Shopping Button");
             extentTest.log(Status.PASS, "Clicked on Continue Shopping Button");
             
