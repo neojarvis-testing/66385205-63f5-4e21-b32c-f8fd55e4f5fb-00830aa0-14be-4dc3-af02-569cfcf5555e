@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import uistore.LifestylePageLocators;
 import uistore.PenLocators;
 import uistore.PersonalisedPageLocators;
 import utils.Assertion;
@@ -15,7 +16,7 @@ import utils.Screenshot;
 import utils.WebDriverHelper;
 
 public class PersonalisedPageActions {
-    ExtentReports extent;
+    ExtentReports extentReport;
     ExtentTest extentTest;
     WebDriverHelper helper;
     Assertion assertion;
@@ -44,15 +45,16 @@ public class PersonalisedPageActions {
 
     public void enterKeyword(){
         try {
-            String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/Excel.xlsx", "Sheet1", 2, 1);
+            String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx", "Sheet1", 2, 1);
             helper.enterText(PersonalisedPageLocators.enterBar, area_name);
-            helper.enterText(PersonalisedPageLocators.enterBar, "Bangalore");
+    
             Thread.sleep(2000);
             helper.enterAction(PersonalisedPageLocators.enterBar);
             Thread.sleep(2000);
             LoggerHandler.info("Entered Bangalore");
             extentTest.log(Status.PASS, "Entered Bangalore");
             extentTest.log(Status.PASS, "Verified pincode of Bangalore");
+
         } catch (Exception e) {
             LoggerHandler.error("Could not enter Bangalore");
             extentTest.log(Status.FAIL, "Could not enter Bangalore");

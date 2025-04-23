@@ -17,7 +17,7 @@ import utils.Screenshot;
 import utils.WebDriverHelper;
 
 public class LifestylePageActions {
-    ExtentReports extent;
+    ExtentReports extentReport;
     ExtentTest extentTest;
     WebDriverHelper helper;
     Assertion assertion;
@@ -47,20 +47,16 @@ public class LifestylePageActions {
         try {
             String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx","Sheet1",6,1);
             helper.enterText(LifestylePageLocators.searchBar, area_name);
-            helper.enterText(LifestylePageLocators.searchBar, "Kolkata");
-            // helper.enterText(LifestylePageLocators.searchBar, ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/Excel.xlsx", "Sheet1", 1, 0));
-            Thread.sleep(1000);
-
+            Thread.sleep(2000);
             helper.enterAction(LifestylePageLocators.searchBar);
             Thread.sleep(1000);            
             Thread.sleep(2000);
             helper.enterAction(LifestylePageLocators.searchBar);
             Thread.sleep(3000);
-            LoggerHandler.info("Entered Kolkata");
-            extentTest.log(Status.PASS, "Entered Kolkata");
-            extentTest.log(Status.PASS, "Verify the pincode");
-            //helper.enterText(LifestylePageLocators.pincodeKolkata, "700073");
-            extentTest.log(Status.PASS, "Verified pincode of Kolkata");
+            
+            LoggerHandler.info("verify the pincode");
+            extentTest.log(Status.PASS, "verify the pincode");
+            
         } catch (Exception e) {
             LoggerHandler.error("Could not enter Kolkata");
             extentTest.log(Status.FAIL, "Could not enter Kolkata");

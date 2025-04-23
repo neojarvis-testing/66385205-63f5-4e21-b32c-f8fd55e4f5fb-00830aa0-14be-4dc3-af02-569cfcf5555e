@@ -16,14 +16,14 @@ import utils.WebDriverHelper;
 
 public class Cake {
     public static WebDriverHelper helper;
-    public static ExtentReports extent;
+    public static ExtentReports extentReport;
     public static ExtentTest extentTest;
     public static Assertion obj;
+    
+    public Cake(ExtentTest extentTest){
+        helper=new WebDriverHelper(Base.driver);
+        this.extentTest=extentTest;
 
-    public Cake(ExtentTest extenttest) {
-        helper = new WebDriverHelper(Base.driver);
-        this.extentTest = extenttest;
-        // obj = new Assertion(Base.driver);
     }
 
     public void clickNoThanks() {
@@ -52,13 +52,13 @@ public class Cake {
             extentTest.log(Status.FAIL, "Not click Location");
         }
     }
-    public void enterArea() throws IOException {
-        try {
-             String area_name = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0,
-                    1);
-            helper.enterText(CakeLocators.area, area_name);
-            LoggerHandler.info("Entered Delhi");
-            extentTest.log(Status.PASS, "Entered Delhi");
+    public void enterArea() throws IOException{
+        try{
+        String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 1);
+        helper.enterText(CakeLocators.area,area_name);
+        LoggerHandler.info("Entered Delhi");
+        extentTest.log(Status.PASS,"Entered Delhi");
+
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
@@ -118,7 +118,9 @@ public class Cake {
             helper.enterText(CakeLocators.search, name);
     public void typeSearch() throws IOException{
         try{
-            helper.enterText(CakeLocators.search,"cake");
+            String name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 3, 1);
+            helper.enterText(CakeLocators.search,name);
+
             helper.enterAction(CakeLocators.search);
             LoggerHandler.info("Entered Cake");
             extentTest.log(Status.PASS, "Entered Cake");

@@ -27,11 +27,11 @@ import utils.Base;
 public class TestRunner extends Base {
 
     ExtentReports extentReport;
-    ExtentTest extenttest;
+    ExtentTest extentTest;
     @BeforeClass
     public void start() {
-        report = utils.Reporter.generateReport("fnp");
-        extenttest = report.createTest("fnp_test");
+        extentReport = utils.Reporter.generateReport("fnp");
+        extentTest = extentReport.createTest("fnp_test");
 
     }
     @BeforeMethod
@@ -39,68 +39,63 @@ public class TestRunner extends Base {
         openBrowser();
     }
     @Test
-    public void pen_testcase() throws IOException, InterruptedException{
-        Pen penActions=new Pen(extenttest);
-        penActions.pen(); 
-    }
-    @Test
-    public void plant_testcase() throws IOException{
-        Plants plantActions=new Plants(extenttest);
-        plantActions.plant();    
-    }
-    @Test
-    public void cake_testcase() throws IOException{
-        Cake cakeActions=new Cake(extenttest);
-        cakeActions.cake();
+    public void pen_testcase01() throws IOException, InterruptedException {
+        Pen penActionsObject = new Pen(extentTest);
+        penActionsObject.pen();
     }
 
     @Test
-    public void BirthdayCakesProductVerification() {
-        BirthdayCakesActions birthdayCakesActionsObject = new BirthdayCakesActions(extenttest);
-        birthdayCakesActionsObject.BirthdayCakes();      
+    public void plant_testcase06() throws IOException {
+        Plants plantActionsObject = new Plants(extentTest);
+        plantActionsObject.plant();
     }
 
     @Test
-    public void anniversary_testcase() {
-        AnniversaryPageActions anniversaryPageActionsObject = new AnniversaryPageActions(extenttest);
+    public void cake_testcase02() throws IOException {
+        Cake cakeActionsObject = new Cake(extentTest);
+        cakeActionsObject.cake();
+    }
+
+    @Test
+    public void birthdayCakesProductVerification_testcase04() {
+        BirthdayCakesActions birthdayCakesActionsObject = new BirthdayCakesActions(extentTest);
+        birthdayCakesActionsObject.BirthdayCakes();
+    }
+
+    @Test
+    public void anniversary_testcase03() {
+        AnniversaryPageActions anniversaryPageActionsObject = new AnniversaryPageActions(extentTest);
         anniversaryPageActionsObject.testAnniversary();
     }
 
     @Test
-    public void footer_testcase() {
-        FooterPageActions footerPageActionsObject = new FooterPageActions(extenttest);
+    public void footer_testcase08() {
+        FooterPageActions footerPageActionsObject = new FooterPageActions(extentTest);
         footerPageActionsObject.testFooter();
     }
 
     @Test
-    public void FooterAndVerification() {
-        FooterAndVerificationActions footerAndVerificationActionsObject = new FooterAndVerificationActions(extenttest);
+    public void footerAndVerification_testcase09() {
+        FooterAndVerificationActions footerAndVerificationActionsObject = new FooterAndVerificationActions(extentTest);
         footerAndVerificationActionsObject.FooterAndVerificationMethods();
-
     }
 
     @Test
-    public void Combo_testcase() throws InterruptedException, IOException {
-        Combos comboAction = new Combos(extenttest);
-        comboAction.clickBangalore();
+    public void combo_testcase07() throws InterruptedException, IOException {
+        Combos comboActionObject = new Combos(extentTest);
+        comboActionObject.clickBangalore();
     }
 
     @Test
-    public void lifeStyleAction() {
-        LifestylePageActions lifeStyle = new LifestylePageActions(extenttest);
-        lifeStyle.lifestyleRingsMethod();
+    public void lifeStyle_testcase10() {
+        LifestylePageActions lifeStyleObject = new LifestylePageActions(extentTest);
+        lifeStyleObject.lifestyleRingsMethod();
     }
 
     @Test
-    public void PersonalisedAction() {
-        PersonalisedPageActions PersonalisedAction = new PersonalisedPageActions(extenttest);
-        PersonalisedAction.personalisedGiftsMethod();
-    }
-
-    @Test
-    public void Combo_testcase() throws InterruptedException, IOException {
-        Combos comboAction = new Combos(extenttest);
-        comboAction.clickBangalore();
+    public void personalised_testcase05() {
+        PersonalisedPageActions PersonalisedActionObject = new PersonalisedPageActions(extentTest);
+        PersonalisedActionObject.personalisedGiftsMethod();
     }
     @AfterMethod
     public void tear() {
@@ -109,7 +104,7 @@ public class TestRunner extends Base {
 
     @AfterClass
     public void end() {
-        report.flush();
+        extentReport.flush();
 
     }
 }

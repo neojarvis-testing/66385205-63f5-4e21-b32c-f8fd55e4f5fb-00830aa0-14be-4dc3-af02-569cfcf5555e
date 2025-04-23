@@ -1,13 +1,14 @@
 package pages;
-
+ 
 import java.time.Duration;
-
+ 
 import org.openqa.selenium.WebDriver;
-
+import org.testng.Assert;
+ 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-
+ 
 import uistore.AnniversaryPageLocators;
 import uistore.FooterAndVerificationLocators;
 import utils.Assertion;
@@ -16,14 +17,14 @@ import utils.ExcelReader;
 import utils.LoggerHandler;
 import utils.Reporter;
 import utils.WebDriverHelper;
-
+ 
 public class FooterAndVerificationActions {
-
+ 
     WebDriverHelper helper;
     ExtentTest extentTest;
     ExtentReports extentReport;
     WebDriver driver;
-
+ 
     public FooterAndVerificationActions(ExtentTest extentTest) {
         helper = new WebDriverHelper(Base.driver);
         this.extentTest = extentTest;
@@ -32,8 +33,8 @@ public class FooterAndVerificationActions {
         helper.waitForElementToBeVisible(AnniversaryPageLocators.noThanks,10);
         helper.clickElement(AnniversaryPageLocators.noThanks);
     }
-
-
+ 
+ 
     public void scrollToFooter() {
         try {
             helper.scrollBy();
@@ -44,7 +45,7 @@ public class FooterAndVerificationActions {
             extentTest.log(Status.FAIL, "failed page scrolling");
         }
     }
-
+ 
     public void VerifyDecorationLink() {
         try {
             helper.scrollBy();
@@ -54,13 +55,13 @@ public class FooterAndVerificationActions {
             LoggerHandler.info(" Page is verified");
             extentTest.log(Status.PASS, " Page is verified");
             helper.navigateBack();
-
+ 
         } catch (Exception e) {
             LoggerHandler.error("Failed page verification");
             extentTest.log(Status.FAIL, "failed page verification");
         }
     }
-
+ 
     public void corporateServiceLink() {
         try {
             helper.scrollBy();
@@ -70,13 +71,13 @@ public class FooterAndVerificationActions {
             LoggerHandler.info("Corporate Page is verified");
             extentTest.log(Status.PASS, "Corporate Page is verified");
             helper.navigateBack();
-
+ 
         } catch (Exception e) {
             LoggerHandler.error("Failed page verification");
             extentTest.log(Status.FAIL, "failed page verification");
         }
     }
-
+ 
     public void affiliateProgrameLink() {
         try {
             helper.scrollBy();
@@ -86,13 +87,13 @@ public class FooterAndVerificationActions {
             LoggerHandler.info("Affiliate Programe Page is verified");
             extentTest.log(Status.PASS, "Affiliate Programe is verified");
             helper.navigateBack();
-
+ 
         } catch (Exception e) {
             LoggerHandler.error("Failed page verification");
             extentTest.log(Status.FAIL, "failed page verification");
         }
     }
-
+ 
     public void retailStoresLink() {
         try {
             helper.scrollBy();
@@ -102,13 +103,13 @@ public class FooterAndVerificationActions {
             LoggerHandler.info("Retail Stores Page is verified");
             extentTest.log(Status.PASS, "Retail Stores Page is verified");
             helper.navigateBack();
-
+ 
         } catch (Exception e) {
             LoggerHandler.error("Failed page verification");
             extentTest.log(Status.FAIL, "failed page verification");
         }
     }
-
+ 
     public void franchiseLink() {
         try {
             helper.scrollBy();
@@ -118,7 +119,7 @@ public class FooterAndVerificationActions {
             LoggerHandler.info("Franchise Page is verified");
             extentTest.log(Status.PASS, "Retail Stores Page is verified");
             helper.navigateBack();
-
+ 
         } catch (Exception e) {
             LoggerHandler.error("Failed page verification");
             extentTest.log(Status.FAIL, "failed page verification");
@@ -134,7 +135,7 @@ public class FooterAndVerificationActions {
             LoggerHandler.info("Quotes N Wishes Page is verified");
             extentTest.log(Status.PASS, "Quotes N Wishes Page is verified");
             helper.navigateBack();
-
+ 
         } catch (Exception e) {
             LoggerHandler.error("Failed page verification");
             extentTest.log(Status.FAIL, "failed page verification");
@@ -148,6 +149,7 @@ public class FooterAndVerificationActions {
             Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
             helper.waitForElementToBeVisible(FooterAndVerificationLocators.blog, 10);
             helper.clickElement(FooterAndVerificationLocators.blog);
+
             Assertion.verifyUrl("https://www.fnp.com/blog/");
             LoggerHandler.info("Blog Page is verified");
             extentTest.log(Status.PASS, "Retail Stores Page is verified");
@@ -173,6 +175,6 @@ public class FooterAndVerificationActions {
         } catch (Exception e) {
             LoggerHandler.error("Failed page verification for FooterAndVerification");
         }
-
+ 
     }
 }
