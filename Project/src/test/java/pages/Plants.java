@@ -21,7 +21,6 @@ public class Plants {
     public Plants(ExtentTest extenttest){
         helper=new WebDriverHelper(Base.driver);
         this.extenttest=extenttest;
-        //obj = new Assertion(Base.driver);
     }
 
     public void clickNoThanks(){
@@ -53,7 +52,6 @@ public class Plants {
     public void enterArea() throws IOException{
         try{
             helper.waitForElementToBeVisible(PlantLocators.area,10);
-        //String area_name=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 0);
         helper.enterText(PlantLocators.area,"Bangalore");
         LoggerHandler.info("Entered Bangalore");
         extenttest.log(Status.PASS,"Entered Bangalore");
