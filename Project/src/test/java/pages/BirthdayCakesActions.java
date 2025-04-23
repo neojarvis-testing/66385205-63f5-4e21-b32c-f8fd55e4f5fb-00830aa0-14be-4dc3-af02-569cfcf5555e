@@ -86,8 +86,6 @@ public class BirthdayCakesActions {
             Thread.sleep(1000);
             helper.enterText(BirthdayCakesLocator.searchLocation, "Chennai");
             Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-            Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));            
-            helper.enterText(BirthdayCakesLocator.searchLocation,"Chennai");
             Thread.sleep(2000);
             helper.enterAction(BirthdayCakesLocator.searchLocation);
             Screenshot.captureScreenShot("Search");
