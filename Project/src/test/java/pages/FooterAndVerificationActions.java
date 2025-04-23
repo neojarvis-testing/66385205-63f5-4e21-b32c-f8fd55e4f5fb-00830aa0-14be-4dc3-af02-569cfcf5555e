@@ -125,7 +125,7 @@ public class FooterAndVerificationActions {
         }
     }
 
-    public void QuotesNWishesLink() {
+    public void quotesNWishesLink() {
         try {
             helper.scrollBy();
             helper.waitForElementToBeVisible(FooterAndVerificationLocators.QuotesNWishesLink,10);
@@ -141,13 +141,14 @@ public class FooterAndVerificationActions {
         }
     }
 
-    public void BlogLink() {
+    public void blogLink() {
         try {
             helper.scrollBy();
             Base.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(7));
             Base.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
             helper.waitForElementToBeVisible(FooterAndVerificationLocators.blog, 10);
             helper.clickElement(FooterAndVerificationLocators.blog);
+            Assertion.verifyUrl("https://www.fnp.com/blog/");
             LoggerHandler.info("Blog Page is verified");
             extentTest.log(Status.PASS, "Retail Stores Page is verified");
             helper.navigateBack();
@@ -158,7 +159,7 @@ public class FooterAndVerificationActions {
         }
     }
 
-    public void FooterAndVerificationMethods() {
+    public void footerAndVerificationMethods() {
         try {
             clickOnNoThanks();
             scrollToFooter();
@@ -167,8 +168,8 @@ public class FooterAndVerificationActions {
             affiliateProgrameLink();
             retailStoresLink();
             franchiseLink();
-            QuotesNWishesLink();
-            BlogLink();
+            quotesNWishesLink();
+            blogLink();
         } catch (Exception e) {
             LoggerHandler.error("Failed page verification for FooterAndVerification");
         }

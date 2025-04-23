@@ -109,6 +109,7 @@ public class Combos {
     public void clickAvailability(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.availability,10);
+            Thread.sleep(1000);
             helper.clickElement(CombosLocators.availability);
             LoggerHandler.info("clicked availability");
             test.log(Status.PASS,"clicked availability");
