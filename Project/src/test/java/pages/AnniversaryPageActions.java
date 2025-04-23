@@ -6,7 +6,7 @@ import java.time.Duration;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-
+import utils.ExcelReader;
 import uistore.AnniversaryPageLocators;
 import utils.Assertion;
 import utils.Base;
@@ -46,10 +46,8 @@ public class AnniversaryPageActions {
 
     public void inputCity() {
         try {
-
-            String area_name = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
-
-            helper.enterText(AnniversaryPageLocators.inputLocation, area_name);
+            String chennai=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 0, 0);
+            helper.enterText(AnniversaryPageLocators.inputLocation, chennai);
             Thread.sleep(2000);
             helper.enterAction(AnniversaryPageLocators.inputLocation);
             Screenshot.captureScreenShot("FNP");

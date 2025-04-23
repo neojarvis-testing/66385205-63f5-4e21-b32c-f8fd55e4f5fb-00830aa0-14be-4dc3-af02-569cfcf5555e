@@ -45,11 +45,12 @@ public class LifestylePageActions {
 
     public void enterLocation(){
         try {
+            String kolkata=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 6, 1);
+            helper.enterText(LifestylePageLocators.searchBar, kolkata);
             String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx","Sheet1",6,1);
             helper.enterText(LifestylePageLocators.searchBar, area_name);
             Thread.sleep(2000);
             helper.enterAction(LifestylePageLocators.searchBar);
-            Thread.sleep(1000);            
             Thread.sleep(2000);
             helper.enterAction(LifestylePageLocators.searchBar);
             Thread.sleep(3000);

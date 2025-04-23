@@ -25,10 +25,12 @@ public class Combos {
         helper=new WebDriverHelper(Base.driver);
         this.extentTest=extentTest;
     }
+
     public void clickNoThanks(){
         helper.waitForElementToBeVisible(CombosLocators.noThanks,10);
         helper.clickElement(CombosLocators.noThanks);
     }
+
     public void clickWhere(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.where,10);
@@ -42,11 +44,20 @@ public class Combos {
         }
         
     }
+
     public void enteringLocation() {
         try{
             Thread.sleep(2000);
             helper.clickElement(CombosLocators.location);
             helper.waitForElementToBeVisible(CombosLocators.location,10);
+            String bangalore=ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 2, 1);
+            helper.enterText(CombosLocators.location,bangalore);
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             String area_name = ExcelReader.readdata(System.getProperty("user.dir")+"/testdata/fnp.xlsx","Sheet1",2,1);
             helper.enterText(CombosLocators.location, area_name);
             Thread.sleep(2000);
@@ -61,6 +72,7 @@ public class Combos {
         }
  
     }
+
     public void continueShopping(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.continueShop,10);
@@ -76,6 +88,7 @@ public class Combos {
             extentTest.log(Status.FAIL,"couldn't clicked on continue shopping");
         }
     }
+
     public void hoverCombos(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.combos,10);
@@ -88,6 +101,7 @@ public class Combos {
             extentTest.log(Status.FAIL,"couldn't hovered over combos");
         }
     }
+
     public void clickHampers(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.healthyhampers,10);
@@ -100,6 +114,7 @@ public class Combos {
             extentTest.log(Status.FAIL,"couldn't clicked helathy hampers");
         }
     }
+
     public void clickAvailability(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.availability,10);
@@ -113,6 +128,7 @@ public class Combos {
             extentTest.log(Status.FAIL,"couldn't clicked helathy hampers");
         }
     }
+
     public void clickTrue(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.trues,10);
@@ -125,6 +141,7 @@ public class Combos {
             extentTest.log(Status.FAIL,"couldn't clicked true");
         }
     }
+
     public void clickProduct(){
         try{
             helper.waitForElementToBeVisible(CombosLocators.firstProduct,10);
@@ -139,6 +156,7 @@ public class Combos {
             extentTest.log(Status.FAIL,"couldn't clicked firstProduct");
         }
     }
+
     public void addToCart(){
         try{
             helper.switchWindow();
