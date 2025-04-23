@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import uistore.LifestylePageLocators;
 import uistore.PenLocators;
 import uistore.PersonalisedPageLocators;
 import utils.Assertion;
@@ -15,7 +16,7 @@ import utils.Screenshot;
 import utils.WebDriverHelper;
 
 public class PersonalisedPageActions {
-    ExtentReports extent;
+    ExtentReports extentReport;
     ExtentTest extentTest;
     WebDriverHelper helper;
     Assertion assertion;

@@ -10,6 +10,7 @@ import utils.ExcelReader;
 import uistore.AnniversaryPageLocators;
 import utils.Assertion;
 import utils.Base;
+import utils.ExcelReader;
 import utils.LoggerHandler;
 import utils.Reporter;
 import utils.Screenshot;
@@ -87,7 +88,7 @@ public class AnniversaryPageActions {
 
     public void clickOnFlowers() {
         try {
-            helper.clickElement(AnniversaryPageLocators.flowers);
+            helper.clickElement(AnniversaryPageLocators.flowers);           
             LoggerHandler.info("Clicked on flowers");
             extentTest.log(Status.PASS, "Clicked on flowers");
         } catch (Exception e) {
@@ -135,7 +136,10 @@ public class AnniversaryPageActions {
     }
 
     public void verifyHome() {
-        assertion.verifyText(AnniversaryPageLocators.home, "Home");
+
+        String text = ExcelReader.readdata(System.getProperty("user.dir") + "/testdata/fnp.xlsx", "Sheet1", 10,0);
+
+        assertion.verifyText(AnniversaryPageLocators.home, text);
         Screenshot.captureScreenShot("first product");
         Reporter.attachScreenshot("first_product", extentTest, "This is the first product");
     }
